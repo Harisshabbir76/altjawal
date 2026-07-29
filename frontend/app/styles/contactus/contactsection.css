@@ -1,0 +1,141 @@
+/* ── Contact Section ── */
+.contact-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 190px 2rem 100px;
+}
+
+.contact-section__bg-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.contact-section__bg {
+  object-fit: cover;
+  object-position: center;
+}
+
+.contact-section__overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(38, 53, 43, 0.55);
+}
+
+.contact-section__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 680px;
+}
+
+.contact-section__heading {
+  font-family: var(--font-ivy-presto), serif;
+  font-size: 30px;
+  font-weight: 300;
+  color: #EFECE3;
+  margin: 0 0 1rem;
+  line-height: 1.2;
+}
+
+.contact-section__subheading {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #EDE1CB;
+  max-width: 490px;
+  margin: 0 0 50px;
+  line-height: 1.6;
+}
+
+/* ── Form card ── */
+.contact-section__card {
+  position: relative;
+  background-color: #F2F0EC;
+  width: 100%;
+  padding: 30px 30px 40px;
+  text-align: left;
+}
+
+.contact-section__card-clip {
+  position: absolute;
+  top: 0;
+  left: 28px;
+  transform: translateY(-42%);
+}
+
+.contact-section__card-intro {
+  font-family: "Pinyon Script", cursive;
+  font-style: normal;
+  font-size: 20px;
+  font-weight: 400;
+  color: #000000;
+  text-align: center;
+  margin: 0 auto 2rem;
+  line-height: 1.5;
+  max-width: 380px;
+}
+
+/* ── Form ── */
+.contact-section__form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-section__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.contact-section__input,
+.contact-section__textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid rgba(175, 175, 175, 0.55);
+  background: #ffffff;
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #000000;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.contact-section__input::placeholder,
+.contact-section__textarea::placeholder {
+  color: #AFAFAF;
+  font-size: 12px;
+}
+
+.contact-section__textarea {
+  resize: none;
+}
+
+.contact-section__btn {
+  width: 100%;
+  padding: 14px;
+  background-color: #EDE1CB;
+  color: #38443E;
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  border: 2px solid rgba(56, 68, 62, 0.6);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.contact-section__btn:hover {
+  background-color: #38443E;
+  color: #EDE1CB;
+}

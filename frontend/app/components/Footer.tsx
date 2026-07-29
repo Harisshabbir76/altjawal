@@ -6,7 +6,13 @@ import whatsappIcon from '../Images/whatsapp.png';
 import '../styles/footer.css';
 
 const services = ['Corporate Events', 'Private Events', 'Event Packages', 'Production & Design', 'Branding Services'];
-const quickLinks = ['Home', 'About Us', 'FAQ', 'Contact Us', 'Legal'];
+const quickLinks = [
+  { label: 'Home',       href: '/' },
+  { label: 'About Us',   href: '/about' },
+  { label: 'FAQ',        href: '/faq' },
+  { label: 'Contact Us', href: '/contact' },
+  { label: 'Legal',      href: '/legal' },
+];
 
 export default function Footer() {
   return (
@@ -56,7 +62,7 @@ export default function Footer() {
           <div className="footer-col">
             <h4 className="footer-col-heading">Quick Links</h4>
             <ul className="footer-col-list">
-              {quickLinks.map((l) => <li key={l}><a href="#" className="footer-link">{l}</a></li>)}
+              {quickLinks.map((l) => <li key={l.href}><a href={l.href} className="footer-link">{l.label}</a></li>)}
             </ul>
           </div>
         </div>
