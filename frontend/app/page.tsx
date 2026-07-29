@@ -6,7 +6,6 @@ import ChooseUsSection from "./components/homepage/ChooseUsSection";
 import ExperienceSection from "./components/homepage/ExperienceSection";
 import MarqueeSection from "./components/homepage/MarqueeSection";
 import PurposeSection from "./components/homepage/PurposeSection";
-import Footer from "./components/Footer";
 
 export default function Home() {
   return (
@@ -19,7 +18,6 @@ export default function Home() {
       <ExperienceSection />
       <MarqueeSection />
       <PurposeSection />
-      <Footer />
     </main>
   );
 }

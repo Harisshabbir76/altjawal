@@ -1,0 +1,224 @@
+/* ── About Experience Section ── */
+.about-experience {
+  background-color: #EFECE3;
+  position: relative;
+  padding: 200px 5rem 50px;
+  text-align: center;
+}
+
+/* Image — half in hero, half in this section */
+.about-experience__img-wrap {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 290px;
+  height: 320px;
+  overflow: hidden;
+}
+
+.about-experience__img {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Text content */
+.about-experience__content {
+  max-width: 760px;
+  margin: -10px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.about-experience__heading {
+  font-family: var(--font-ivy-presto), serif;
+  font-size: 30px;
+  font-weight: 300;
+  color: #38443E;
+  margin: 0 0 0.5rem;
+}
+
+.about-experience__paragraph {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #000000;
+  line-height: 1.4;
+  margin: 0;
+  max-width: 590px;
+}
+
+.about-experience__paragraph strong {
+  font-weight: 700;
+}
+
+/* ── Divider ── */
+.about-experience-divider {
+  width: 100%;
+  border: none;
+  border-top: 2px solid gray;
+  margin: 0;
+}
+
+/* ── We Build More Than Events ── */
+.about-build {
+  background-color: #EFECE3;
+  padding: 30px 12rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 40px;
+}
+
+.about-build__images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 15px;
+  width: 100%;
+  height: 250px;
+}
+
+.about-build__img-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.about-build__img-wrap--tall {
+  grid-row: 1 / 3;
+}
+
+.about-build__img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.about-build__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.about-build__heading {
+  font-family: var(--font-ivy-presto), serif;
+  font-size: 30px;
+  font-weight: 300;
+  color: #38443E;
+  line-height: 1.2;
+  margin: 0 0 0.5rem;
+}
+
+.about-build__paragraph {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #000000;
+  margin: 0;
+  max-width: 400px;
+}
+
+/* ── Tablet ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .about-build {
+    padding: 50px 3rem;
+    gap: 2.5rem;
+  }
+
+  .about-build__images {
+    height: 280px;
+  }
+
+  .about-build__heading {
+    font-size: 24px;
+  }
+}
+
+/* ── Mobile ── */
+@media (max-width: 767px) {
+  .about-build {
+    grid-template-columns: 1fr;
+    padding: 40px 1.5rem;
+    gap: 2rem;
+  }
+
+  .about-build__images {
+    height: 240px;
+  }
+}
+
+/* ── Large screens ── */
+@media (min-width: 1401px) {
+  .about-build {
+    padding: 80px 7rem;
+  }
+
+  .about-build__images {
+    height: 440px;
+  }
+
+  .about-build__heading {
+    font-size: 36px;
+  }
+
+  .about-build__paragraph {
+    font-size: 14px;
+  }
+}
+
+/* ── Tablet: 768px – 1023px ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .about-experience {
+    padding: 180px 3rem 60px;
+  }
+
+  .about-experience__img-wrap {
+    width: 240px;
+    height: 270px;
+  }
+
+  .about-experience__heading {
+    font-size: 26px;
+  }
+}
+
+/* ── Mobile: < 768px ── */
+@media (max-width: 767px) {
+  .about-experience {
+    padding: 160px 1.5rem 50px;
+  }
+
+  .about-experience__img-wrap {
+    width: 200px;
+    height: 230px;
+  }
+
+  .about-experience__heading {
+    font-size: 22px;
+  }
+
+  .about-experience__content {
+    max-width: 100%;
+  }
+}
+
+/* ── Large screens: > 1400px ── */
+@media (min-width: 1401px) {
+  .about-experience {
+    padding: 230px 7rem 90px;
+  }
+
+  .about-experience__img-wrap {
+    width: 350px;
+    height: 390px;
+  }
+
+  .about-experience__heading {
+    font-size: 38px;
+  }
+
+  .about-experience__paragraph {
+    font-size: 14px;
+  }
+}

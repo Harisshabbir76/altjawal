@@ -1,0 +1,94 @@
+/* ── Inspired Section ── */
+.about-inspired {
+  background-color:#F2F0EC;
+  padding: 40px 5rem 40px;
+  text-align: center;
+}
+
+.about-inspired__text {
+  max-width: 700px;
+  margin: 0 auto 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.about-inspired__heading {
+  font-family: var(--font-ivy-presto), serif;
+  font-size: 30px;
+  font-weight: 300;
+  color: #38443E;
+  line-height: 1.05;
+  margin: 0 0 0.7rem;
+}
+
+.about-inspired__paragraph {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #000000;
+  max-width: 500px;
+  margin: 0;
+}
+
+/* ── Image ── */
+.about-inspired__img-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  height: 260px;
+  overflow: hidden;
+}
+
+.about-inspired__img {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ── Tablet ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .about-inspired {
+    padding: 60px 3rem 50px;
+  }
+
+  .about-inspired__heading {
+    font-size: 28px;
+  }
+
+  .about-inspired__img-wrap {
+    height: 210px;
+  }
+}
+
+/* ── Mobile ── */
+@media (max-width: 767px) {
+  .about-inspired {
+    padding: 50px 1.5rem 40px;
+  }
+
+  .about-inspired__heading {
+    font-size: 24px;
+  }
+
+  .about-inspired__img-wrap {
+    height: 180px;
+  }
+}
+
+/* ── Large screens ── */
+@media (min-width: 1401px) {
+  .about-inspired__heading {
+    font-size: 42px;
+  }
+
+  .about-inspired__paragraph {
+    font-size: 14px;
+  }
+
+  .about-inspired__img-wrap {
+    height: 340px;
+    max-width: 1000px;
+  }
+}

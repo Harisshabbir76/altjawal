@@ -1,0 +1,129 @@
+/* ── Guide Section ── */
+.about-guide {
+  background-color: #38443E;
+  padding: 60px 9rem 60px;
+}
+
+.about-guide__heading {
+  font-family: var(--font-ivy-presto), serif;
+  font-size: 30px;
+  font-weight: 300;
+  color: #EDE1CB;
+  text-align: center;
+  margin: 0 0 60px;
+  line-height: 1.2;
+}
+
+/* ── Two-column body ── */
+.about-guide__body {
+  display: grid;
+  grid-template-columns: minmax(0, 420px) 1fr;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* ── Values list ── */
+.about-guide__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.about-guide__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.about-guide__item-title {
+  font-family: var(--font-ivy-presto), serif;
+  font-size: 17px;
+  font-weight: 400;
+  color: #EFECE3;
+  letter-spacing: 0.01em;
+}
+
+.about-guide__item-desc {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #EFECE3;
+  line-height: 1.2;
+  margin: 0;
+  max-width: 370px;
+}
+
+/* ── Images ── */
+.about-guide__images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  height: 380px;
+}
+
+.about-guide__img-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.about-guide__img {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ── Tablet ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .about-guide {
+    padding: 60px 3rem 70px;
+  }
+
+  .about-guide__body {
+    gap: 2.5rem;
+  }
+
+  .about-guide__images {
+    height: 300px;
+  }
+
+  .about-guide__heading {
+    font-size: 26px;
+  }
+}
+
+/* ── Mobile ── */
+@media (max-width: 767px) {
+  .about-guide {
+    padding: 50px 1.5rem 60px;
+  }
+
+  .about-guide__body {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .about-guide__images {
+    height: 240px;
+  }
+
+  .about-guide__heading {
+    font-size: 24px;
+  }
+}
+
+/* ── Large screens ── */
+@media (min-width: 1401px) {
+  .about-guide__heading {
+    font-size: 40px;
+  }
+
+  .about-guide__images {
+    height: 460px;
+  }
+
+  .about-guide__item-desc {
+    font-size: 13px;
+  }
+}
