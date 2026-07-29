@@ -1,0 +1,108 @@
+/* ── Experience Section ── */
+.experience-section {
+  background-color: #F0EAE0;
+  padding: 60px 5rem 50px;
+  text-align: center;
+}
+
+.experience-heading {
+  font-family: var(--font-ivy-presto), serif;
+  font-size: 30px;
+  font-weight: 300;
+  color: #38443E;
+  line-height: 1.2;
+  margin: 0 0 3rem;
+}
+
+/* ── Stats row ── */
+.experience-stats {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+}
+
+.experience-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.experience-value {
+  font-family: var(--font-ivy-presto), serif;
+  font-size: 30px;
+  font-weight: 300;
+  color: #38443E;
+  line-height: 1;
+}
+
+.experience-label {
+  font-family: var(--font-ivy-presto), serif;
+  font-size: 15px;
+  font-weight: 300;
+  color: #38443E;
+  letter-spacing: 0.02em;
+}
+
+/* ── Tablet: 768px – 1023px ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .experience-section {
+    padding: 50px 3rem 45px;
+  }
+
+  .experience-heading {
+    font-size: 26px;
+  }
+
+  .experience-stats {
+    gap: 3rem;
+  }
+
+  .experience-value {
+    font-size: 34px;
+  }
+}
+
+/* ── Mobile: < 768px ── */
+@media (max-width: 767px) {
+  .experience-section {
+    padding: 50px 1.5rem 40px;
+  }
+
+  .experience-heading {
+    font-size: 22px;
+    margin-bottom: 2rem;
+  }
+
+  .experience-stats {
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .experience-value {
+    font-size: 30px;
+  }
+}
+
+/* ── Large screens: > 1400px ── */
+@media (min-width: 1401px) {
+  .experience-section {
+    padding: 80px 7rem 65px;
+  }
+
+  .experience-heading {
+    font-size: 38px;
+  }
+
+  .experience-stats {
+    gap: 7rem;
+  }
+
+  .experience-value {
+    font-size: 52px;
+  }
+
+  .experience-label {
+    font-size: 14px;
+  }
+}

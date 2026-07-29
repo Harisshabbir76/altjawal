@@ -1,0 +1,228 @@
+/* ── Footer CTA Banner ── */
+.footer-cta {
+  position: relative;
+  background-color: #BDB5A8;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 170px;
+  padding: 40px 5rem;
+}
+
+.footer-cta-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 580px;
+}
+
+.footer-cta-heading {
+  font-family: var(--font-ivy-presto), serif;
+  font-size: 23px;
+  font-weight: 300;
+  color: #38443E;
+  margin: 0 0 0.75rem;
+  line-height: 1.2;
+}
+
+.footer-cta-paragraph {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #000000;
+  line-height: 1.65;
+  max-width: 370px;
+  margin: 0 0 1.4rem;
+}
+
+.footer-cta-button {
+  display: inline-block;
+  background-color: #38443E;
+  color: #EFECE3;
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 1;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 7px 20px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.footer-cta-button:hover {
+  opacity: 0.85;
+}
+
+/* Botanical image — full background */
+.footer-cta-img-wrap {
+  position: absolute;
+  inset: 0;
+}
+
+.footer-cta-img {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ── Main Footer ── */
+.footer-main {
+  background-color: #EFECE3;
+  padding: 50px 5rem 40px;
+}
+
+/* Logo */
+.footer-logo-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.footer-logo {
+  object-fit: contain;
+}
+
+/* Three columns */
+.footer-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 2.5rem;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-col-heading {
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #000000;
+  margin: 0 0 10px;
+  letter-spacing: 0.02em;
+}
+
+.footer-col-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-link {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #000000;
+  text-decoration: none;
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+.footer-link:hover {
+  opacity: 0.6;
+}
+
+.footer-about {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #000000;
+  margin: 0;
+  max-width: 200px;
+}
+
+/* Socials + copyright */
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding-top: 1.5rem;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+
+.footer-social-link {
+  color: black;
+  display: flex;
+  align-items: center;
+}
+
+.footer-social-icon {
+  filter: brightness(0);
+}
+
+.footer-social-link:hover {
+  opacity: 0.6;
+}
+
+.footer-copyright {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #000000;
+  margin: 0;
+}
+
+/* ── Tablet ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .footer-cta {
+    padding: 35px 3rem;
+  }
+
+  .footer-main {
+    padding: 40px 3rem 25px;
+  }
+
+  .footer-columns {
+    gap: 2rem;
+  }
+}
+
+/* ── Mobile ── */
+@media (max-width: 767px) {
+  .footer-cta {
+    padding: 40px 1.5rem;
+  }
+
+  .footer-cta-img-wrap {
+    width: 55%;
+    opacity: 0.4;
+  }
+
+  .footer-main {
+    padding: 40px 1.5rem 25px;
+  }
+
+  .footer-columns {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* ── Large screens ── */
+@media (min-width: 1401px) {
+  .footer-cta-heading {
+    font-size: 32px;
+  }
+
+  .footer-cta-paragraph {
+    font-size: 14px;
+  }
+
+  .footer-main {
+    padding: 60px 7rem 35px;
+  }
+}

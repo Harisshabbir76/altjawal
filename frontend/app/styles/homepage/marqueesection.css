@@ -1,0 +1,33 @@
+/* ── Marquee Section ── */
+.marquee-section {
+  background-color: #38443E;
+  padding: 0px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: inline-flex;
+  animation: marquee 30s linear infinite;
+  width: max-content;
+}
+
+.marquee-item {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #EDE1CB;
+  display: inline-flex;
+  align-items: center;
+}
+
+.marquee-dot {
+  margin: 0 5px ;
+  color: #EDE1CB;
+  font-size: 12px;
+}

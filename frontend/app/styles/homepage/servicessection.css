@@ -1,0 +1,179 @@
+/* ── Services Section ── */
+.services-section {
+  background-color: #38443E;
+  padding: 70px 5rem 100px;
+  text-align: center;
+  position: relative;
+  overflow: visible;
+}
+
+.services-heading {
+  font-family: var(--font-ivy-presto), serif;
+  font-size: 30px;
+  font-weight: 300;
+  color: #EDE1CB;
+  margin: 0 0 25px;
+  line-height: 1.5;
+}
+
+.services-paragraph {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 200;
+  color: #EDE1CB;
+  max-width: 500px;
+  margin: 0 auto 3rem;
+}
+
+/* ── Cards row ── */
+.services-cards {
+  display: flex;
+  justify-content: center;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+}
+
+/* ── Single card ── */
+.service-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+/* ── Polaroid frame ── */
+.service-polaroid {
+  background: #ffffff;
+  padding: 10px 10px 30px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  width: 200px;
+  flex-shrink: 0;
+}
+
+/* ── Image inside polaroid ── */
+.service-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.service-img {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ── Card label ── */
+.service-label {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #EDE1CB;
+  letter-spacing: 0.04em;
+}
+
+/* ── Decorative frame at bottom ── */
+.services-frame-wrap {
+  position: absolute;
+  bottom: 7%;
+  left: 74%;
+  transform: translateX(-50%) translateY(80%);
+  width: 260px;
+  height: 280px;
+  z-index: 10;
+}
+
+.services-frame-img {
+  object-fit: contain;
+}
+
+/* ── Tablet: 768px – 1023px ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .services-section {
+    padding: 60px 3rem 90px;
+  }
+
+  .services-heading {
+    font-size: 30px;
+  }
+
+  .service-polaroid {
+    width: 150px;
+  }
+
+  .service-img-wrap {
+    height: 170px;
+  }
+
+  .services-frame-wrap {
+    width: 210px;
+    height: 230px;
+  }
+}
+
+/* ── Mobile: < 768px ── */
+@media (max-width: 767px) {
+  .services-section {
+    padding: 50px 1.5rem 80px;
+  }
+
+  .services-heading {
+    font-size: 26px;
+  }
+
+  .services-paragraph {
+    max-width: 100%;
+  }
+
+  .services-cards {
+    gap: 1.25rem;
+  }
+
+  .service-polaroid {
+    width: 130px;
+    padding: 8px 8px 22px;
+  }
+
+  .service-img-wrap {
+    height: 150px;
+  }
+
+  .services-frame-wrap {
+    width: 180px;
+    height: 200px;
+  }
+}
+
+/* ── Large screens: > 1400px ── */
+@media (min-width: 1401px) {
+  .services-section {
+    padding: 90px 7rem 120px;
+  }
+
+  .services-heading {
+    font-size: 44px;
+  }
+
+  .services-paragraph {
+    font-size: 15px;
+    max-width: 600px;
+  }
+
+  .service-polaroid {
+    width: 210px;
+    padding: 12px 12px 36px;
+  }
+
+  .service-img-wrap {
+    height: 250px;
+  }
+
+  .service-label {
+    font-size: 15px;
+  }
+
+  .services-frame-wrap {
+    width: 320px;
+    height: 350px;
+  }
+}

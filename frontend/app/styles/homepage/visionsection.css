@@ -1,0 +1,163 @@
+/* ── Vision Section ── */
+.vision-section {
+  background-color: #EFECE3;
+  padding: 70px 5rem;
+  display: grid;
+  grid-template-columns: 50% 55%;
+  align-items: center;
+}
+
+/* ── Left: text content ── */
+.vision-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.vision-heading {
+  font-family: var(--font-ivy-presto), serif;
+  font-size: 36px;
+  font-weight: 300;
+  color: #38443E;
+  line-height: 1.2;
+  margin: 0;
+  max-width: 450px;
+}
+
+.vision-paragraph {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #000000;
+  letter-spacing: 0.01em;
+  margin: 0;
+  max-width: 380px;
+}
+
+.vision-button {
+  display: inline-block;
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 1;
+  text-transform: uppercase;
+  color: #000000;
+  border: 1px solid #000000;
+  text-decoration: none;
+  padding: 4 20px;
+  background: transparent;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.vision-button:hover {
+  background-color: #1a1a1a;
+  color: #F0EAE0;
+}
+
+/* ── Right: images ── */
+.vision-images {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.vision-img-wrap {
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.vision-img-wrap:first-child {
+  width: 170px;
+  height: 280px;
+}
+
+.vision-img-wrap:last-child {
+  width: 320px;
+  height: 400px;
+}
+
+.vision-img {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ── Divider ── */
+.vision-divider {
+  width: 100%;
+  border: none;
+  border-top: 2px solid gray;
+  margin: 0;
+}
+
+/* ── Tablet: 768px – 1023px ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .vision-section {
+    padding: 70px 3rem;
+    grid-template-columns: 45% 55%;
+    gap: 2rem;
+  }
+
+  .vision-heading {
+    font-size: 30px;
+    max-width: 300px;
+  }
+
+  .vision-paragraph {
+    max-width: 300px;
+  }
+}
+
+/* ── Mobile: < 768px ── */
+@media (max-width: 767px) {
+  .vision-section {
+    grid-template-columns: 1fr;
+    padding: 60px 1.5rem;
+    gap: 2.5rem;
+  }
+
+  .vision-heading {
+    font-size: 28px;
+    max-width: 100%;
+  }
+
+  .vision-paragraph {
+    max-width: 100%;
+  }
+
+  .vision-images {
+    gap: 0.5rem;
+  }
+
+  .vision-img-wrap:first-child {
+    height: 180px;
+  }
+
+  .vision-img-wrap:last-child {
+    height: 260px;
+  }
+}
+
+/* ── Large screens: > 1400px ── */
+@media (min-width: 1401px) {
+  .vision-section {
+    padding: 110px 7rem;
+  }
+
+  .vision-heading {
+    font-size: 44px;
+    max-width: 480px;
+  }
+
+  .vision-paragraph {
+    font-size: 15px;
+    max-width: 440px;
+  }
+
+  .vision-button {
+    font-size: 15px;
+  }
+}

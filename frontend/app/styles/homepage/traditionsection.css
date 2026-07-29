@@ -1,0 +1,132 @@
+/* ── Tradition Section ── */
+.tradition-section {
+  background-color: #F0EAE0;
+  padding: 30px 0 30px;
+}
+
+/* ── Text block ── */
+.tradition-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 2rem 60px;
+  gap: 1.1rem;
+}
+
+.tradition-heading {
+  font-family: var(--font-ivy-presto), serif;
+  font-size: 30px;
+  font-weight: 300;
+  color: #38443E;
+  line-height: 2;
+  margin: 0;
+  max-width: 600px;
+}
+
+.tradition-paragraph {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 200;
+  color: #000000;
+  letter-spacing: 0.01em;
+  margin: 0;
+  max-width: 535px;
+}
+
+.tradition-button {
+  display: inline-block;
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 1;
+  text-transform: uppercase;
+  color: #1F150F;
+  border: 1px solid #000000;
+  text-decoration: none;
+  padding: 3px 20px;
+  background: transparent;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.tradition-button:hover {
+  background-color: #1a1a1a;
+  color: #F0EAE0;
+}
+
+/* ── Image block ── */
+.tradition-image-wrap {
+  position: relative;
+  width: calc(100% - 10rem);
+  margin: 0 5rem;
+  height: 220px;
+  overflow: hidden;
+}
+
+.tradition-img {
+  object-fit: cover;
+  object-position: center center;
+}
+
+/* ── Tablet: 768px – 1023px ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .tradition-heading {
+    font-size: 28px;
+    max-width: 480px;
+  }
+
+  .tradition-paragraph {
+    max-width: 420px;
+  }
+
+  .tradition-image-wrap {
+    width: calc(100% - 6rem);
+    margin: 0 3rem;
+    height: 340px;
+  }
+}
+
+/* ── Mobile: < 768px ── */
+@media (max-width: 767px) {
+  .tradition-section {
+    padding: 50px 0 0;
+  }
+
+  .tradition-heading {
+    font-size: 24px;
+    max-width: 100%;
+  }
+
+  .tradition-paragraph {
+    max-width: 100%;
+  }
+
+  .tradition-image-wrap {
+    width: calc(100% - 3rem);
+    margin: 0 1.5rem;
+    height: 220px;
+  }
+}
+
+/* ── Large screens: > 1400px ── */
+@media (min-width: 1401px) {
+  .tradition-heading {
+    font-size: 44px;
+    max-width: 720px;
+  }
+
+  .tradition-paragraph {
+    font-size: 15px;
+    max-width: 620px;
+  }
+
+  .tradition-button {
+    font-size: 15px;
+  }
+
+  .tradition-image-wrap {
+    height: 520px;
+  }
+}

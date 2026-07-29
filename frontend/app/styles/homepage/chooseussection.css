@@ -1,0 +1,153 @@
+/* ── Choose Us Section ── */
+.chooseus-section {
+  background-color: #F0EAE0;
+  display: grid;
+  grid-template-columns: 200px 1fr 200px;
+  align-items: center;
+  position: relative;
+  min-height: 420px;
+  padding: 0 5rem;
+  padding-bottom: 60px;
+}
+
+/* ── Left image ── */
+.chooseus-left {
+  position: relative;
+  align-self: stretch;
+  top:20%;
+  height: 300px;
+  margin-left: 50px;
+  width: 200px;
+}
+
+.chooseus-left-img {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ── Center content ── */
+.chooseus-content {
+  margin-top:80px;
+  padding: 60px 100px;
+}
+
+.chooseus-heading {
+  font-family: var(--font-ivy-presto), serif;
+  font-size: 30px;
+  font-weight: 300;
+  color: #38443E;
+  line-height: 1.2;
+  margin: 0 0 1.5rem;
+}
+
+.chooseus-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.chooseus-item {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #000000;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  padding-left: 1.4em;
+  position: relative;
+}
+
+.chooseus-item::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  font-size: 7px;
+  top: 4px;
+  color: #1a1a1a;
+}
+
+/* ── Right image ── */
+.chooseus-right {
+  position: relative;
+  align-self: end;
+  height: 200px;
+  width: 150px;
+}
+
+.chooseus-right-img {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ── Tablet: 768px – 1023px ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .chooseus-section {
+    grid-template-columns: 180px 1fr 150px;
+    min-height: 360px;
+  }
+
+  .chooseus-content {
+    padding: 50px 2.5rem;
+  }
+
+  .chooseus-heading {
+    font-size: 26px;
+  }
+
+  .chooseus-right {
+    height: 210px;
+  }
+}
+
+/* ── Mobile: < 768px ── */
+@media (max-width: 767px) {
+  .chooseus-section {
+    grid-template-columns: 1fr;
+    min-height: unset;
+  }
+
+  .chooseus-left {
+    height: 260px;
+    align-self: unset;
+  }
+
+  .chooseus-content {
+    padding: 40px 1.5rem;
+  }
+
+  .chooseus-heading {
+    font-size: 24px;
+  }
+
+  .chooseus-right {
+    height: 200px;
+    align-self: unset;
+  }
+}
+
+/* ── Large screens: > 1400px ── */
+@media (min-width: 1401px) {
+  .chooseus-section {
+    grid-template-columns: 280px 1fr 240px;
+    min-height: 520px;
+  }
+
+  .chooseus-content {
+    padding: 80px 5rem;
+  }
+
+  .chooseus-heading {
+    font-size: 40px;
+  }
+
+  .chooseus-item {
+    font-size: 15px;
+  }
+
+  .chooseus-right {
+    height: 330px;
+  }
+}
