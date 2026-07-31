@@ -9,6 +9,22 @@
   width: 100%;
 }
 
+.navbar--bordered {
+  border-bottom: 2px solid rgba(239, 236, 227, 0.5);
+  padding-bottom: 12px;
+}
+
+.navbar--dark.navbar--bordered {
+  border-bottom: 2px solid rgba(56, 68, 62, 0.5);
+}
+
+.navbar--dark .nav-link,
+.navbar--dark .dropdown-toggle,
+.navbar--dark .book-now {
+  color: #38443E;
+  font-weight: 300;
+}
+
 .navbar-inner {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -60,7 +76,7 @@
   font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  font-weight: 150;
+  font-weight: 300;
   white-space: nowrap;
   transition: opacity 0.2s ease;
   background: none;

@@ -1,0 +1,33 @@
+/* ── Event Production Marquee ── */
+.ep-marquee {
+  background-color: #38443E;
+  padding: 4px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@keyframes ep-marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.ep-marquee__track {
+  display: inline-flex;
+  animation: ep-marquee-scroll 30s linear infinite;
+  width: max-content;
+}
+
+.ep-marquee__item {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #EDE1CB;
+  display: inline-flex;
+  align-items: center;
+}
+
+.ep-marquee__dot {
+  margin: 0 8px;
+  color: #EDE1CB;
+  font-size: 12px;
+}

@@ -1,0 +1,194 @@
+/* ── Events Section ── */
+.ms-events {
+  background-color: #38443E;
+}
+
+/* ── Intro ── */
+.ms-events__intro {
+  padding: 160px 2rem 80px;
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.ms-events__heading {
+  font-family: var(--font-ivy-presto), serif;
+  font-size: 30px;
+  font-weight: 300;
+  color: #EDE1CB;
+  line-height: 1.2;
+  margin: 0 0 32px;
+}
+
+.ms-events__paragraph {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #EDE1CB;
+  line-height: 1.5;
+  margin: 0 auto 24px;
+  max-width: 500px;
+  text-align: center;
+}
+
+.ms-events__paragraph:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Service block (3-col grid) ── */
+.ms-events__block {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 1fr;
+  min-height: 540px;
+}
+
+.ms-events__img-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.ms-events__img {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ── Center card ── */
+.ms-events__card {
+  background-color: #EFECE3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px 50px;
+}
+
+.ms-events__card-heading {
+  font-family: var(--font-ivy-presto), serif;
+  font-size: 30px;
+  font-weight: 300;
+  color: #38443E;
+  margin: 0 0 15px;
+}
+
+.ms-events__card-text {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #000000;
+  line-height: 1.4;
+  margin: 0 0 45px;
+  max-width: 365px;
+}
+
+.ms-events__services-label {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #000000;
+  margin: 0 0 0px;
+}
+
+.ms-events__services-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ms-events__services-list li {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #000000;
+  line-height: 1.4;
+}
+
+.ms-events__btn {
+  display: inline-block;
+  padding: 5px 30px;
+  border: 1px solid #EDE1CB;
+  background: transparent;
+  color: #EDE1CB;
+  font-family: "DM Sans", sans-serif;
+  font-size: 11px;
+  background-color: #38443E;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.ms-events__btn:hover {
+  background-color: #EDE1CB;
+  color: #38443E;
+  border: 1px solid #EDE1CB;
+}
+
+/* ── Tablet ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .ms-events__intro {
+    padding: 140px 2rem 60px;
+  }
+
+  .ms-events__block {
+    grid-template-columns: 1fr 1.3fr 1fr;
+    min-height: 500px;
+  }
+
+  .ms-events__card {
+    padding: 40px 30px;
+  }
+
+  .ms-events__card-heading {
+    font-size: 22px;
+  }
+}
+
+/* ── Mobile ── */
+@media (max-width: 767px) {
+  .ms-events__intro {
+    padding: 120px 1.5rem 60px;
+    max-width: 100%;
+  }
+
+  .ms-events__block {
+    grid-template-columns: 1fr;
+    min-height: unset;
+  }
+
+  .ms-events__img-wrap {
+    height: 260px;
+  }
+
+  .ms-events__card {
+    padding: 50px 1.5rem;
+  }
+
+  .ms-events__card-heading {
+    font-size: 22px;
+  }
+}
+
+/* ── Large screens ── */
+@media (min-width: 1400px) {
+  .ms-events__heading {
+    font-size: 34px;
+  }
+
+  .ms-events__card-heading {
+    font-size: 30px;
+  }
+
+  .ms-events__card-text,
+  .ms-events__services-list li,
+  .ms-events__services-label {
+    font-size: 13px;
+  }
+
+  .ms-events__block {
+    min-height: 720px;
+  }
+}

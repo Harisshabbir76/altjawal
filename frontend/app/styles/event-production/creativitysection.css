@@ -1,0 +1,212 @@
+/* ── Creativity Section ── */
+.ep-creativity {
+  background-color: #38443E;
+  padding: 180px 2rem 80px;
+  text-align: center;
+}
+
+.ep-creativity__content {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.ep-creativity__heading {
+  font-family: var(--font-ivy-presto), serif;
+  font-size: 30px;
+  font-weight: 300;
+  color: #EDE1CB;
+  line-height: 1.2;
+  margin: 0 0 35px;
+}
+
+.ep-creativity__subtext {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #EDE1CB;
+  line-height: 1.6;
+  margin: 0 0 15px;
+}
+
+.ep-creativity__paragraph {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #EDE1CB;
+  line-height: 1.4;
+  margin: 0 auto;
+  max-width: 550px;
+}
+
+/* ── Production & Design block ── */
+.ep-pd-block {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 1fr;
+  min-height: 540px;
+}
+
+.ep-pd__img-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.ep-pd__img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.ep-pd__card { 
+  background-color: #EFECE3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 50px 45px;
+}
+
+.ep-pd__card-heading {
+  font-family: var(--font-ivy-presto), serif;
+  font-size: 30px;
+  font-weight: 300;
+  color: #38443E;
+  line-height: 1.2;
+  margin: 0 0 20px;
+}
+
+.ep-pd__card-text {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #000000;
+  line-height: 1.5;
+  margin: 0 0 35px;
+  max-width: 345px;
+}
+
+.ep-pd__services-label {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #000000;
+  margin: 0 0 4px;
+}
+
+.ep-pd__services-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ep-pd__services-list li {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #000000;
+  line-height: 1.5;
+}
+
+.ep-pd__btn {
+  display: inline-block;
+  padding: 8px 32px;
+  border: 1px solid #EDE1CB;
+  background-color: #38443E;
+  color: #EDE1CB;
+  font-family: "DM Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.ep-pd__btn:hover {
+  background-color: #EDE1CB;
+  color: #38443E;
+  border-color: #EDE1CB;
+}
+
+/* ── Tablet ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .ep-creativity {
+    padding: 140px 2rem 70px;
+  }
+
+  .ep-creativity__heading {
+    font-size: 26px;
+  }
+
+  .ep-pd-block {
+    grid-template-columns: 1fr 1.3fr 1fr;
+    min-height: 460px;
+  }
+
+  .ep-pd__card {
+    padding: 40px 30px;
+  }
+
+  .ep-pd__card-heading {
+    font-size: 24px;
+  }
+}
+
+/* ── Mobile ── */
+@media (max-width: 767px) {
+  .ep-creativity {
+    padding: 130px 1.5rem 60px;
+  }
+
+  .ep-creativity__heading {
+    font-size: 22px;
+  }
+
+  .ep-creativity__content {
+    max-width: 100%;
+  }
+
+  .ep-pd-block {
+    grid-template-columns: 1fr;
+    min-height: unset;
+  }
+
+  .ep-pd__img-wrap {
+    height: 260px;
+  }
+
+  .ep-pd__card {
+    padding: 50px 1.5rem;
+  }
+
+  .ep-pd__card-heading {
+    font-size: 22px;
+  }
+}
+
+/* ── Large screens ── */
+@media (min-width: 1400px) {
+  .ep-creativity__heading {
+    font-size: 36px;
+  }
+
+  .ep-creativity__subtext,
+  .ep-creativity__paragraph {
+    font-size: 13px;
+  }
+
+  .ep-pd-block {
+    min-height: 640px;
+  }
+
+  .ep-pd__card-heading {
+    font-size: 32px;
+  }
+
+  .ep-pd__card-text,
+  .ep-pd__services-list li,
+  .ep-pd__services-label {
+    font-size: 13px;
+  }
+}

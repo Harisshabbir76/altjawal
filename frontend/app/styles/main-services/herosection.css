@@ -1,0 +1,100 @@
+/* ── Main Services Hero Section ── */
+.ms-hero {
+  display: flex;
+  flex-direction: column;
+  padding-top: 120px;
+  background-color: #EFECE3;
+  overflow: visible;
+}
+
+/* ── Text area ── */
+.ms-hero__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 70px 2rem 40px;
+}
+
+.ms-hero__heading {
+  font-family: var(--font-ivy-presto), serif;
+  font-size: 30px;
+  font-weight: 300;
+  color: #38443E;
+  line-height: 1.2;
+  margin: 0 0 20px;
+  max-width: 600px;
+}
+
+.ms-hero__paragraph {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #000000;
+  line-height: 1.6;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* ── Image — hangs half below the section ── */
+.ms-hero__image-wrap {
+  position: relative;
+  width: 80%;
+  height: 300px;
+  margin: 0 auto -100px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.ms-hero__img {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ── Tablet ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .ms-hero__heading {
+    font-size: 26px;
+  }
+
+  .ms-hero__image-wrap {
+    height: 360px;
+    margin-bottom: -180px;
+  }
+}
+
+/* ── Mobile ── */
+@media (max-width: 767px) {
+  .ms-hero__heading {
+    font-size: 22px;
+  }
+
+  .ms-hero__text {
+    padding: 70px 1.5rem 40px;
+  }
+
+  .ms-hero__image-wrap {
+    width: 95%;
+    height: 280px;
+    margin-bottom: -140px;
+  }
+}
+
+/* ── Large screens ── */
+@media (min-width: 1400px) {
+  .ms-hero__heading {
+    font-size: 38px;
+    max-width: 700px;
+  }
+
+  .ms-hero__paragraph {
+    font-size: 13px;
+    max-width: 560px;
+  }
+
+  .ms-hero__image-wrap {
+    height: 500px;
+    margin-bottom: -250px;
+  }
+}

@@ -67,9 +67,14 @@
 
 .contact-section__card-clip {
   position: absolute;
-  top: 0;
-  left: 28px;
+  top: 17px;
+  left: -30px;
   transform: translateY(-42%);
+}
+
+.contact-section__clip-img {
+  width: 150px;
+  height: 150px;
 }
 
 .contact-section__card-intro {
@@ -138,4 +143,85 @@
 .contact-section__btn:hover {
   background-color: #38443E;
   color: #EDE1CB;
+}
+
+.contact-section__btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── Modal ── */
+.contact-modal__backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(38, 53, 43, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.contact-modal {
+  background-color: #F2F0EA;
+  width: 360px;
+  padding: 48px 40px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.contact-modal__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #38443E;
+  color: #EDE1CB;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.contact-modal__icon--error {
+  background-color: #8b2c2c;
+}
+
+.contact-modal__heading {
+  font-family: var(--font-ivy-presto), serif;
+  font-size: 22px;
+  font-weight: 300;
+  color: #38443E;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.contact-modal__text {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #3a3a3a;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 260px;
+}
+
+.contact-modal__btn {
+  margin-top: 0.5rem;
+  padding: 10px 32px;
+  background-color: #38443E;
+  color: #EDE1CB;
+  font-family: "DM Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+}
+
+.contact-modal__btn:hover {
+  background-color: #2e3832;
 }

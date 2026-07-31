@@ -1,0 +1,150 @@
+/* ── Branding Section ── */
+.bs-branding {
+  background-color: #EFECE3;
+  padding: 40px 2rem 40px;
+  border-top: 1px solid rgba(56, 68, 62, 0.15);
+}
+
+.bs-branding__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.bs-branding__text-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.bs-branding__heading {
+  font-family: var(--font-ivy-presto), serif;
+  font-size: 25px;
+  font-weight: 300;
+  color: #38443E;
+  line-height: 1.2;
+  margin: 0 0 15px;
+}
+
+.bs-branding__paragraph {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #000000;
+  line-height: 1.4;
+  margin: 0 0 30px;
+  max-width: 370px;
+}
+
+.bs-branding__btn {
+  display: inline-block;
+  font-family: "DM Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: #1F150F;
+  background: transparent;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  padding: 5px 24px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background 0.2s, color 0.2s;
+}
+
+.bs-branding__btn:hover {
+  background: #38443E;
+  border-color: #EDE1CB;
+  color: #EDE1CB;
+}
+
+/* ── Images ── */
+.bs-branding__images {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.bs-branding__girl-wrap {
+  position: relative;
+  width: 170px;
+  height: 240px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.bs-branding__window-wrap {
+  position: relative;
+  width: 210px;
+  height: 300px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.bs-branding__img {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ── Tablet ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .bs-branding {
+    padding: 60px 2rem;
+    gap: 40px;
+  }
+
+  .bs-branding__heading {
+    font-size: 24px;
+  }
+
+  .bs-branding__girl-wrap {
+    width: 140px;
+    height: 200px;
+  }
+
+  .bs-branding__window-wrap {
+    width: 170px;
+    height: 250px;
+  }
+}
+
+/* ── Mobile ── */
+@media (max-width: 767px) {
+  .bs-branding {
+    grid-template-columns: 1fr;
+    padding: 60px 1.5rem;
+    gap: 40px;
+  }
+
+  .bs-branding__heading {
+    font-size: 22px;
+  }
+
+  .bs-branding__paragraph {
+    max-width: 100%;
+  }
+
+  .bs-branding__images {
+    justify-content: flex-start;
+  }
+}
+
+/* ── Large screens ── */
+@media (min-width: 1400px) {
+  .bs-branding__heading {
+    font-size: 32px;
+  }
+
+  .bs-branding__girl-wrap {
+    width: 190px;
+    height: 270px;
+  }
+
+  .bs-branding__window-wrap {
+    width: 230px;
+    height: 340px;
+  }
+}

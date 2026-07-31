@@ -1,0 +1,161 @@
+/* ── How We Work Section ── */
+.ep-work {
+  background-color: #EFECE3;
+  padding: 70px 2rem 10px;
+}
+
+.ep-work__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  max-width: 100%;
+  min-height: 520px;
+}
+
+/* ── Side columns ── */
+.ep-work__side {
+  display: flex;
+}
+
+.ep-work__side--left {
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding-right: 50px;
+  padding-top: 10px;
+}
+
+.ep-work__side--right {
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding-left: 50px;
+  padding-bottom: 80px;
+}
+
+.ep-work__img-wrap {
+  position: relative;
+  width: 200px;
+  height: 250px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.ep-work__img {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ── Center content ── */
+.ep-work__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ep-work__heading {
+  font-family: var(--font-ivy-presto), serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: #38443E;
+  margin: 0 0 40px;
+  line-height: 1.2;
+}
+
+/* ── Steps ── */
+.ep-work__step-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ep-work__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.ep-work__step-label {
+  font-family: var(--font-ivy-presto), serif;
+  font-size: 16px;
+  font-weight: 300;
+  color: #38443E;
+  margin-bottom: 6px;
+}
+
+.ep-work__step-desc {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #38443E;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.ep-work__arrow {
+  font-size: 20px;
+  color: #38443E;
+  margin: 0 0 20px;
+  line-height: 1;
+}
+
+/* ── Book Now button ── */
+.ep-work__btn {
+  display: inline-block;
+  margin-top: 0px;
+  padding: 5px 30px;
+  background-color: #38443E;
+  color: #EDE1CB;
+  border: 1px solid #EDE1CB;
+  font-family: "DM Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.ep-work__btn:hover {
+  background-color: #EDE1CB;
+  color: #38443E;
+  border-color: #38443E;
+}
+
+/* ── Tablet ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .ep-work__grid {
+    grid-template-columns: 160px 1fr 160px;
+  }
+
+  .ep-work__img-wrap {
+    width: 160px;
+    height: 200px;
+  }
+}
+
+/* ── Mobile ── */
+@media (max-width: 767px) {
+  .ep-work__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ep-work__side {
+    display: none;
+  }
+
+  .ep-work {
+    padding: 60px 1.5rem 80px;
+  }
+}
+
+/* ── Large screens ── */
+@media (min-width: 1400px) {
+  .ep-work__heading {
+    font-size: 34px;
+  }
+
+  .ep-work__img-wrap {
+    width: 240px;
+    height: 290px;
+  }
+}
