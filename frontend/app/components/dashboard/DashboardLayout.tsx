@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { apiFetch } from '../../lib/dashApi';
@@ -30,6 +31,12 @@ export default function DashboardLayout({
   activePage: string;
 }) {
   const router = useRouter();
+
+  useEffect(() => {
+    apiFetch('/api/admin/verify').then((res) => {
+      if (res.status === 401) router.replace('/altjawal/admin-panel/dashboard');
+    }).catch(() => {});
+  }, [router]);
 
   async function handleLogout() {
     await apiFetch('/api/admin/logout', { method: 'POST' });

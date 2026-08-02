@@ -14,6 +14,19 @@ const COOKIE_OPTS = {
   maxAge: 7 * 24 * 60 * 60 * 1000,
 };
 
+// GET /api/admin/verify — lightweight token check used by the dashboard
+router.get('/verify', (req, res) => {
+  const token = req.cookies?.admin_token;
+  if (!token) return res.status(401).end();
+  try {
+    const payload = jwt.verify(token, process.env.JWT_SECRET);
+    if (!payload.admin) return res.status(401).end();
+    res.status(200).end();
+  } catch {
+    res.status(401).end();
+  }
+});
+
 // POST /api/admin/login
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;

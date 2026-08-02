@@ -30,7 +30,7 @@ export default function DashboardRootPage() {
 
   // On mount: check if already logged in
   useEffect(() => {
-    apiFetch('/api/admin/bookings')
+    apiFetch('/api/admin/verify')
       .then((res) => {
         if (res.ok) router.replace(`${BASE}/bookings`);
         else setChecking(false);
