@@ -1,19 +1,17 @@
 const express = require('express');
 const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const cloudinary = require('../config/cloudinary');
 const PageContentBlock = require('../models/PageContentBlock');
 
 const router = express.Router();
 
-const uploadDir = path.join(__dirname, '../uploads/cms');
-if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, uploadDir),
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname);
-    cb(null, `${Date.now()}-${Math.random().toString(36).slice(2)}${ext}`);
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: 'altjawal-cms',
+    allowed_formats: ['jpg', 'jpeg', 'png', 'webp', 'gif'],
+    transformation: [{ quality: 'auto', fetch_format: 'auto' }],
   },
 });
 
@@ -55,33 +53,33 @@ router.post('/save-block', async (req, res) => {
     }
 
     const update = {
-      ...(label         != null && { label }),
-      ...(blockType     != null && { blockType }),
-      ...(content       != null && { content }),
-      ...(image         != null && { image }),
-      ...(htmlTag       != null && { htmlTag }),
-      ...(fontFamily    != null && { fontFamily }),
-      ...(fontSize      != null && { fontSize }),
-      ...(fontWeight    != null && { fontWeight }),
-      ...(fontStyle     != null && { fontStyle }),
-      ...(textDecoration!= null && { textDecoration }),
-      ...(textColor     != null && { textColor }),
-      ...(lineHeight    != null && { lineHeight }),
-      ...(letterSpacing != null && { letterSpacing }),
-      ...(textAlign     != null && { textAlign }),
-      ...(marginTop     != null && { marginTop }),
-      ...(marginRight   != null && { marginRight }),
-      ...(marginBottom  != null && { marginBottom }),
-      ...(marginLeft    != null && { marginLeft }),
-      ...(paddingTop    != null && { paddingTop }),
-      ...(paddingRight  != null && { paddingRight }),
-      ...(paddingBottom != null && { paddingBottom }),
-      ...(paddingLeft   != null && { paddingLeft }),
-      ...(width         != null && { width }),
-      ...(height        != null && { height }),
-      ...(minHeight     != null && { minHeight }),
-      ...(maxWidth      != null && { maxWidth }),
-      ...(maxHeight     != null && { maxHeight }),
+      ...(label          != null && { label }),
+      ...(blockType      != null && { blockType }),
+      ...(content        != null && { content }),
+      ...(image          != null && { image }),
+      ...(htmlTag        != null && { htmlTag }),
+      ...(fontFamily     != null && { fontFamily }),
+      ...(fontSize       != null && { fontSize }),
+      ...(fontWeight     != null && { fontWeight }),
+      ...(fontStyle      != null && { fontStyle }),
+      ...(textDecoration != null && { textDecoration }),
+      ...(textColor      != null && { textColor }),
+      ...(lineHeight     != null && { lineHeight }),
+      ...(letterSpacing  != null && { letterSpacing }),
+      ...(textAlign      != null && { textAlign }),
+      ...(marginTop      != null && { marginTop }),
+      ...(marginRight    != null && { marginRight }),
+      ...(marginBottom   != null && { marginBottom }),
+      ...(marginLeft     != null && { marginLeft }),
+      ...(paddingTop     != null && { paddingTop }),
+      ...(paddingRight   != null && { paddingRight }),
+      ...(paddingBottom  != null && { paddingBottom }),
+      ...(paddingLeft    != null && { paddingLeft }),
+      ...(width          != null && { width }),
+      ...(height         != null && { height }),
+      ...(minHeight      != null && { minHeight }),
+      ...(maxWidth       != null && { maxWidth }),
+      ...(maxHeight      != null && { maxHeight }),
     };
 
     const block = await PageContentBlock.findOneAndUpdate(
@@ -100,8 +98,7 @@ router.post('/save-block', async (req, res) => {
 // POST /api/admin/cms/upload-image
 router.post('/upload-image', upload.single('image'), (req, res) => {
   if (!req.file) return res.status(400).json({ message: 'No file uploaded.' });
-  const url = `${process.env.API_URL || 'http://localhost:5000'}/uploads/cms/${req.file.filename}`;
-  res.json({ url });
+  res.json({ url: req.file.path });
 });
 
 module.exports = router;
