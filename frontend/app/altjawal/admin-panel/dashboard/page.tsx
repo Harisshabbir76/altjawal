@@ -29,13 +29,29 @@ export default function DashboardRootPage() {
   const [fpLoading, setFpLoading] = useState(false);
 
   // On mount: check if already logged in
+  // Uses a 10-second timeout so Render cold-starts don't hang the page forever.
   useEffect(() => {
-    apiFetch('/api/admin/verify')
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10_000);
+
+    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/admin/verify`, {
+      credentials: 'include',
+      signal: controller.signal,
+    })
       .then((res) => {
+        clearTimeout(timeout);
         if (res.ok) router.replace(`${BASE}/bookings`);
         else setChecking(false);
       })
-      .catch(() => setChecking(false));
+      .catch(() => {
+        clearTimeout(timeout);
+        setChecking(false); // timed-out or network error → show login
+      });
+
+    return () => {
+      clearTimeout(timeout);
+      controller.abort();
+    };
   }, [router]);
 
   // ── Login ──────────────────────────────────────────
@@ -141,7 +157,7 @@ export default function DashboardRootPage() {
     <div className="db-scope db-login-page">
       <div className="db-login-card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
         <p style={{ fontFamily: 'var(--font-ivy-presto), Georgia, serif', fontSize: '13px', letterSpacing: '1px', color: '#38443E' }}>Al Tajwal</p>
-        <p style={{ fontSize: '13px', color: '#7a8982' }}>Connecting…</p>
+        <p style={{ fontSize: '13px', color: '#7a8982' }}>Connecting… (may take up to 30s on first load)</p>
       </div>
     </div>
   );
