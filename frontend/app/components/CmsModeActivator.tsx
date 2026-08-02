@@ -112,7 +112,7 @@ export default function CmsModeActivator() {
       imgEl.setAttribute('data-cms-label', label);
       imgEl.setAttribute('data-cms-type', 'image');
 
-      const handler = (e: MouseEvent) => {
+      const handler = (e: Event) => {
         // Guard: if the actual click target is a text CMS element (e.g. hero text buttons
         // which are children of .hero-section), let their own handler run instead.
         if ((e.target as Element).closest('[data-cms-type="text"]')) return;
