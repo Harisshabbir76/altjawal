@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect } from 'react';
-import { API } from '../lib/dashApi';
 
 const SINGLE_SELECTORS: Record<string, string> = {
   'hero-heading':      '.hero-heading',
@@ -93,7 +92,7 @@ export default function CmsApplier() {
       if (window !== window.top) return;
     } catch { return; }
 
-    fetch(`${API}/api/cms/home`)
+    fetch('/api/cms/home')
       .then((r) => r.json())
       .then((data) => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

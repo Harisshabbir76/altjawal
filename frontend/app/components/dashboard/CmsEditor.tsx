@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { apiFetch, API } from '../../lib/dashApi';
+import { apiFetch } from '../../lib/dashApi';
 
 type Block = {
   blockKey: string;
@@ -92,7 +92,7 @@ export default function CmsEditor({ pageSlug }: { pageSlug: string }) {
     setUploading(true);
     const formData = new FormData();
     formData.append('image', e.target.files[0]);
-    const res = await fetch(`${API}/api/admin/cms/upload-image`, {
+    const res = await fetch('/api/admin/cms/upload-image', {
       method: 'POST',
       credentials: 'include',
       body: formData,

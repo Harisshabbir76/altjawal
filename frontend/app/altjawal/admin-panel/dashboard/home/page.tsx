@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
-import { apiFetch, API } from '../../../../lib/dashApi';
+import { apiFetch } from '../../../../lib/dashApi';
 import '../../../../styles/dashboard/dashboard.css';
 
 type BlockType = 'text' | 'textarea' | 'image';
@@ -164,7 +164,7 @@ export default function HomeCmsPage() {
     setUploading(true);
     const form = new FormData();
     form.append('image', file);
-    const res = await fetch(`${API}/api/admin/cms/upload-image`, {
+    const res = await fetch('/api/admin/cms/upload-image', {
       method: 'POST',
       credentials: 'include',
       body: form,
