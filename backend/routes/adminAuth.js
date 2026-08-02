@@ -9,8 +9,8 @@ const router = express.Router();
 
 const COOKIE_OPTS = {
   httpOnly: true,
-  secure: process.env.NODE_ENV === 'production',
-  sameSite: 'lax',
+  secure: true,
+  sameSite: 'none',
   maxAge: 7 * 24 * 60 * 60 * 1000,
 };
 
@@ -45,7 +45,7 @@ router.post('/login', async (req, res) => {
 
 // POST /api/admin/logout
 router.post('/logout', (req, res) => {
-  res.clearCookie('admin_token', { httpOnly: true, sameSite: 'lax' });
+  res.clearCookie('admin_token', { httpOnly: true, secure: true, sameSite: 'none' });
   res.json({ success: true });
 });
 
