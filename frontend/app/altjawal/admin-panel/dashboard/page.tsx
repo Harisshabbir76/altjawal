@@ -137,7 +137,14 @@ export default function DashboardRootPage() {
     setFpError(''); setFpMsg('');
   }
 
-  if (checking) return <div className="db-scope db-login-page" />;
+  if (checking) return (
+    <div className="db-scope db-login-page">
+      <div className="db-login-card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
+        <p style={{ fontFamily: 'var(--font-ivy-presto), Georgia, serif', fontSize: '13px', letterSpacing: '1px', color: '#38443E' }}>Al Tajwal</p>
+        <p style={{ fontSize: '13px', color: '#7a8982' }}>Connecting…</p>
+      </div>
+    </div>
+  );
 
   return (
     <div className="db-scope db-login-page">
