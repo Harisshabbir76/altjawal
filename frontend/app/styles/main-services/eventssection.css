@@ -130,16 +130,29 @@
 /* ── Tablet ── */
 @media (min-width: 768px) and (max-width: 1023px) {
   .ms-events__intro {
-    padding: 140px 2rem 60px;
+    padding: 180px 2rem 60px;
   }
 
   .ms-events__block {
-    grid-template-columns: 1fr 1.3fr 1fr;
-    min-height: 500px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 320px auto;
+    min-height: unset;
   }
 
-  .ms-events__card {
-    padding: 40px 30px;
+  .ms-events__block .ms-events__img-wrap:first-child {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .ms-events__block .ms-events__img-wrap:last-child {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .ms-events__block .ms-events__card {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    padding: 50px 3rem;
   }
 
   .ms-events__card-heading {
@@ -155,16 +168,25 @@
   }
 
   .ms-events__block {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 240px auto;
     min-height: unset;
   }
 
-  .ms-events__img-wrap {
-    height: 260px;
+  .ms-events__block .ms-events__img-wrap:first-child {
+    grid-column: 1;
+    grid-row: 1;
   }
 
-  .ms-events__card {
-    padding: 50px 1.5rem;
+  .ms-events__block .ms-events__img-wrap:last-child {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .ms-events__block .ms-events__card {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    padding: 40px 1.5rem;
   }
 
   .ms-events__card-heading {
@@ -174,6 +196,9 @@
 
 /* ── Large screens ── */
 @media (min-width: 1400px) {
+  .ms-events__intro{
+    padding-top: 200px;
+  }
   .ms-events__heading {
     font-size: 34px;
   }
@@ -190,5 +215,12 @@
 
   .ms-events__block {
     min-height: 720px;
+  }
+}
+
+
+@media(max-width){
+  .ms-events__heading{
+    font-size: 25px;
   }
 }

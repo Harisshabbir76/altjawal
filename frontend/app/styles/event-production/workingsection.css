@@ -124,11 +124,21 @@
 /* ── Tablet ── */
 @media (min-width: 768px) and (max-width: 1023px) {
   .ep-work__grid {
-    grid-template-columns: 160px 1fr 160px;
+    grid-template-columns: 140px 1fr 140px;
+  }
+
+  .ep-work__side--left {
+    padding-right: 0;
+    justify-content: center;
+  }
+
+  .ep-work__side--right {
+    padding-left: 0;
+    justify-content: center;
   }
 
   .ep-work__img-wrap {
-    width: 160px;
+    width: 130px;
     height: 200px;
   }
 }

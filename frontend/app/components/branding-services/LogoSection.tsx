@@ -35,7 +35,7 @@ const packages = [
 ];
 
 export default function LogoSection() {
-  const [active, setActive] = useState('launch');
+  const [active, setActive] = useState('');
 
   return (
     <section className="bs-logo">

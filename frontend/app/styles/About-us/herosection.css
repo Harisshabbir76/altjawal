@@ -57,6 +57,13 @@
   .aboutus-hero__heading {
     font-size: 28px;
   }
+  .aboutus-hero {
+    height: 70vh;        /* shorter = less zoom */
+    min-height: 500px;
+  }
+  .aboutus-hero__bg-img {
+    object-position: 70% center;  /* shift left/right to show a better part */
+  }
 
   .aboutus-hero__paragraph {
     max-width: 100%;

@@ -269,7 +269,11 @@
 @media (max-width: 767px) {
   .navbar-inner {
     padding: 0 1rem;
+    display: flex;
     justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-top: -20px;
   }
 
   /* Hide desktop nav groups */
@@ -290,6 +294,7 @@
     padding: 0.5rem 0.25rem;
     flex-shrink: 0;
     z-index: 10;
+    order: 0;
   }
 
   .hamburger span {
@@ -301,11 +306,12 @@
     transition: transform 0.25s ease, opacity 0.25s ease;
   }
 
-  /* Logo stays centered via absolute positioning */
+  /* Logo stays centered */
   .nav-logo {
     position: absolute;
-    left: 50%;
+    left: 49%;
     transform: translateX(-50%);
+    order: 1;
   }
 
   .nav-logo-img {
@@ -325,6 +331,9 @@
     flex-shrink: 0;
     transition: background-color 0.2s ease;
     font-family: inherit;
+    order: 2;
+    margin-left: auto;
+    margin-right: 0.5rem;
   }
 
   .mobile-book-now:hover {

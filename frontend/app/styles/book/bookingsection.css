@@ -50,6 +50,21 @@
   gap: 10px;
 }
 
+.booking-section__field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.booking-section__label {
+  font-family: "DM Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: #38443E;
+  text-align: left;
+  letter-spacing: 0.02em;
+}
+
 .booking-section__row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -363,5 +378,48 @@
   .booking-modal {
     width: 90%;
     max-width: 340px;
+  }
+}
+
+/* ── Small Mobile: ≤ 550px ── */
+@media (max-width: 550px) {
+  .booking-section {
+    padding: 120px 1rem 60px;
+  }
+
+  .booking-section__heading {
+    font-size: 22px;
+    margin-bottom: 0.75rem;
+  }
+
+  .booking-section__subheading {
+    font-size: 11px;
+    max-width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .booking-section__card {
+    padding: 24px 16px 28px;
+  }
+
+  .booking-section__input,
+  .booking-section__select,
+  .booking-section__textarea {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  .booking-section__btn {
+    padding: 12px;
+    font-size: 11px;
+  }
+
+  .booking-modal {
+    width: 92%;
+    padding: 32px 24px 28px;
+  }
+
+  .booking-modal__heading {
+    font-size: 18px;
   }
 }

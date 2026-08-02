@@ -2,7 +2,7 @@
 .bs-hero {
   display: flex;
   flex-direction: column;
-  padding-top: 120px;
+  padding-top: 100px;
   background-color: #EFECE3;
   overflow: visible;
 }
@@ -77,8 +77,15 @@
   }
 
   .bs-hero__image-wrap {
-    width: 95%;
+    width: 100%;
     height: 240px;
+    margin-bottom: -72px;
+  }
+}
+@media (max-width:550px){
+  .bs-hero__image-wrap {
+    width: 100%;
+    height: 200px;
     margin-bottom: -72px;
   }
 }

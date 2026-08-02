@@ -86,6 +86,11 @@
   .hero-content {
     padding: 0 1.25rem;
     justify-content: center;
+    margin-top: -70px;
+  }
+   .hero-section {
+    height: 70vh;
+    min-height: 500px;
   }
 
   .hero-heading {
@@ -97,10 +102,12 @@
   .hero-paragraph {
     max-width: 100%;
     margin-bottom: 2rem;
+    max-width: 360px;
   }
 
-  .hero-section {
-    min-height: 100svh;
+
+  .hero-image {
+    object-position: center top;
   }
 }
 

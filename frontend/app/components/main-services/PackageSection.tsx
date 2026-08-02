@@ -47,7 +47,7 @@ const packages = [
 ];
 
 export default function PackageSection() {
-  const [active, setActive] = useState('01');
+  const [active, setActive] = useState('');
 
   return (
     <section className="ms-packages">

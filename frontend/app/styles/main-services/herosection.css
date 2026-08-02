@@ -54,18 +54,24 @@
 
 /* ── Tablet ── */
 @media (min-width: 768px) and (max-width: 1023px) {
+  .ms-hero {
+  padding-top: 100px;
+}
   .ms-hero__heading {
     font-size: 26px;
   }
 
   .ms-hero__image-wrap {
-    height: 360px;
-    margin-bottom: -180px;
+    height: 270px;
+    margin-bottom: -130px;
   }
 }
 
 /* ── Mobile ── */
 @media (max-width: 767px) {
+  .ms-hero {
+  padding-top: 70px;
+}
   .ms-hero__heading {
     font-size: 22px;
   }
@@ -75,12 +81,40 @@
   }
 
   .ms-hero__image-wrap {
-    width: 95%;
-    height: 280px;
-    margin-bottom: -140px;
+    width: 85%;
+    height: 200px;
+    margin-bottom: -90px;
+  }
+}
+@media (max-width:550px){
+  .ms-hero__image-wrap {
+    width: 85%;
+    height: 160px;
+    margin-bottom: -70px;
+  }
+}
+@media (max-width:450px){
+  .ms-hero__image-wrap {
+    width: 85%;
+    height: 140px;
+    margin-bottom: -60px;
   }
 }
 
+
+@media (max-width:400px){
+  .ms-hero__heading {
+    font-size: 20px;
+  }
+  .ms-hero__paragraph {
+    margin-bottom:-10px;
+  }
+  .ms-hero__image-wrap {
+    width: 85%;
+    height: 150px;
+    margin-bottom: -50px;
+  }
+}
 /* ── Large screens ── */
 @media (min-width: 1400px) {
   .ms-hero__heading {
@@ -94,7 +128,7 @@
   }
 
   .ms-hero__image-wrap {
-    height: 500px;
-    margin-bottom: -250px;
+    height: 400px;
+    margin-bottom: -150px;
   }
 }

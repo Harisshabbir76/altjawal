@@ -12,6 +12,7 @@ export default function AboutHeroSection() {
         className="aboutus-hero__bg-img"
         sizes="100vw"
         priority
+        quality={100}
       />
       <div className="aboutus-hero__content">
         <h1 className="aboutus-hero__heading">

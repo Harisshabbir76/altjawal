@@ -96,38 +96,61 @@ export default function BookingSection() {
             <form className="booking-section__form" onSubmit={handleSubmit}>
               {/* Name */}
               <div className="booking-section__row">
-                <input className="booking-section__input" type="text" name="firstName" placeholder="First Name" value={form.firstName} onChange={handleChange} required />
-                <input className="booking-section__input" type="text" name="lastName" placeholder="Last Name" value={form.lastName} onChange={handleChange} required />
+                <div className="booking-section__field">
+                  <label className="booking-section__label">First Name</label>
+                  <input className="booking-section__input" type="text" name="firstName" placeholder="Your First Name" value={form.firstName} onChange={handleChange} required />
+                </div>
+                <div className="booking-section__field">
+                  <label className="booking-section__label">Last Name</label>
+                  <input className="booking-section__input" type="text" name="lastName" placeholder="Your Last Name" value={form.lastName} onChange={handleChange} required />
+                </div>
               </div>
 
               {/* Contact */}
               <div className="booking-section__row">
-                <input className="booking-section__input" type="email" name="email" placeholder="Email Address" value={form.email} onChange={handleChange} required />
-                <input className="booking-section__input" type="tel" name="phone" placeholder="Contact No." value={form.phone} onChange={handleChange} />
+                <div className="booking-section__field">
+                  <label className="booking-section__label">Email Address</label>
+                  <input className="booking-section__input" type="email" name="email" placeholder="example@gmail.com" value={form.email} onChange={handleChange} required />
+                </div>
+                <div className="booking-section__field">
+                  <label className="booking-section__label">Contact No.</label>
+                  <input className="booking-section__input" type="tel" name="phone" placeholder="Your Phone Number" value={form.phone} onChange={handleChange} />
+                </div>
               </div>
 
               {/* Service */}
-              <select className={`booking-section__select${form.service ? ' booking-section__select--filled' : ''}`} name="service" value={form.service} onChange={handleChange} required>
-                <option value="" disabled>Select Service</option>
-                <option value="Main Services">Main Services</option>
-                <option value="Event Production">Event Production</option>
-                <option value="Branding Services">Branding Services</option>
-              </select>
+              <div className="booking-section__field">
+                <label className="booking-section__label">Service</label>
+                <select className={`booking-section__select${form.service ? ' booking-section__select--filled' : ''}`} name="service" value={form.service} onChange={handleChange} required>
+                  <option value="" disabled>Select Service</option>
+                  <option value="Main Services">Main Services</option>
+                  <option value="Event Production">Event Production</option>
+                  <option value="Branding Services">Branding Services</option>
+                </select>
+              </div>
 
               {/* Date + Time */}
               <div className="booking-section__row">
-                <input className={`booking-section__input booking-section__input--date${form.date ? ' booking-section__input--filled' : ''}`} type="date" name="date" min={today} value={form.date} onChange={handleChange} required />
-
-                <ClockPicker
-                  hour={form.hour}
-                  minute={form.minute}
-                  ampm={form.ampm}
-                  onChange={(h, m, ap) => setForm({ ...form, hour: h, minute: m, ampm: ap })}
-                />
+                <div className="booking-section__field">
+                  <label className="booking-section__label">Date</label>
+                  <input className={`booking-section__input booking-section__input--date${form.date ? ' booking-section__input--filled' : ''}`} type="date" name="date" min={today} value={form.date} onChange={handleChange} required />
+                </div>
+                <div className="booking-section__field">
+                  <label className="booking-section__label">Time</label>
+                  <ClockPicker
+                    hour={form.hour}
+                    minute={form.minute}
+                    ampm={form.ampm}
+                    onChange={(h, m, ap) => setForm({ ...form, hour: h, minute: m, ampm: ap })}
+                  />
+                </div>
               </div>
 
               {/* Notes */}
-              <textarea className="booking-section__textarea" name="message" placeholder="Additional Notes (optional)" rows={4} value={form.message} onChange={handleChange} />
+              <div className="booking-section__field">
+                <label className="booking-section__label">Additional Notes</label>
+                <textarea className="booking-section__textarea" name="message" placeholder="Optional — anything we should know" rows={4} value={form.message} onChange={handleChange} />
+              </div>
 
               <button className="booking-section__btn" type="submit" disabled={status === 'sending'}>
                 {status === 'sending' ? 'Booking...' : 'Book Now'}

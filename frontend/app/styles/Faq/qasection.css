@@ -144,7 +144,7 @@
 /* ── Tablet ── */
 @media (min-width: 768px) and (max-width: 1023px) {
   .faq-qa {
-    padding: 60px 3rem 50px;
+    padding: 130px 3rem 50px;
   }
 
   .faq-contact__card {
@@ -154,8 +154,11 @@
 
 /* ── Mobile ── */
 @media (max-width: 767px) {
+  .faq-qa__heading{
+    font-size: 22px;
+  }
   .faq-qa {
-    padding: 50px 1.5rem 40px;
+    padding: 130px 1rem 40px;
   }
 
   .faq-qa__list {
@@ -163,7 +166,10 @@
   }
 
   .faq-contact__card {
-    width: calc(100% - 3rem);
+    width: calc(100% - 2rem);
     padding: 50px 25px 35px;
+  }
+  .faq-contact__paragraph{
+    max-width: 250px;
   }
 }

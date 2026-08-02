@@ -1,7 +1,7 @@
 /* ── Creativity Section ── */
 .ep-creativity {
   background-color: #38443E;
-  padding: 180px 2rem 80px;
+  padding: 160px 2rem 80px;
   text-align: center;
 }
 
@@ -132,7 +132,7 @@
 /* ── Tablet ── */
 @media (min-width: 768px) and (max-width: 1023px) {
   .ep-creativity {
-    padding: 140px 2rem 70px;
+    padding: 120px 2rem 70px;
   }
 
   .ep-creativity__heading {
@@ -156,7 +156,7 @@
 /* ── Mobile ── */
 @media (max-width: 767px) {
   .ep-creativity {
-    padding: 130px 1.5rem 60px;
+    padding: 110px 1.5rem 60px;
   }
 
   .ep-creativity__heading {
@@ -168,16 +168,25 @@
   }
 
   .ep-pd-block {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 240px auto;
     min-height: unset;
   }
 
-  .ep-pd__img-wrap {
-    height: 260px;
+  .ep-pd-block .ep-pd__img-wrap:first-child {
+    grid-column: 1;
+    grid-row: 1;
   }
 
-  .ep-pd__card {
-    padding: 50px 1.5rem;
+  .ep-pd-block .ep-pd__img-wrap:last-child {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .ep-pd-block .ep-pd__card {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    padding: 40px 1.5rem;
   }
 
   .ep-pd__card-heading {
@@ -187,6 +196,10 @@
 
 /* ── Large screens ── */
 @media (min-width: 1400px) {
+  .ep-creativity {
+  padding-top: 180px;
+}
+
   .ep-creativity__heading {
     font-size: 36px;
   }

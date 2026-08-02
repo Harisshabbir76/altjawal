@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 190px 2rem 100px;
+  padding: 150px 2rem 100px;
 }
 
 .contact-section__bg-wrap {
@@ -224,4 +224,34 @@
 
 .contact-modal__btn:hover {
   background-color: #2e3832;
+}
+
+
+
+@media (max-width:550px){
+  .contact-section {
+  padding-top: 110px;
+}
+  .contact-section__subheading{
+    max-width:90%;
+  }
+  .contact-section {
+    padding-top:130px;
+  }
+  .contact-section__card-intro{
+    font-size: 18px;
+    max-width: 90%;
+    line-height:1.3;
+  }
+  .contact-section__card-clip {
+  position: absolute;
+  top: 15px;
+  left: -30px;
+  transform: translateY(-42%);
+}
+
+.contact-section__clip-img {
+  width: 120px;
+  height: 120px;
+}
 }

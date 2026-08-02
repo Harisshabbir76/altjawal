@@ -75,15 +75,35 @@
   }
 
   .experience-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
-    flex-wrap: wrap;
+    max-width: 400px;
+    margin: 0 auto;
+    justify-items: start; /* this aligns items to the left within their grid cells */
   }
 
   .experience-value {
     font-size: 30px;
   }
 }
+@media (max-width: 560px) {
+  .experience-section {
+    padding: 50px 4rem 40px;
+  }
+  .experience-stats {
+    gap: 3rem;
+  }
+}
 
+@media (max-width: 420px) {
+  .experience-section {
+    padding: 50px 2rem 40px;
+  }
+  .experience-stats {
+    gap: 3rem;
+  }
+}
 /* ── Large screens: > 1400px ── */
 @media (min-width: 1401px) {
   .experience-section {

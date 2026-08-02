@@ -116,6 +116,11 @@
 
   .purpose-heading {
     font-size: 24px;
+    margin-left: 3rem;
+  }
+  .purpose-paragraph{
+    margin-left: 3rem;
+    max-width: 300px;
   }
 
   .purpose-bottom {
@@ -128,38 +133,103 @@
   }
 
   .purpose-topview-wrap {
-    height: 180px;
+    height: 150px;
+    width: 100%;
   }
 }
 
-/* ── Mobile: < 768px ── */
+@media (max-width: 880px) {
+  .purpose-paragraph {
+    max-width: 270px;
+    margin-left: 6rem;
+  }
+  .purpose-heading{
+    margin-left:6rem;
+  }
+}
+
 @media (max-width: 767px) {
   .purpose-top {
     grid-template-columns: 1fr;
     padding: 50px 1.5rem;
     gap: 2rem;
+    justify-items: center;
   }
 
   .purpose-image-stack {
     height: 220px;
+    width: 100%;
+    max-width: 430px;
+    margin: 0 auto;
+  }
+
+  .purpose-image-backing {
+    left: 40px;
+    right: 40px;
+  }
+
+  .purpose-img-wrap {
+    top: 14px;
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .purpose-heading {
+    text-align: center;
+    width: 70%;
+    margin: 0 auto 20px;
   }
 
   .purpose-paragraph {
-    max-width: 100%;
+    max-width: 90%;
+    text-align: center;
+    margin: 0 auto;
   }
 
   .purpose-bottom {
     grid-template-columns: 1fr;
+    margin: 0 1.5rem;
     padding: 40px 1.5rem;
     gap: 2rem;
+    justify-items: center;
   }
 
   .purpose-quote {
     font-size: 16px;
+    text-align: center;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .purpose-topview-frame {
+    max-width: 400px;
+    margin: 0 auto;
+    width: 100%;
   }
 
   .purpose-topview-wrap {
     height: 180px;
+    width: 100%;
+  }
+}
+
+@media (max-width:400px){
+  .purpose-heading {
+    text-align: center;
+    width: 80%;
+    margin: 0 auto 20px;
+  }
+  .purpose-paragraph {
+    max-width: 95%;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .purpose-quote {
+    max-width: 100%;
+  }
+  .purpose-topview-wrap {
+    height: 130px;
   }
 }
 
@@ -194,4 +264,34 @@
   .purpose-topview-wrap {
     height: 280px;
   }
+}
+
+
+
+@media (max-width:1200px) and (min-width:1024px){
+ .purpose-top {
+    padding: 60px 3rem;
+    gap: 2rem;
+  }
+
+  .purpose-image-stack {
+    height: 240px;
+  }
+
+  .purpose-heading {
+    font-size: 24px;
+  }
+
+  .purpose-bottom {
+    padding: 40px 3rem;
+    gap: 2rem;
+  }
+
+  .purpose-quote {
+    font-size: 15px;
+  }
+
+  .purpose-topview-wrap {
+    height: 180px;
+  } 
 }

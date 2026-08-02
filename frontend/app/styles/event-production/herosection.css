@@ -2,7 +2,7 @@
 .ep-hero {
   display: flex;
   flex-direction: column;
-  padding-top: 140px;
+  padding-top: 100px;
   background-color: #EFECE3;
   overflow: visible;
 }
@@ -66,8 +66,12 @@
 
 /* ── Mobile ── */
 @media (max-width: 767px) {
+  .ep-hero{
+    padding-top: 80px;
+  }
   .ep-hero__heading {
     font-size: 22px;
+    max-width: 90%;
   }
 
   .ep-hero__text {
@@ -75,21 +79,26 @@
   }
 
   .ep-hero__image-wrap {
-    width: 95%;
-    height: 240px;
+    width: 85%;
+    height: 200px;
     margin-bottom: -72px;
   }
 }
-
+@media (max-width:500px){
+  .ep-hero__image-wrap {
+    width: 85%;
+    height: 170px;
+    margin-bottom: -72px;
+}}
 /* ── Large screens ── */
 @media (min-width: 1400px) {
   .ep-hero__heading {
     font-size: 38px;
-    max-width: 760px;
+    max-width: 100%;
   }
 
   .ep-hero__image-wrap {
-    height: 440px;
+    height: 350px;
     margin-bottom: -132px;
   }
 }

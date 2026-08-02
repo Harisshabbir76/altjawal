@@ -1,7 +1,7 @@
 /* ── Logo Section ── */
 .bs-logo {
   background-color: #38443E;
-  padding: 190px 6rem 60px;
+  padding: 160px 6rem 60px;
   text-align: center;
 }
 
@@ -143,7 +143,7 @@
 /* ── Tablet ── */
 @media (min-width: 768px) and (max-width: 1023px) {
   .bs-logo {
-    padding: 170px 2rem 70px;
+    padding: 110px 2rem 70px;
   }
 
   .bs-logo__heading {
@@ -154,7 +154,7 @@
 /* ── Mobile ── */
 @media (max-width: 767px) {
   .bs-logo {
-    padding: 160px 1.5rem 60px;
+    padding: 90px 1.5rem 60px;
   }
 
   .bs-logo__heading {
@@ -164,10 +164,34 @@
   .bs-logo__content {
     max-width: 100%;
   }
+
+  .bs-logo__packages {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .bs-logo__accordion {
+    margin-top: -10px;
+  }
+  .bs-logo__model-wrap {
+  position: relative;
+  height: 500px;
+  width: 100%;
+  overflow: hidden;
 }
 
+}
+@media (max-width:500px){
+  .bs-logo__model-wrap {
+  height: 400px;
+  width: 100%;
+  }  
+}
 /* ── Large screens ── */
 @media (min-width: 1400px) {
+  .bs-logo {
+  padding-top: 130px;
+}
   .bs-logo__heading {
     font-size: 36px;
   }

@@ -92,8 +92,8 @@
 /* ── Tablet ── */
 @media (min-width: 768px) and (max-width: 1023px) {
   .bs-branding {
-    padding: 60px 2rem;
-    gap: 40px;
+    padding: 60px 5rem;
+    gap: 0px;
   }
 
   .bs-branding__heading {
@@ -114,21 +114,40 @@
 /* ── Mobile ── */
 @media (max-width: 767px) {
   .bs-branding {
+    padding: 30px 1.5rem;
+  }
+
+  .bs-branding__inner {
     grid-template-columns: 1fr;
-    padding: 60px 1.5rem;
-    gap: 40px;
+    gap: 30px;
+    width: 100%;
+    margin: 0;
   }
 
   .bs-branding__heading {
     font-size: 22px;
   }
 
+  .bs-branding__text-col {
+    align-items: center;
+    text-align: center;
+  }
+
   .bs-branding__paragraph {
-    max-width: 100%;
+    max-width: 85%;
+  }
+  .bs-branding__girl-wrap {
+    width: 130px;
+    height: 185px;
+  }
+
+  .bs-branding__window-wrap {
+    width: 160px;
+    height: 230px;
   }
 
   .bs-branding__images {
-    justify-content: flex-start;
+    justify-content: center;
   }
 }
 

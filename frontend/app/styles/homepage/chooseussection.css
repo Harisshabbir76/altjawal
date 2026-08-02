@@ -86,11 +86,11 @@
 @media (min-width: 768px) and (max-width: 1023px) {
   .chooseus-section {
     grid-template-columns: 180px 1fr 150px;
-    min-height: 360px;
+    min-height: 400px;
   }
 
   .chooseus-content {
-    padding: 50px 2.5rem;
+    padding: 50px 1rem;
   }
 
   .chooseus-heading {
@@ -100,39 +100,105 @@
   .chooseus-right {
     height: 210px;
   }
+  .chooseus-left {
+    height: 320px;
+    margin-left: -20px;
+  }
 }
 
 /* ── Mobile: < 768px ── */
 @media (max-width: 767px) {
   .chooseus-section {
-    grid-template-columns: 1fr;
-    min-height: unset;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 1.5rem;
   }
 
   .chooseus-left {
-    height: 260px;
-    align-self: unset;
+    height: 280px;
+    width: 30%;
+    margin-left: 0;
+    align-self: flex-start;
+    order: 0;
   }
 
   .chooseus-content {
-    padding: 40px 1.5rem;
+    padding: 0px 0rem;
+    order: 1;
+    max-width: 100%;
   }
 
   .chooseus-heading {
     font-size: 24px;
   }
 
+  .chooseus-item {
+    text-align: left;
+    padding-left: 1.4em;
+  }
+
   .chooseus-right {
-    height: 200px;
-    align-self: unset;
+    width: 20%;
+    height: auto;
+    aspect-ratio: 3 / 4;
+    align-self: flex-end;
+    order: 2;
+    margin-top: 30px;
   }
 }
 
+@media (max-width: 600px) {
+  .chooseus-heading {
+    font-size: 22px;
+  }
+
+  .chooseus-left {
+    height: 280px;
+    width: 35%;
+  }
+
+  .chooseus-right {
+    height: 200px;
+    width: 30%;
+  }
+}
+@media (max-width: 500px) and (min-width: 400px) {
+  .chooseus-heading {
+    font-size: 20px;
+  }
+
+  .chooseus-left {
+    height: 250px;
+    width: 40%;
+  }
+
+  .chooseus-right {
+    height: 180px;
+    width: 35%;
+  }
+}
+
+@media (max-width: 399px) and (min-width: 270px) {
+  .chooseus-heading {
+    font-size: 18px;
+  }
+
+  .chooseus-left {
+    height: 220px;
+    width: 45%;
+  }
+
+  .chooseus-right {
+    height: 160px;
+    width: 40%;
+  }
+}
 /* ── Large screens: > 1400px ── */
 @media (min-width: 1401px) {
   .chooseus-section {
     grid-template-columns: 280px 1fr 240px;
-    min-height: 520px;
+    min-height: 640px;
   }
 
   .chooseus-content {
@@ -149,5 +215,11 @@
 
   .chooseus-right {
     height: 330px;
+    width: 250px;
+    margin-top: 50px;
+  }
+  .chooseus-left {
+    height: 400px;
+    width: 280px;
   }
 }
