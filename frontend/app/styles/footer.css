@@ -197,7 +197,10 @@
   .footer-cta {
     padding: 40px 1.5rem;
   }
-
+  .footer-cta-img {
+  object-fit: cover;
+  object-position: center;
+}
 
   /*
    * 4-column grid: 11fr 9fr 11fr 9fr = 27.5% | 22.5% | 27.5% | 22.5%

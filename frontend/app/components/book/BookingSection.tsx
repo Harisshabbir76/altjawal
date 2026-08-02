@@ -33,7 +33,7 @@ export default function BookingSection() {
     setStatus('sending');
     const time = `${form.hour}:${form.minute} ${form.ampm}`;
     try {
-      const res = await fetch('http://localhost:5000/api/book', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/book`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
