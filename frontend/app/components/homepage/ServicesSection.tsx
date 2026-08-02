@@ -1,9 +1,9 @@
 import Image from 'next/image';
-import s1 from '../../Images/homepage/s1.png';
-import s2 from '../../Images/homepage/s2.jpg';
-import s3 from '../../Images/homepage/s3.png';
-import s4 from '../../Images/homepage/s4.jpg';
-import frame from '../../Images/homepage/frame.png';
+import s1 from '../../Images/homepage/s1.webp';
+import s2 from '../../Images/homepage/s2.webp';
+import s3 from '../../Images/homepage/s3.webp';
+import s4 from '../../Images/homepage/s4.webp';
+import frame from '../../Images/homepage/frame.webp';
 import '../../styles/homepage/servicessection.css';
 
 const services = [

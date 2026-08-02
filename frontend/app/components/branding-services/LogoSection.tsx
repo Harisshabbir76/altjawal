@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import modelImg from '../../Images/branding services/model.jpg';
+import modelImg from '../../Images/branding services/model.webp';
 import '../../styles/branding-services/logosection.css';
 
 const packages = [
@@ -36,6 +36,15 @@ const packages = [
 
 export default function LogoSection() {
   const [active, setActive] = useState('');
+  const [cmsMode, setCmsMode] = useState(false);
+
+  useEffect(() => {
+    try {
+      if (window !== window.top) setCmsMode(true);
+    } catch {
+      setCmsMode(true);
+    }
+  }, []);
 
   return (
     <section className="bs-logo">
@@ -52,28 +61,34 @@ export default function LogoSection() {
       {/* ── Packages + model image ── */}
       <div className="bs-logo__packages">
         <div className="bs-logo__accordion">
-          {packages.map((pkg) => (
-            <div key={pkg.id} className="bs-logo__pkg-item">
-              <div className="bs-logo__pkg-divider" />
-              <button
-                className="bs-logo__pkg-header"
-                onClick={() => setActive(active === pkg.id ? '' : pkg.id)}
-              >
-                <span className="bs-logo__pkg-label">{pkg.name}</span>
-              </button>
+          {packages.map((pkg, i) => {
+            const idx = i + 1;
+            const isOpen = cmsMode || active === pkg.id;
+            return (
+              <div key={pkg.id} className="bs-logo__pkg-item">
+                <div className="bs-logo__pkg-divider" />
+                <button
+                  className="bs-logo__pkg-header"
+                  onClick={() => !cmsMode && setActive(active === pkg.id ? '' : pkg.id)}
+                >
+                  <span className={`bs-logo__pkg-label bs-pkg-label-${idx}`}>{pkg.name}</span>
+                </button>
 
-              {active === pkg.id && (
-                <div className="bs-logo__pkg-body">
-                  <ul className="bs-logo__pkg-list">
+                {/* Always in DOM so CMS can target elements; hidden via style when closed */}
+                <div
+                  className="bs-logo__pkg-body"
+                  style={{ display: isOpen ? '' : 'none' }}
+                >
+                  <ul className={`bs-logo__pkg-list bs-pkg-items-${idx}`}>
                     {pkg.items.map((item) => (
                       <li key={item}>• {item}</li>
                     ))}
                   </ul>
-                  <a href="/book" className="bs-logo__pkg-btn">Book Now</a>
+                  <a href="/book" className={`bs-logo__pkg-btn bs-pkg-btn-${idx}`}>Book Now</a>
                 </div>
-              )}
-            </div>
-          ))}
+              </div>
+            );
+          })}
           <div className="bs-logo__pkg-divider" />
         </div>
 

@@ -65,8 +65,14 @@
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
+.hero-button {
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
 .hero-button:hover {
-  background-color: rgba(56, 68, 62, 1);
+  background-color: #EDE1CB;
+  color: #38443E;
+  border-color: #EDE1CB;
 }
 
 /* ── Tablet: 768px – 1023px ── */

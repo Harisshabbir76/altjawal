@@ -48,11 +48,14 @@
   text-decoration: none;
   padding: 7px 20px;
   cursor: pointer;
-  transition: opacity 0.2s ease;
+  border: 1px solid transparent;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 
 .footer-cta-button:hover {
-  opacity: 0.85;
+  background-color: #EDE1CB;
+  color: #38443E;
+  border-color: rgba(56, 68, 62, 0.4);
 }
 
 /* Botanical image — full background */
@@ -162,7 +165,9 @@
 }
 
 .footer-social-icon {
-  filter: brightness(0);
+  width: 22px;
+  height: 22px;
+  display: block;
 }
 
 .footer-social-link:hover {

@@ -19,6 +19,8 @@ const NAV_ITEMS: NavItem[] = [
   { href: '/altjawal/admin-panel/dashboard/services',  icon: 'fa-concierge-bell',  label: 'Main Services',     key: 'services'  },
   { href: '/altjawal/admin-panel/dashboard/branding',  icon: 'fa-palette',         label: 'Branding Services', key: 'branding'  },
   { href: '/altjawal/admin-panel/dashboard/events',    icon: 'fa-film',            label: 'Event Production',  key: 'events'    },
+  { href: '/altjawal/admin-panel/dashboard/contact',   icon: 'fa-envelope',        label: 'Contact Page',      key: 'contact'   },
+  { href: '/altjawal/admin-panel/dashboard/faq',       icon: 'fa-circle-question', label: 'FAQ Page',          key: 'faq'       },
   { href: '/altjawal/admin-panel/dashboard/legal',     icon: 'fa-scale-balanced',  label: 'Legal',             key: 'legal'     },
 ];
 

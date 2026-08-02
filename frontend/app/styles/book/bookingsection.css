@@ -240,13 +240,15 @@
   font-weight: 400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  border: none;
+  border: 1px solid transparent;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 
 .booking-modal__btn:hover {
-  background-color: #2e3832;
+  background-color: #EDE1CB;
+  color: #38443E;
+  border-color: rgba(56, 68, 62, 0.4);
 }
 
 /* ── Drum Roll Time Picker ── */

@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import chooseus1 from '../../Images/homepage/chooseus1.png';
-import chooseus2 from '../../Images/homepage/chooseus2.jpg';
+import chooseus1 from '../../Images/homepage/chooseus1.webp';
+import chooseus2 from '../../Images/homepage/chooseus2.webp';
 import '../../styles/homepage/chooseussection.css';
 
 const bullets = [

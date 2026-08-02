@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import magzineImg from '../../Images/branding services/magzine.png';
+import magzineImg from '../../Images/branding services/magzine.webp';
 import '../../styles/branding-services/herosection.css';
 
 export default function BrandingServicesHero() {

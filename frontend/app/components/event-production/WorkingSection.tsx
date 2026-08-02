@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import papersImg from '../../Images/Event production/papers.jpg';
-import girlsImg from '../../Images/Event production/girls.png';
+import papersImg from '../../Images/Event production/papers.webp';
+import girlsImg from '../../Images/Event production/girls.webp';
 import '../../styles/event-production/workingsection.css';
 
 const steps = [

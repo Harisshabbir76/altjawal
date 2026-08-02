@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import coupleImg from '../../Images/main-services/couple.png';
+import coupleImg from '../../Images/main-services/couple.webp';
 import '../../styles/main-services/herosection.css';
 
 export default function MainServicesHero() {

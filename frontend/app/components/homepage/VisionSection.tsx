@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import vision1 from '../../Images/homepage/vision1.png';
-import vision2 from '../../Images/homepage/vision2.jpg';
+import vision1 from '../../Images/homepage/vision1.webp';
+import vision2 from '../../Images/homepage/vision2.webp';
 import '../../styles/homepage/visionsection.css';
 
 export default function VisionSection() {

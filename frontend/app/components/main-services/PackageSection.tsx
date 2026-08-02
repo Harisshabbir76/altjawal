@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import walkingImg from '../../Images/main-services/walking.jpg';
+import walkingImg from '../../Images/main-services/walking.webp';
 import '../../styles/main-services/packagesection.css';
 
 const packages = [
@@ -48,6 +48,15 @@ const packages = [
 
 export default function PackageSection() {
   const [active, setActive] = useState('');
+  const [cmsMode, setCmsMode] = useState(false);
+
+  useEffect(() => {
+    try {
+      if (window !== window.top) setCmsMode(true);
+    } catch {
+      setCmsMode(true);
+    }
+  }, []);
 
   return (
     <section className="ms-packages">
@@ -62,29 +71,37 @@ export default function PackageSection() {
       <div className="ms-packages__content">
         {/* ── Accordion ── */}
         <div className="ms-packages__accordion">
-          {packages.map((pkg) => (
-            <div key={pkg.id} className="ms-packages__item">
-              <div className="ms-packages__divider" />
-              <button
-                className="ms-packages__item-header"
-                onClick={() => setActive(active === pkg.id ? '' : pkg.id)}
-              >
-                <span className="ms-packages__item-label">{pkg.id}. {pkg.name}</span>
-              </button>
+          {packages.map((pkg, i) => {
+            const idx = i + 1;
+            const isOpen = cmsMode || active === pkg.id;
+            return (
+              <div key={pkg.id} className="ms-packages__item">
+                <div className="ms-packages__divider" />
+                <button
+                  className="ms-packages__item-header"
+                  onClick={() => !cmsMode && setActive(active === pkg.id ? '' : pkg.id)}
+                >
+                  <span className={`ms-packages__item-label ms-pkg-label-${idx}`}>
+                    {pkg.id}. {pkg.name}
+                  </span>
+                </button>
 
-              {active === pkg.id && (
-                <div className="ms-packages__item-body">
-                  <p className="ms-packages__item-tagline">{pkg.tagline}</p>
-                  <ul className="ms-packages__item-list">
+                {/* Always in DOM so CMS can target elements; hidden via style when closed */}
+                <div
+                  className="ms-packages__item-body"
+                  style={{ display: isOpen ? '' : 'none' }}
+                >
+                  <p className={`ms-packages__item-tagline ms-pkg-tagline-${idx}`}>{pkg.tagline}</p>
+                  <ul className={`ms-packages__item-list ms-pkg-items-${idx}`}>
                     {pkg.items.map((item) => (
                       <li key={item}>• {item}</li>
                     ))}
                   </ul>
-                  <a href="/book" className="ms-packages__btn">Book Now</a>
+                  <a href="/book" className={`ms-packages__btn ms-pkg-btn-${idx}`}>Book Now</a>
                 </div>
-              )}
-            </div>
-          ))}
+              </div>
+            );
+          })}
           <div className="ms-packages__divider" />
         </div>
 

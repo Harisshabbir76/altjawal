@@ -11,7 +11,11 @@ const storage = new CloudinaryStorage({
   params: {
     folder: 'altjawal-cms',
     allowed_formats: ['jpg', 'jpeg', 'png', 'webp', 'gif'],
-    transformation: [{ quality: 'auto', fetch_format: 'auto' }],
+    format: 'webp',
+    transformation: [
+      { width: 1920, crop: 'limit' },   // cap dimensions — no reason to store 4K+
+      { quality: 80 },                  // strong compression, still sharp on screen
+    ],
   },
 });
 

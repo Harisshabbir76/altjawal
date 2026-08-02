@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import left1 from '../../Images/main-services/left1.png';
-import left2 from '../../Images/main-services/left2.png';
-import right1 from '../../Images/main-services/right1.png';
-import right2 from '../../Images/main-services/right2.jpg';
+import left1 from '../../Images/main-services/left1.webp';
+import left2 from '../../Images/main-services/left2.webp';
+import right1 from '../../Images/main-services/right1.webp';
+import right2 from '../../Images/main-services/right2.webp';
 import '../../styles/main-services/eventssection.css';
 
 export default function EventsSection() {
@@ -35,8 +35,8 @@ export default function EventsSection() {
             to corporate gatherings, networking events, and exhibition support, we manage every detail
             to create impactful and memorable experiences.
           </p>
-          <p className="ms-events__services-label">Services:</p>
-          <ul className="ms-events__services-list">
+          <p className="ms-events__services-label ms-services-label-1">Services:</p>
+          <ul className="ms-events__services-list ms-services-list-1">
             <li>Conferences &amp; Seminars</li>
             <li>Product Launches</li>
             <li>Corporate Gatherings</li>
@@ -68,8 +68,8 @@ export default function EventsSection() {
             setups, luxury picnics, and other special occasions, our team ensures every detail is
             thoughtfully planned and beautifully executed.
           </p>
-          <p className="ms-events__services-label">Services:</p>
-          <ul className="ms-events__services-list">
+          <p className="ms-events__services-label ms-services-label-2">Services:</p>
+          <ul className="ms-events__services-list ms-services-list-2">
             <li>Weddings</li>
             <li>Engagements</li>
             <li>Birthday Celebrations</li>

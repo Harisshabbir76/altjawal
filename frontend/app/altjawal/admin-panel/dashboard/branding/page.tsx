@@ -1,15 +1,13 @@
 'use client';
 
-import DashboardLayout from '../../../../components/dashboard/DashboardLayout';
-import CmsEditor from '../../../../components/dashboard/CmsEditor';
+import CmsPageTemplate from '../../../../components/dashboard/CmsPageTemplate';
 
 export default function BrandingCmsPage() {
   return (
-    <DashboardLayout activePage="branding">
-      <div className="db-page-header">
-        <h2 className="db-page-title">Branding Services — CMS</h2>
-      </div>
-      <CmsEditor pageSlug="branding" />
-    </DashboardLayout>
+    <CmsPageTemplate
+      pageSlug="branding"
+      pageUrl="/branding-services"
+      title="Branding Services Editor"
+    />
   );
 }

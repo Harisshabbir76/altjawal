@@ -1,15 +1,7 @@
 'use client';
 
-import DashboardLayout from '../../../../components/dashboard/DashboardLayout';
-import CmsEditor from '../../../../components/dashboard/CmsEditor';
+import LegalCmsDashboard from '../../../../components/dashboard/LegalCmsDashboard';
 
 export default function LegalCmsPage() {
-  return (
-    <DashboardLayout activePage="legal">
-      <div className="db-page-header">
-        <h2 className="db-page-title">Legal — CMS</h2>
-      </div>
-      <CmsEditor pageSlug="legal" />
-    </DashboardLayout>
-  );
+  return <LegalCmsDashboard />;
 }

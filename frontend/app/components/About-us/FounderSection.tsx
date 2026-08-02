@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import founderImg from '../../Images/About-us/founder.png';
+import founderImg from '../../Images/About-us/founder.webp';
 import '../../styles/About-us/foundersection.css';
 import '../../styles/homepage/experiencesection.css';
 

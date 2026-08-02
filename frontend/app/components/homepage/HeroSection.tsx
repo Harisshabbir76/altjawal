@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import heroImage from '../../Images/homepage/herosection.png';
+import heroImage from '../../Images/homepage/herosection.webp';
 import '../../styles/homepage/herosection.css';
 
 export default function HeroSection() {

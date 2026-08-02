@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import leaves from '../../Images/homepage/leaves.png';
-import topview from '../../Images/homepage/topview.png';
+import leaves from '../../Images/homepage/leaves.webp';
+import topview from '../../Images/homepage/topview.webp';
 import '../../styles/homepage/purposesection.css';
 
 export default function PurposeSection() {

@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import heroImg from '../../Images/Faq/herosection.png';
-import frameImg from '../../Images/Faq/frame.png';
+import heroImg from '../../Images/Faq/herosection.webp';
+import frameImg from '../../Images/Faq/frame.webp';
 import '../../styles/Faq/herosection.css';
 
 export default function FaqHeroSection() {

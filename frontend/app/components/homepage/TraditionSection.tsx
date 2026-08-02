@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import camels from '../../Images/homepage/camels.png';
+import camels from '../../Images/homepage/camels.webp';
 import '../../styles/homepage/traditionsection.css';
 
 export default function TraditionSection() {

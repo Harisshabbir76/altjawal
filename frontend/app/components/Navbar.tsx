@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import logo from '../Images/logo.svg';
-import blueLogo from '../Images/blue-logo.png';
+import blueLogo from '../Images/blue-logo.webp';
 import '../styles/navbar.css';
 
 export default function Navbar() {

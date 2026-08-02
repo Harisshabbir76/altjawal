@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import heroImg from '../../Images/contactus/herosection.png';
-import clipImg from '../../Images/contactus/clip.png';
+import heroImg from '../../Images/contactus/herosection.webp';
+import clipImg from '../../Images/contactus/clip.webp';
 import '../../styles/contactus/contactsection.css';
 
 export default function ContactSection() {

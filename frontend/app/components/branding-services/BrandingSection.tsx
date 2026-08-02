@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import girlImg from '../../Images/branding services/girl.jpg';
-import windowImg from '../../Images/branding services/window.jpg';
+import girlImg from '../../Images/branding services/girl.webp';
+import windowImg from '../../Images/branding services/window.webp';
 import '../../styles/branding-services/brandingsection.css';
 
 export default function BrandingSection() {

@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import horseImg from '../../Images/About-us/horse.jpg';
-import streetImg from '../../Images/About-us/street.jpg';
+import horseImg from '../../Images/About-us/horse.webp';
+import streetImg from '../../Images/About-us/street.webp';
 import '../../styles/About-us/guidesection.css';
 
 const values = [

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import islamicImg from '../../Images/Event production/islamic.png';
+import islamicImg from '../../Images/Event production/islamic.webp';
 import '../../styles/event-production/herosection.css';
 
 export default function EventProductionHero() {

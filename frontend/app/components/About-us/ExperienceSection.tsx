@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import experienceImg from '../../Images/About-us/experince.jpg';
-import build1 from '../../Images/About-us/build1.png';
-import build2 from '../../Images/About-us/build2.jpg';
-import build3 from '../../Images/About-us/build3.jpg';
+import experienceImg from '../../Images/About-us/experince.webp';
+import build1 from '../../Images/About-us/build1.webp';
+import build2 from '../../Images/About-us/build2.webp';
+import build3 from '../../Images/About-us/build3.webp';
 import '../../styles/About-us/experiencesection.css';
 
 export default function AboutExperienceSection() {

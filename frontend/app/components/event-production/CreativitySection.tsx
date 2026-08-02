@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import leftImg from '../../Images/Event production/left.jpg';
-import rightImg from '../../Images/Event production/right.jpg';
+import leftImg from '../../Images/Event production/left.webp';
+import rightImg from '../../Images/Event production/right.webp';
 import '../../styles/event-production/creativitysection.css';
 
 export default function CreativitySection() {

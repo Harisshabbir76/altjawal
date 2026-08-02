@@ -54,9 +54,14 @@
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
+.vision-button {
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
 .vision-button:hover {
-  background-color: #1a1a1a;
-  color: #F0EAE0;
+  background-color: #38443E;
+  color: #EDE1CB;
+  border-color: #38443E;
 }
 
 /* ── Right: images ── */

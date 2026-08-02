@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import arabLife from '../../Images/About-us/arab-life.png';
+import arabLife from '../../Images/About-us/arab-life.webp';
 import '../../styles/About-us/inspiredsection.css';
 
 export default function InspiredSection() {
