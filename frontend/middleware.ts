@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server';
 
 const BASE = '/altjawal/admin-panel/dashboard';
 
-export function proxy(request: NextRequest) {
+export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Dashboard root is always public — it shows the login form when unauthenticated

@@ -2,7 +2,6 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { apiFetch } from '../../lib/dashApi';
 import '../../styles/dashboard/dashboard.css';
 
@@ -30,17 +29,33 @@ export default function DashboardLayout({
   children: React.ReactNode;
   activePage: string;
 }) {
-  const router = useRouter();
 
   useEffect(() => {
-    apiFetch('/api/admin/verify').then((res) => {
-      if (res.status === 401) router.replace('/altjawal/admin-panel/dashboard');
-    }).catch(() => {});
-  }, [router]);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 12_000);
+
+    fetch('/api/admin/verify', {
+      credentials: 'include',
+      signal: controller.signal,
+    })
+      .then((res) => {
+        clearTimeout(timeout);
+        if (res.status === 401) window.location.href = '/altjawal/admin-panel/dashboard';
+      })
+      .catch(() => {
+        clearTimeout(timeout);
+        // timeout or network error — don't redirect, stay on page
+      });
+
+    return () => {
+      clearTimeout(timeout);
+      controller.abort();
+    };
+  }, []);
 
   async function handleLogout() {
     await apiFetch('/api/admin/logout', { method: 'POST' });
-    router.push('/altjawal/admin-panel/dashboard');
+    window.location.href = '/altjawal/admin-panel/dashboard';
   }
 
   return (

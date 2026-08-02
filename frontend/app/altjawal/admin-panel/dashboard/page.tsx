@@ -34,14 +34,18 @@ export default function DashboardRootPage() {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 10_000);
 
-    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/admin/verify`, {
+    fetch('/api/admin/verify', {
       credentials: 'include',
       signal: controller.signal,
     })
       .then((res) => {
         clearTimeout(timeout);
-        if (res.ok) router.replace(`${BASE}/bookings`);
-        else setChecking(false);
+        if (res.ok) {
+          // Hard navigation so the cookie is guaranteed to be sent on the next request
+          window.location.href = `${BASE}/bookings`;
+        } else {
+          setChecking(false);
+        }
       })
       .catch(() => {
         clearTimeout(timeout);
@@ -65,7 +69,9 @@ export default function DashboardRootPage() {
         body: JSON.stringify({ email, password }),
       });
       if (res.ok) {
-        router.replace(`${BASE}/bookings`);
+        // Hard navigation: ensures the browser sends the fresh cookie on next request.
+        // router.replace() (soft nav) can miss newly set cross-origin cookies on production.
+        window.location.href = `${BASE}/bookings`;
       } else {
         const data = await res.json();
         setLoginError(data.error || 'Invalid email or password.');
