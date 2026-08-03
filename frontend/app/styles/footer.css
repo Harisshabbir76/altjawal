@@ -15,6 +15,8 @@
   z-index: 1;
   text-align: center;
   max-width: 580px;
+  margin: 0 auto;  /* ← Add this */
+  width: 100%; 
 }
 
 .footer-cta-heading {
@@ -33,7 +35,7 @@
   color: #000000;
   line-height: 1.65;
   max-width: 370px;
-  margin: 0 0 1.4rem;
+  margin: 0 auto 1.4rem;
 }
 
 .footer-cta-button {
@@ -372,6 +374,7 @@
 
   .footer-cta-paragraph {
     font-size: 14px;
+    max-width: 470px;
   }
 
   .footer-main {

@@ -1,3 +1,16 @@
+/* ── Reset ── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background-color: #2d3d35;
+  min-height: 100vh;
+}
+
 /* ── Navbar ── */
 .navbar {
   background-color: transparent;
@@ -26,9 +39,9 @@
 }
 
 .navbar-inner {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  display: flex;
   align-items: center;
+  justify-content: center;
   height: 75px;
   padding: 0 2.5rem;
   max-width: 1400px;
@@ -42,17 +55,17 @@
   display: flex;
   align-items: center;
   gap: 2.25rem;
-  flex: 1;
+  flex: 0 1 auto;
 }
 
 .nav-left {
   justify-content: flex-end;
-  padding-right: 3rem;
+  margin-right: 3rem;
 }
 
 .nav-right {
   justify-content: flex-start;
-  padding-left: 3rem;
+  margin-left: 3rem;
 }
 
 /* ── Center logo ── */
@@ -142,6 +155,8 @@
 .book-now {
   padding: 0.45rem 1.1rem;
   letter-spacing: 0.14em;
+  border: 1px solid #EDE1CB;
+  border-radius: 2px;
 }
 
 .book-now:hover {
@@ -252,12 +267,12 @@
 
   .nav-left {
     gap: 1.5rem;
-    padding-right: 1.75rem;
+    margin-right: 1.75rem;
   }
 
   .nav-right {
     gap: 1.5rem;
-    padding-left: 1.75rem;
+    margin-left: 1.75rem;
   }
 
   .nav-logo-img {

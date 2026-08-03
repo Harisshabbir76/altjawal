@@ -241,15 +241,19 @@
 
   .purpose-image-stack {
     height: 360px;
+    width: auto;
   }
 
   .purpose-heading {
     font-size: 36px;
+    margin-left: 100px;
   }
 
   .purpose-paragraph {
     font-size: 15px;
-    max-width: 400px;
+    max-width: 500px;
+    margin-top: 40px;
+    margin-left: 100px;
   }
 
   .purpose-bottom {
