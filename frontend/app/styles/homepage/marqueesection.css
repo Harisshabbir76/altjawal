@@ -38,3 +38,8 @@
     padding: 5px 0px 9px 0px;
   }
 }
+@media (max-width: 768px){
+  .marquee-section{
+    padding: 5px 0px 9px 0px;
+  }
+}

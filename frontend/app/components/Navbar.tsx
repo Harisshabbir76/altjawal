@@ -56,7 +56,10 @@ export default function Navbar() {
           <div className="nav-left">
             <Link href="/about" className="nav-link">About</Link>
 
-            <div className="nav-dropdown" ref={dropdownRef}>
+            <div className="nav-dropdown" ref={dropdownRef}
+              onMouseEnter={() => setServicesOpen(true)}
+              onMouseLeave={() => setServicesOpen(false)}
+            >
               <button
                 className="nav-link dropdown-toggle"
                 onClick={() => setServicesOpen((prev) => !prev)}

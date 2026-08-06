@@ -107,6 +107,7 @@
     max-width: 100%;
     margin-bottom: 2rem;
     max-width: 360px;
+    font-size: 12px;
   }
 
 
@@ -119,6 +120,10 @@
 @media (max-width: 380px) {
   .hero-heading {
     font-size: 26px;
+  }
+  .hero-paragraph {
+    font-size: 12px;
+    max-width: 250px;
   }
 }
 
