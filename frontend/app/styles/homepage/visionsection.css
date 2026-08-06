@@ -19,7 +19,7 @@
 
 .vision-heading {
   font-family: var(--font-ivy-presto), serif;
-  font-size: 36px;
+  font-size: 30px;
   font-weight: 300;
   color: #38443E;
   line-height: 1.2;
@@ -29,12 +29,12 @@
 
 .vision-paragraph {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #000000;
   letter-spacing: 0.01em;
   margin: 0;
-  max-width: 380px;
+  max-width: 450px;
 }
 
 .vision-button {
@@ -67,7 +67,7 @@
 /* ── Right: images ── */
 .vision-images {
   display: flex;
-  gap: 0.75rem;
+  gap: 25px;
   align-items: center;
 }
 
@@ -218,16 +218,17 @@
   }
 
   .vision-heading {
-    font-size: 44px;
+    font-size: 35px;
     max-width: 480px;
   }
 
   .vision-paragraph {
-    font-size: 15px;
-    max-width: 440px;
+    font-size: 16px;
+    max-width: 500px;
   }
 
   .vision-button {
-    font-size: 15px;
+    margin-top: 30px;
+    font-size: 16px;
   }
 }

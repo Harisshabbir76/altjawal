@@ -30,11 +30,11 @@
 
 .footer-cta-paragraph {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #000000;
   line-height: 1.65;
-  max-width: 370px;
+  max-width: 430px;
   margin: 0 auto 1.4rem;
 }
 
@@ -105,7 +105,7 @@
 
 .footer-col-heading {
   font-family: "DM Sans", sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   color: #000000;
   margin: 0 0 10px;
@@ -123,7 +123,7 @@
 
 .footer-link {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #000000;
   text-decoration: none;
@@ -137,11 +137,11 @@
 
 .footer-about {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #000000;
   margin: 0;
-  max-width: 200px;
+  max-width: 230px;
 }
 
 /* Socials + copyright */
@@ -167,8 +167,8 @@
 }
 
 .footer-social-icon {
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   display: block;
 }
 
@@ -369,16 +369,24 @@
 /* ── Large screens ── */
 @media (min-width: 1401px) {
   .footer-cta-heading {
-    font-size: 32px;
+    font-size: 30px;
   }
 
   .footer-cta-paragraph {
-    font-size: 14px;
-    max-width: 470px;
+    font-size: 16px;
+    max-width: 500px;
   }
 
   .footer-main {
     padding: 60px 7rem 35px;
+  }
+  .footer-link,
+  .footer-about,
+  .footer-copyright{
+    font-size: 16px;
+  }
+  .footer-about{
+    max-width: 260px;
   }
 }
 

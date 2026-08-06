@@ -26,12 +26,12 @@
 
 .tradition-paragraph {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 200;
   color: #000000;
   letter-spacing: 0.01em;
   margin: 0;
-  max-width: 535px;
+  max-width: 600px;
 }
 
 .tradition-button {
@@ -198,17 +198,17 @@
 /* ── Large screens: > 1400px ── */
 @media (min-width: 1401px) {
   .tradition-heading {
-    font-size: 44px;
+    font-size: 45px;
     max-width: 720px;
   }
 
   .tradition-paragraph {
-    font-size: 15px;
-    max-width: 620px;
+    font-size: 16px;
+    max-width: 710px;
   }
 
   .tradition-button {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .tradition-image-wrap {

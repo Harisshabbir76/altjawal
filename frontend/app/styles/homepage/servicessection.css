@@ -18,10 +18,10 @@
 
 .services-paragraph {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 200;
   color: #EDE1CB;
-  max-width: 500px;
+  max-width: 600px;
   margin: 0 auto 3rem;
 }
 
@@ -65,8 +65,8 @@
 
 /* ── Card label ── */
 .service-label {
-  font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-family: var(--font-ivy-presto), serif;
+  font-size: 16px;
   font-weight: 300;
   color: #EDE1CB;
   letter-spacing: 0.04em;
@@ -173,21 +173,21 @@
   }
 
   .services-paragraph {
-    font-size: 15px;
-    max-width: 600px;
+    font-size: 16px;
+    max-width: 670px;
   }
 
   .service-polaroid {
-    width: 210px;
-    padding: 12px 12px 36px;
+    width: 250px;
+    padding: 12px 12px 60px;
   }
 
   .service-img-wrap {
-    height: 200px;
+    height: 270px;
   }
 
   .service-label {
-    font-size: 15px;
+    font-size: 20px;
   }
 
   .services-frame-wrap {

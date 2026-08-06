@@ -111,7 +111,7 @@
   }
 
   .experience-heading {
-    font-size: 38px;
+    font-size: 35px;
   }
 
   .experience-stats {
@@ -119,10 +119,10 @@
   }
 
   .experience-value {
-    font-size: 52px;
+    font-size: 50px;
   }
 
   .experience-label {
-    font-size: 14px;
+    font-size: 20px;
   }
 }

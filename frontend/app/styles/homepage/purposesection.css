@@ -6,7 +6,7 @@
 
 /* ── Top: Events with Purpose ── */
 .purpose-top {
-  padding: 50px 5rem 70px 10rem;
+  padding: 50px 5rem 70px 13rem;
   display: grid;
   grid-template-columns: 45% 55%;
   align-items: center;
@@ -56,10 +56,10 @@
 
 .purpose-paragraph {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #000000;
-  max-width: 380px;
+  max-width: 450px;
   margin: 0;
 }
 
@@ -67,7 +67,7 @@
 .purpose-bottom {
   background-color: #38443E;
   margin: 0 5rem;
-  padding: 30px 5rem;
+  padding: 30px 3rem;
   display: grid;
   grid-template-columns: 55% 40%;
   align-items: center;
@@ -82,7 +82,7 @@
   color: #EDE1CB;
   line-height: 1.7;
   margin: 0;
-  max-width: 380px;
+  max-width: 345px;
 }
 
 /* Framed topview image */
@@ -241,19 +241,19 @@
 
   .purpose-image-stack {
     height: 360px;
-    width: auto;
+    width: 600px;
   }
 
   .purpose-heading {
-    font-size: 36px;
-    margin-left: 100px;
+    font-size: 35px;
+    margin-left: 120px;
   }
 
   .purpose-paragraph {
-    font-size: 15px;
+    font-size: 16px;
     max-width: 500px;
     margin-top: 40px;
-    margin-left: 100px;
+    margin-left: 120px;
   }
 
   .purpose-bottom {
@@ -262,7 +262,7 @@
 
   .purpose-quote {
     font-size: 22px;
-    max-width: 480px;
+    max-width: 420px;
   }
 
   .purpose-topview-wrap {
