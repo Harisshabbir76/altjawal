@@ -81,7 +81,7 @@
   font-style: italic;
   color: #EDE1CB;
   line-height: 1.7;
-  margin-left: 20px;
+  margin-left: 70px;
   margin-top: -20px;
   max-width: 420px;
 }
@@ -264,7 +264,7 @@
   .purpose-quote {
     font-size: 25px;
     max-width: 480px;
-    margin-left: -270px;
+    margin-left: -220px;
   }
 
   .purpose-topview-wrap {

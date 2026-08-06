@@ -31,3 +31,10 @@
   color: #EDE1CB;
   font-size: 12px;
 }
+
+
+@media (min-width:1400px){
+  .marquee-section{
+    padding: 5px 0px 9px 0px;
+  }
+}
