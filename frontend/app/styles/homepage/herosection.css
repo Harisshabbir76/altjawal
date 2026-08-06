@@ -40,11 +40,11 @@
 .hero-paragraph {
   font-family: "DM Sans", sans-serif;
   font-size: 14px;
-  font-weight: 250;
+  font-weight: 300;
   color: #EDE1CB;
   line-height: 1.3;
   margin: 0 0 2.5rem;
-  max-width: 450px;
+  max-width: 480px;
 }
 
 /* ── Button ── */
@@ -52,7 +52,7 @@
   display: inline-block;
   font-family: "DM Sans", sans-serif;
   font-size: 12px;
-  font-weight: 150;
+  font-weight: 300;
   letter-spacing: 1;
   text-transform: uppercase;
   color: #EDE1CB;
@@ -61,7 +61,6 @@
   padding: 4px 15px;
   background: transparent;
   cursor: pointer;
-  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 .hero-button {
@@ -137,5 +136,6 @@
 
   .hero-button {
     font-size: 16px;
+
   }
 }

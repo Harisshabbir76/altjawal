@@ -76,13 +76,14 @@
 
 .purpose-quote {
   font-family: var(--font-ivy-presto), serif;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 300;
   font-style: italic;
   color: #EDE1CB;
   line-height: 1.7;
-  margin: 0;
-  max-width: 345px;
+  margin-left: 20px;
+  margin-top: -20px;
+  max-width: 420px;
 }
 
 /* Framed topview image */
@@ -257,17 +258,22 @@
   }
 
   .purpose-bottom {
-    padding: 65px 7rem;
+    padding: 65px 20rem;
   }
 
   .purpose-quote {
-    font-size: 22px;
-    max-width: 420px;
+    font-size: 25px;
+    max-width: 480px;
+    margin-left: -270px;
   }
 
   .purpose-topview-wrap {
-    height: 280px;
+    height: 250px;
   }
+  .purpose-topview-frame {
+  border: 6px solid #EDE1CB;
+  width: 500px;
+}
 }
 
 
