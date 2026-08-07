@@ -5,7 +5,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
 const connectDB    = require('./config/db');
-const { buildTransporter } = require('./config/mailer');
+const { buildTransporter, getSenderEmail } = require('./config/mailer');
 const Booking      = require('./models/Booking');
 const Contact      = require('./models/Contact');
 const OffDay       = require('./models/OffDay');
@@ -100,13 +100,16 @@ app.post('/api/book', async (req, res) => {
     }
 
     await Booking.create({ firstName, lastName, email, phone, service, date, time, message });
-    res.status(200).json({ success: true });
 
-    buildTransporter().sendMail({
-      from: `"AlTjawal Booking" <${process.env.BUSINESS_EMAIL}>`,
-      to: process.env.BUSINESS_EMAIL,
-      subject: `New Booking — ${service} | ${firstName} ${lastName}`,
-      html: `<!DOCTYPE html>
+    const recipient = getSenderEmail();
+    if (recipient) {
+      try {
+        await buildTransporter().sendMail({
+          from: `"AlTjawal Booking" <${recipient}>`,
+          to: recipient,
+          replyTo: email,
+          subject: `New Booking — ${service} | ${firstName} ${lastName}`,
+          html: `<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"/><title>New Booking</title></head>
 <body style="margin:0;padding:0;background-color:#EFECE3;font-family:Georgia,serif;">
 <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#EFECE3;padding:40px 20px;">
@@ -131,9 +134,15 @@ app.post('/api/book', async (req, res) => {
 <tr><td style="background-color:#38443E;padding:24px 40px;text-align:center;"><p style="margin:0;font-family:Arial,sans-serif;font-size:11px;color:rgba(237,225,203,0.7);letter-spacing:0.05em;">This booking was submitted via the AlTjawal booking form.</p></td></tr>
 </table></td></tr></table>
 </body></html>`,
-    }).catch((err) => console.error('Email error:', err));
+        });
+      } catch (emailErr) {
+        console.error('Booking email sending failed:', emailErr);
+      }
+    }
+
+    res.status(200).json({ success: true });
   } catch (err) {
-    console.error(err);
+    console.error('Booking creation error:', err);
     res.status(500).json({ success: false });
   }
 });
@@ -148,13 +157,16 @@ app.post('/api/contact', async (req, res) => {
 
   try {
     await Contact.create({ firstName, lastName, email, phone, message });
-    res.status(200).json({ success: true });
 
-    buildTransporter().sendMail({
-      from: `"AlTjawal Contact" <${process.env.BUSINESS_EMAIL}>`,
-      to: process.env.BUSINESS_EMAIL,
-      subject: `New Contact Message — ${firstName} ${lastName}`,
-      html: `<!DOCTYPE html>
+    const recipient = getSenderEmail();
+    if (recipient) {
+      try {
+        await buildTransporter().sendMail({
+          from: `"AlTjawal Contact" <${recipient}>`,
+          to: recipient,
+          replyTo: email,
+          subject: `New Contact Message — ${firstName} ${lastName}`,
+          html: `<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"/><title>New Enquiry</title></head>
 <body style="margin:0;padding:0;background-color:#EFECE3;font-family:Georgia,serif;">
 <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#EFECE3;padding:40px 20px;">
@@ -176,9 +188,15 @@ app.post('/api/contact', async (req, res) => {
 <tr><td style="background-color:#38443E;padding:24px 40px;text-align:center;"><p style="margin:0;font-family:Arial,sans-serif;font-size:11px;color:rgba(237,225,203,0.7);letter-spacing:0.05em;">This message was sent via the AlTjawal contact form.</p></td></tr>
 </table></td></tr></table>
 </body></html>`,
-    }).catch((err) => console.error('Email error:', err));
+        });
+      } catch (emailErr) {
+        console.error('Contact email sending failed:', emailErr);
+      }
+    }
+
+    res.status(200).json({ success: true });
   } catch (err) {
-    console.error(err);
+    console.error('Contact creation error:', err);
     res.status(500).json({ success: false });
   }
 });
