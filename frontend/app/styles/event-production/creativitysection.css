@@ -171,6 +171,9 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 240px auto;
     min-height: unset;
+    gap: 5px;
+    background-color: white;
+    padding-top: 5px;
   }
 
   .ep-pd-block .ep-pd__img-wrap:first-child {

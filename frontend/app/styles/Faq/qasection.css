@@ -175,11 +175,28 @@
 
   .faq-contact__card {
     width: calc(100% - 2rem);
-    padding: 50px 25px 35px;
+    padding: 30px 25px 35px;
+    margin-left: -15px;
+  }
+  .faq-contact__paper-bg {
+  object-fit: cover;
+  object-position: top left;
+  z-index: 0;
+}
+  .faq-qa__subheading{
+    font-size: 12px;
   }
   
   .faq-contact__paragraph{
     max-width: 250px;
+  }
+  .faq-qa__question,
+  .faq-qa__answer
+   {
+    font-size: 12px;
+  }
+  .faq-contact__paragraph{
+    font-size: 12px;
   }
 }
 

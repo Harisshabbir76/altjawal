@@ -258,6 +258,16 @@
   width: 120px;
   height: 120px;
 }
+  .contact-section__input,
+.contact-section__textarea,
+.contact-section__input::placeholder,
+.contact-section__textarea::placeholder,
+.contact-section__btn{
+  font-size: 12px;
+}
+.contact-section__subheading{
+  font-size: 12px;
+}
 }
 
 @media (min-width: 1400px){

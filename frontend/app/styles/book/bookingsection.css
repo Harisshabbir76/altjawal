@@ -381,6 +381,18 @@
     width: 90%;
     max-width: 340px;
   }
+  .booking-section__subheading{
+    font-size: 12px;
+  }
+    .booking-section__label,
+  .booking-section__input,
+  .booking-section__select,
+  .booking-section__textarea,
+  .booking-section__input::placeholder,
+  .booking-section__textarea::placeholder,
+  .booking-section__btn {
+    font-size: 12px;
+  }
 }
 
 /* ── Small Mobile: ≤ 550px ── */
@@ -395,7 +407,6 @@
   }
 
   .booking-section__subheading {
-    font-size: 11px;
     max-width: 100%;
     margin-bottom: 16px;
   }

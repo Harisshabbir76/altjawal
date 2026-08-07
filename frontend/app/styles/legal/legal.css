@@ -122,7 +122,7 @@
   }
 
   .legal-page__subtitle {
-    font-size: 11px;
+    font-size: 12px;
     max-width: 100%;
     margin-bottom: 30px;
   }
@@ -161,6 +161,11 @@
 
   .legal-page__section-title {
     margin-bottom: 10px;
+  }
+  .legal-page__tab,
+  .legal-page__content,
+  .legal-page__section-title{
+    font-size: 12px;
   }
 }
 @media (min-width: 1400px) {

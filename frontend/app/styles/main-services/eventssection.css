@@ -174,8 +174,14 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 240px auto;
     min-height: unset;
+    gap: 5px;
+    background-color: white;
+    padding-top: 5px;
   }
-  .ms-events__card-text,
+  .ms-events__card-text{
+    font-size: 12px;
+    max-width: 85%;
+  }
   .ms-events__services-label,
   .ms-events__services-list li {
     font-size: 12px;

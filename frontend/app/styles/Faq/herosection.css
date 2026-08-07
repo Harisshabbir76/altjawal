@@ -117,6 +117,13 @@
   .faq-hero__heading {
     font-size: 22px;
   }
+  .faq-hero__label{
+  font-size:12px;
+}
+.faq-hero__paragraph{
+  font-size:12px;
+  max-width: 330px;
+}
 }
 
 /* ── Large screens ── */
