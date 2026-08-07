@@ -45,7 +45,9 @@
   min-width: 0;
   max-width: 680px;
 }
-
+h1{
+  font-size: 20px;
+}
 /* ── Unavailable days side panel ── */
 .booking-unavail-panel {
   width: 300px;
