@@ -21,6 +21,7 @@ export default function BookingSection() {
   });
 
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [timeError, setTimeError] = useState(false);
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -30,6 +31,15 @@ export default function BookingSection() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+
+    // ClockPicker is a custom widget, not a native input, so `required` can't
+    // validate it — check it manually alongside the browser's native checks.
+    if (!form.hour || !form.minute) {
+      setTimeError(true);
+      return;
+    }
+    setTimeError(false);
+
     setStatus('sending');
     const time = `${form.hour}:${form.minute} ${form.ampm}`;
     try {
@@ -114,7 +124,7 @@ export default function BookingSection() {
                 </div>
                 <div className="booking-section__field">
                   <label className="booking-section__label">Contact No.</label>
-                  <input className="booking-section__input" type="tel" name="phone" placeholder="Your Phone Number" value={form.phone} onChange={handleChange} />
+                  <input className="booking-section__input" type="tel" name="phone" placeholder="Your Phone Number" value={form.phone} onChange={handleChange} required />
                 </div>
               </div>
 
@@ -123,8 +133,9 @@ export default function BookingSection() {
                 <label className="booking-section__label">Service</label>
                 <select className={`booking-section__select${form.service ? ' booking-section__select--filled' : ''}`} name="service" value={form.service} onChange={handleChange} required>
                   <option value="" disabled>Select Service</option>
-                  <option value="Main Services">Main Services</option>
-                  <option value="Event Production">Event Production</option>
+                  <option value="Corporate Events">Corporate Events</option>
+                  <option value="Private Celebrations">Private Celebrations</option>
+                  <option value="Production and Design">Production and Design</option>
                   <option value="Branding Services">Branding Services</option>
                 </select>
               </div>
@@ -141,8 +152,13 @@ export default function BookingSection() {
                     hour={form.hour}
                     minute={form.minute}
                     ampm={form.ampm}
-                    onChange={(h, m, ap) => setForm({ ...form, hour: h, minute: m, ampm: ap })}
+                    error={timeError}
+                    onChange={(h, m, ap) => {
+                      setForm({ ...form, hour: h, minute: m, ampm: ap });
+                      setTimeError(false);
+                    }}
                   />
+                  {timeError && <span className="booking-section__field-error">Please select a time.</span>}
                 </div>
               </div>
 

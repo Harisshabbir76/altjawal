@@ -26,18 +26,27 @@ function buildTransporter() {
     );
   }
 
+  // Timeouts so a slow/blocked SMTP server can never hang the request indefinitely.
+  const timeouts = {
+    connectionTimeout: 10000, // 10s to establish the TCP connection
+    greetingTimeout: 10000, // 10s to receive the SMTP greeting
+    socketTimeout: 15000, // 15s of inactivity on the socket
+  };
+
   if (smtpHost) {
     return nodemailer.createTransport({
       host: smtpHost,
       port: smtpPort,
       secure: smtpSecure,
       auth: { user: adminEmail, pass: adminPassword },
+      ...timeouts,
     });
   }
 
   return nodemailer.createTransport({
     service: smtpService,
     auth: { user: adminEmail, pass: adminPassword },
+    ...timeouts,
   });
 }
 
@@ -76,11 +85,8 @@ async function sendOtpEmail(toEmail, otp) {
   });
 }
 
-// Export default transporter instance for backward compatibility (e.g. server.js, adminAuth.js)
-const defaultTransporter = buildTransporter();
-
-module.exports = defaultTransporter;
-module.exports.buildTransporter = buildTransporter;
-module.exports.sendOtpEmail = sendOtpEmail;
-module.exports.getSenderEmail = getSenderEmail;
-
+// Callers must invoke buildTransporter() fresh for every email instead of
+// reusing one shared instance — a transporter held open for the life of the
+// process can go stale (Render/network can silently drop an idle outbound
+// connection), and the next send then hangs until it times out.
+module.exports = { buildTransporter, sendOtpEmail, getSenderEmail };

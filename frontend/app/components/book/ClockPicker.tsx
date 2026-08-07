@@ -6,6 +6,7 @@ type Props = {
   hour: string;
   minute: string;
   ampm: string;
+  error?: boolean;
   onChange: (hour: string, minute: string, ampm: string) => void;
 };
 
@@ -58,7 +59,7 @@ function Column({
   );
 }
 
-export default function ClockPicker({ hour, minute, ampm, onChange }: Props) {
+export default function ClockPicker({ hour, minute, ampm, error, onChange }: Props) {
   const [open, setOpen] = useState(false);
   const [focusedCol, setFocusedCol] = useState<Col>('hour');
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -139,7 +140,7 @@ export default function ClockPicker({ hour, minute, ampm, onChange }: Props) {
     <div className="clock-picker" ref={wrapRef}>
       <button
         type="button"
-        className={`clock-picker__trigger${isEmpty ? ' clock-picker__trigger--empty' : ''}`}
+        className={`clock-picker__trigger${isEmpty ? ' clock-picker__trigger--empty' : ''}${error ? ' clock-picker__trigger--error' : ''}`}
         onClick={() => setOpen((v) => !v)}
       >
         <span>{isEmpty ? '--:-- --' : `${hour}:${minute} ${ampm}`}</span>

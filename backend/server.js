@@ -5,7 +5,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
 const connectDB    = require('./config/db');
-const transporter  = require('./config/mailer');
+const { buildTransporter } = require('./config/mailer');
 const Booking      = require('./models/Booking');
 const Contact      = require('./models/Contact');
 const requireAdmin = require('./middleware/requireAdmin');
@@ -55,7 +55,7 @@ app.post('/api/book', async (req, res) => {
     await Booking.create({ firstName, lastName, email, phone, service, date, time, message });
     res.status(200).json({ success: true });
 
-    transporter.sendMail({
+    buildTransporter().sendMail({
       from: `"AlTjawal Booking" <${process.env.BUSINESS_EMAIL}>`,
       to: process.env.BUSINESS_EMAIL,
       subject: `New Booking — ${service} | ${firstName} ${lastName}`,
@@ -103,7 +103,7 @@ app.post('/api/contact', async (req, res) => {
     await Contact.create({ firstName, lastName, email, phone, message });
     res.status(200).json({ success: true });
 
-    transporter.sendMail({
+    buildTransporter().sendMail({
       from: `"AlTjawal Contact" <${process.env.BUSINESS_EMAIL}>`,
       to: process.env.BUSINESS_EMAIL,
       subject: `New enquiry from ${firstName} ${lastName}`,

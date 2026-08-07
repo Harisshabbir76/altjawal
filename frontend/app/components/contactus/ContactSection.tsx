@@ -51,7 +51,7 @@ export default function ContactSection() {
             {status === 'success' ? (
               <>
                 <span className="contact-modal__icon">✓</span>
-                <h3 className="contact-modal__heading">Message Received</h3>
+                <h3 className="contact-modal__heading">Message Sent</h3>
                 <p className="contact-modal__text">
                   Thank you for reaching out. Our team will be in touch with you shortly.
                 </p>
@@ -98,6 +98,7 @@ export default function ContactSection() {
                   className="contact-section__input"
                   type="text"
                   name="firstName"
+                  required
                   placeholder="First Name"
                   value={form.firstName}
                   onChange={handleChange}
@@ -106,6 +107,7 @@ export default function ContactSection() {
                   className="contact-section__input"
                   type="text"
                   name="lastName"
+                  required
                   placeholder="Last Name"
                   value={form.lastName}
                   onChange={handleChange}
@@ -116,6 +118,7 @@ export default function ContactSection() {
                   className="contact-section__input"
                   type="email"
                   name="email"
+                  required
                   placeholder="Email Address"
                   value={form.email}
                   onChange={handleChange}
@@ -124,6 +127,7 @@ export default function ContactSection() {
                   className="contact-section__input"
                   type="tel"
                   name="phone"
+                  required
                   placeholder="Contact No."
                   value={form.phone}
                   onChange={handleChange}
@@ -133,6 +137,7 @@ export default function ContactSection() {
                 className="contact-section__textarea"
                 name="message"
                 placeholder="Message"
+                required
                 rows={5}
                 value={form.message}
                 onChange={handleChange}

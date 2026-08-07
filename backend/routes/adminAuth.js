@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const AdminPasswordOverride = require('../models/AdminPasswordOverride');
 const AdminOTP = require('../models/AdminOTP');
-const transporter = require('../config/mailer');
+const { buildTransporter } = require('../config/mailer');
 
 const router = express.Router();
 
@@ -76,7 +76,7 @@ router.post('/forgot-password', async (req, res) => {
     await AdminOTP.deleteMany({});
     await AdminOTP.create({ otp, expiresAt });
 
-    await transporter.sendMail({
+    await buildTransporter().sendMail({
       from: `"AlTjawal Admin" <${process.env.BUSINESS_EMAIL}>`,
       to: process.env.ADMIN_EMAIL,
       subject: 'Your AlTjawal Dashboard OTP',

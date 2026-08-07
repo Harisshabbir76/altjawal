@@ -280,6 +280,16 @@
   color: #AFAFAF;
 }
 
+.clock-picker__trigger--error {
+  border-color: #d32f2f;
+}
+
+.booking-section__field-error {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  color: #d32f2f;
+}
+
 .clock-picker__chevron {
   color: #AFAFAF;
   font-size: 13px;
