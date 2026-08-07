@@ -8,11 +8,14 @@ const connectDB    = require('./config/db');
 const { buildTransporter } = require('./config/mailer');
 const Booking      = require('./models/Booking');
 const Contact      = require('./models/Contact');
+const OffDay       = require('./models/OffDay');
 const requireAdmin = require('./middleware/requireAdmin');
 const seedCmsBlocks = require('./seeds/cmsBlocks');
 
 const adminAuth     = require('./routes/adminAuth');
 const adminBookings = require('./routes/adminBookings');
+const adminMessages = require('./routes/adminMessages');
+const adminOffDays  = require('./routes/adminOffDays');
 const adminCms      = require('./routes/adminCms');
 const publicCms     = require('./routes/publicCms');
 
@@ -40,8 +43,32 @@ app.use('/api/admin', adminAuth);
 app.use('/api/cms',   publicCms);
 
 // ── Protected admin routes ─────────────────────────────────────────
-app.use('/api/admin/bookings', requireAdmin, adminBookings);
-app.use('/api/admin/cms',      requireAdmin, adminCms);
+app.use('/api/admin/bookings',  requireAdmin, adminBookings);
+app.use('/api/admin/messages',  requireAdmin, adminMessages);
+app.use('/api/admin/off-days',  requireAdmin, adminOffDays);
+app.use('/api/admin/cms',       requireAdmin, adminCms);
+
+// ── Public: off-days (for booking page guard) ──────────────────────
+app.get('/api/off-days/public', async (req, res) => {
+  try {
+    res.json(await OffDay.find().sort({ date: 1 }));
+  } catch (err) {
+    res.status(500).json({ error: 'Server error.' });
+  }
+});
+
+// ── Helpers for off-day time parsing ──────────────────────────────
+function parseTime12h(str) {
+  const m = String(str || '').match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
+  if (!m) return null;
+  let h = parseInt(m[1], 10) % 12;
+  if (m[3].toUpperCase() === 'PM') h += 12;
+  return `${String(h).padStart(2, '0')}:${m[2]}`;
+}
+function toMins(t) {
+  const [h, m] = (t || '0:0').split(':').map(Number);
+  return h * 60 + (m || 0);
+}
 
 // ── Public: submit booking ─────────────────────────────────────────
 app.post('/api/book', async (req, res) => {
@@ -52,6 +79,26 @@ app.post('/api/book', async (req, res) => {
   }
 
   try {
+    // Off-day guard
+    const offDay = await OffDay.findOne({ date });
+    if (offDay) {
+      if (offDay.fullDay) {
+        return res.status(400).json({ success: false, code: 'OFF_DAY' });
+      }
+      const time24 = parseTime12h(time);
+      if (time24 !== null) {
+        const bookMins = toMins(time24);
+        const offStart = toMins(offDay.startTime);
+        const offEnd   = toMins(offDay.endTime);
+        if (bookMins >= offStart && bookMins < offEnd) {
+          return res.status(400).json({
+            success: false, code: 'OFF_DAY_TIME',
+            offStart: offDay.startTime, offEnd: offDay.endTime,
+          });
+        }
+      }
+    }
+
     await Booking.create({ firstName, lastName, email, phone, service, date, time, message });
     res.status(200).json({ success: true });
 
@@ -106,7 +153,7 @@ app.post('/api/contact', async (req, res) => {
     buildTransporter().sendMail({
       from: `"AlTjawal Contact" <${process.env.BUSINESS_EMAIL}>`,
       to: process.env.BUSINESS_EMAIL,
-      subject: `New enquiry from ${firstName} ${lastName}`,
+      subject: `New Contact Message — ${firstName} ${lastName}`,
       html: `<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"/><title>New Enquiry</title></head>
 <body style="margin:0;padding:0;background-color:#EFECE3;font-family:Georgia,serif;">

@@ -12,9 +12,102 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  max-width: 1020px;
+}
+
+/* Heading always centered above the form+panel row */
+.booking-section__header {
   text-align: center;
   width: 100%;
   max-width: 680px;
+  margin-bottom: 20px;
+}
+
+/* Row that holds the form card (and panel when visible) */
+.booking-section__split {
+  width: 100%;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+}
+
+.booking-section__split--on {
+  max-width: 1020px;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+/* Wraps the form card; stretches in split mode */
+.booking-section__card-wrap {
+  flex: 1;
+  min-width: 0;
+  max-width: 680px;
+}
+
+/* ── Unavailable days side panel ── */
+.booking-unavail-panel {
+  width: 300px;
+  flex-shrink: 0;
+  background-color: #F2F0EC;
+  padding: 28px 22px;
+  position: sticky;
+  top: 140px;
+  align-self: flex-start;
+}
+
+.booking-unavail-header {
+  margin-bottom: 18px;
+}
+
+.booking-unavail-title {
+  font-family: var(--font-ivy-presto), Georgia, serif;
+  font-size: 24px;
+  font-weight: 300;
+  color: #38443E;
+  margin: 0 0 6px;
+  line-height: 1.2;
+}
+
+.booking-unavail-sub {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(56, 68, 62, 0.6);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.booking-unavail-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.booking-unavail-item {
+  background: #ffffff;
+  padding: 14px 16px;
+  border-left: 3px solid #38443E;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.booking-unavail-date {
+  font-family: "DM Sans", sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #38443E;
+}
+
+.booking-unavail-status {
+  font-family: "DM Sans", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(56, 68, 62, 0.45);
 }
 
 .booking-section__heading {
@@ -32,7 +125,8 @@
   font-weight: 300;
   color: #EDE1CB;
   max-width: 490px;
-  margin: 0 0 20px;
+  margin: 0 auto 20px;
+  text-align: center;
   line-height: 1.6;
 }
 
@@ -371,12 +465,37 @@
   .booking-section {
     padding: 140px 2rem 80px;
   }
+  .booking-section__split--on {
+    gap: 24px;
+  }
+  .booking-unavail-panel {
+    width: 220px;
+  }
 }
 
 /* ── Mobile ── */
 @media (max-width: 767px) {
   .booking-section {
     padding: 130px 1.5rem 80px;
+  }
+
+  .booking-section__split--on {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 680px;
+    gap: 24px;
+  }
+
+  .booking-section__card-wrap {
+    flex: none;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .booking-unavail-panel {
+    width: 100%;
+    max-width: 100%;
+    position: static;
   }
 
   .booking-section__row {
@@ -446,6 +565,7 @@
     font-size: 18px;
   }
 }
+
 
 
 

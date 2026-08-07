@@ -1,19 +1,13 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { apiFetch } from '../../lib/dashApi';
 import '../../styles/dashboard/dashboard.css';
 
-type NavItem = {
-  href: string;
-  icon: string;
-  label: string;
-  key: string;
-};
+const PAGE_KEYS = ['home', 'about', 'services', 'branding', 'events', 'contact', 'faq', 'legal'];
 
-const NAV_ITEMS: NavItem[] = [
-  { href: '/altjawal/admin-panel/dashboard/bookings',  icon: 'fa-calendar-check', label: 'Bookings',          key: 'bookings'  },
+const PAGE_ITEMS = [
   { href: '/altjawal/admin-panel/dashboard/home',      icon: 'fa-house',           label: 'Home',              key: 'home'      },
   { href: '/altjawal/admin-panel/dashboard/about',     icon: 'fa-circle-info',     label: 'About Us',          key: 'about'     },
   { href: '/altjawal/admin-panel/dashboard/services',  icon: 'fa-concierge-bell',  label: 'Main Services',     key: 'services'  },
@@ -31,6 +25,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
   activePage: string;
 }) {
+  const [pagesOpen, setPagesOpen] = useState(() => PAGE_KEYS.includes(activePage));
 
   useEffect(() => {
     const controller = new AbortController();
@@ -46,7 +41,6 @@ export default function DashboardLayout({
       })
       .catch(() => {
         clearTimeout(timeout);
-        // timeout or network error — don't redirect, stay on page
       });
 
     return () => {
@@ -69,16 +63,58 @@ export default function DashboardLayout({
         </div>
 
         <nav className="db-nav">
-          {NAV_ITEMS.map((item) => (
-            <Link
-              key={item.key}
-              href={item.href}
-              className={activePage === item.key ? 'db-nav-active' : ''}
+          <Link
+            href="/altjawal/admin-panel/dashboard/bookings"
+            className={activePage === 'bookings' ? 'db-nav-active' : ''}
+          >
+            <i className="fa-solid fa-calendar-check" />
+            Bookings
+          </Link>
+
+          <Link
+            href="/altjawal/admin-panel/dashboard/messages"
+            className={activePage === 'messages' ? 'db-nav-active' : ''}
+          >
+            <i className="fa-solid fa-inbox" />
+            Messages
+          </Link>
+
+          <Link
+            href="/altjawal/admin-panel/dashboard/calendar"
+            className={activePage === 'calendar' ? 'db-nav-active' : ''}
+          >
+            <i className="fa-solid fa-calendar-days" />
+            Calendar
+          </Link>
+
+          {/* Pages dropdown */}
+          <div className="db-nav-group">
+            <button
+              className={`db-nav-group-toggle${PAGE_KEYS.includes(activePage) ? ' db-nav-group-toggle--active' : ''}`}
+              onClick={() => setPagesOpen((o) => !o)}
             >
-              <i className={`fa-solid ${item.icon}`} />
-              {item.label}
-            </Link>
-          ))}
+              <span className="db-nav-group-toggle-left">
+                <i className="fa-solid fa-file" />
+                Pages
+              </span>
+              <i className={`fa-solid fa-chevron-down db-nav-group-arrow${pagesOpen ? ' db-nav-group-arrow--open' : ''}`} />
+            </button>
+
+            {pagesOpen && (
+              <div className="db-nav-group-items">
+                {PAGE_ITEMS.map((item) => (
+                  <Link
+                    key={item.key}
+                    href={item.href}
+                    className={`db-nav-group-item${activePage === item.key ? ' db-nav-active' : ''}`}
+                  >
+                    <i className={`fa-solid ${item.icon}`} />
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
         </nav>
 
         <div className="db-sidebar-footer">

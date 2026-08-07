@@ -40,6 +40,38 @@
 .db-nav a.db-nav-active { background: #fff; color: var(--db-dark); font-weight: 600; }
 .db-nav a.db-nav-active i { color: var(--db-dark); opacity: 1; }
 
+/* ── Pages nav group (dropdown) ── */
+.db-nav-group { display: flex; flex-direction: column; }
+
+.db-nav-group-toggle {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; padding: 13px 16px; border-radius: 4px;
+  font-size: 13.5px; font-weight: 500; color: rgba(255,255,255,0.78);
+  background: none; border: none; cursor: pointer; font-family: "DM Sans", sans-serif;
+  transition: all 0.2s; width: 100%; text-align: left;
+}
+.db-nav-group-toggle:hover { background: rgba(255,255,255,0.06); color: #fff; }
+.db-nav-group-toggle--active { color: #fff; }
+
+.db-nav-group-toggle-left { display: flex; align-items: center; gap: 12px; }
+.db-nav-group-toggle-left i { width: 16px; text-align: center; font-size: 13px; opacity: 0.8; }
+
+.db-nav-group-arrow { font-size: 9px; opacity: 0.6; transition: transform 0.2s; }
+.db-nav-group-arrow--open { transform: rotate(180deg); }
+
+.db-nav-group-items { display: flex; flex-direction: column; gap: 1px; padding-left: 12px; margin-bottom: 2px; }
+
+.db-nav-group-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 16px; border-radius: 4px;
+  font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.65);
+  transition: all 0.2s;
+}
+.db-nav-group-item i { width: 14px; text-align: center; font-size: 12px; opacity: 0.7; }
+.db-nav-group-item:hover { background: rgba(255,255,255,0.06); color: #fff; }
+.db-nav-group-item.db-nav-active { background: #fff; color: var(--db-dark); font-weight: 600; }
+.db-nav-group-item.db-nav-active i { color: var(--db-dark); opacity: 1; }
+
 .db-sidebar-footer { padding: 0 12px; margin-top: 20px; }
 .db-logout { display: flex; align-items: center; gap: 10px; padding: 13px 16px; border-radius: 4px; font-size: 13.5px; font-weight: 500; color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.15); transition: all 0.2s; cursor: pointer; background: none; width: 100%; }
 .db-logout:hover { background: rgba(255,255,255,0.08); color: #fff; }
@@ -653,4 +685,75 @@ table.db-table tbody tr:hover { background: #faf9f7; }
 @media (max-width: 600px) {
   .db-login-nav-links { display: none; }
   .db-login-card { padding: 36px 26px; }
+}
+
+/* ── Off-Day Calendar ── */
+.db-cal-layout { display: grid; grid-template-columns: 1fr 360px; gap: 24px; align-items: start; }
+
+.db-cal-left { background: #fff; border: 1px solid var(--db-border); border-radius: 4px; padding: 24px; }
+.db-cal-right { background: #fff; border: 1px solid var(--db-border); border-radius: 4px; }
+
+/* Navigation */
+.db-cal-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.db-cal-nav-btn { background: none; border: 1px solid var(--db-border); border-radius: 3px; cursor: pointer; padding: 7px 11px; color: var(--db-text-mid); transition: all 0.15s; font-size: 11px; }
+.db-cal-nav-btn:hover { background: var(--db-page-bg); color: var(--db-text); }
+.db-cal-month-label { font-family: var(--font-ivy-presto), Georgia, serif; font-size: 17px; font-weight: 500; color: var(--db-text); }
+
+/* Grid */
+.db-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+.db-cal-weekday { text-align: center; font-size: 10px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--db-text-mid); padding: 6px 0 10px; }
+.db-cal-cell { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 3px; font-size: 13px; font-weight: 500; cursor: pointer; border: 1.5px solid transparent; background: none; color: var(--db-text); transition: all 0.15s; font-family: "DM Sans", sans-serif; }
+.db-cal-cell:hover:not(.db-cal-cell--saved) { background: var(--db-page-bg); }
+.db-cal-cell--empty { cursor: default; pointer-events: none; }
+.db-cal-cell--today { border-color: var(--db-accent); color: var(--db-accent); font-weight: 700; }
+.db-cal-cell--draft { border: 1.5px dashed var(--db-accent); background: rgba(77, 95, 84, 0.07); }
+.db-cal-cell--saved { background: var(--db-dark); color: #fff; border-color: var(--db-dark); cursor: default; }
+
+/* Legend */
+.db-cal-legend { display: flex; gap: 18px; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--db-border); }
+.db-cal-legend-item { display: flex; align-items: center; gap: 7px; font-size: 11.5px; color: var(--db-text-mid); }
+.db-cal-legend-dot { width: 12px; height: 12px; border-radius: 2px; display: inline-block; flex-shrink: 0; }
+.db-cal-legend-dot--saved { background: var(--db-dark); }
+.db-cal-legend-dot--draft { border: 1.5px dashed var(--db-accent); background: rgba(77,95,84,0.07); }
+.db-cal-hint { font-size: 11.5px; color: var(--db-text-mid); margin-top: 10px; line-height: 1.5; }
+
+/* Right panel */
+.db-cal-panel-heading { font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase; font-weight: 700; color: var(--db-text-mid); padding: 14px 20px; border-bottom: 1px solid var(--db-border); }
+.db-cal-empty { padding: 40px 20px; text-align: center; color: var(--db-text-mid); font-size: 13px; line-height: 1.6; }
+.db-cal-list { display: flex; flex-direction: column; }
+
+/* Off-day row */
+.db-cal-row { padding: 16px 20px; border-bottom: 1px solid var(--db-border); display: flex; flex-direction: column; gap: 10px; }
+.db-cal-row:last-child { border-bottom: none; }
+.db-cal-row-head { display: flex; align-items: center; gap: 10px; }
+.db-cal-row-date { font-size: 13px; font-weight: 600; color: var(--db-text); }
+.db-cal-badge { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; background: var(--db-accent); color: #fff; padding: 2px 8px; border-radius: 20px; }
+
+.db-cal-check-label { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--db-text); cursor: pointer; }
+.db-cal-check-label input { cursor: pointer; width: 14px; height: 14px; accent-color: var(--db-dark); flex-shrink: 0; }
+
+/* Time pickers */
+.db-cal-time-row { display: flex; gap: 14px; align-items: flex-end; flex-wrap: wrap; }
+.db-cal-time-group { display: flex; flex-direction: column; gap: 5px; }
+.db-cal-time-label { font-size: 9.5px; letter-spacing: 1.2px; text-transform: uppercase; font-weight: 700; color: var(--db-text-mid); }
+.db-cal-time-selects { display: flex; gap: 3px; align-items: center; }
+.db-cal-time-sep { font-size: 13px; color: var(--db-text-mid); }
+.db-cal-time-select { padding: 6px 4px; border: 1px solid var(--db-border); border-radius: 3px; font-size: 12px; color: var(--db-text); background: #fff; font-family: "DM Sans", sans-serif; cursor: pointer; }
+.db-cal-time-select:focus { outline: none; border-color: var(--db-dark); }
+
+.db-cal-summary { font-size: 12px; color: var(--db-text-mid); font-style: italic; }
+
+/* Action buttons */
+.db-cal-row-actions { display: flex; gap: 6px; }
+.db-cal-action-btn { width: 30px; height: 30px; border-radius: 3px; border: 1px solid var(--db-border); background: #fff; cursor: pointer; font-size: 12px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; font-family: "DM Sans", sans-serif; }
+.db-cal-action-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.db-cal-action-btn--save    { color: var(--db-green); }
+.db-cal-action-btn--save:hover:not(:disabled)    { background: var(--db-green);   color: #fff; border-color: var(--db-green); }
+.db-cal-action-btn--discard { color: var(--db-text-mid); }
+.db-cal-action-btn--discard:hover:not(:disabled) { background: var(--db-page-bg); color: var(--db-text); }
+.db-cal-action-btn--delete  { color: var(--db-red); }
+.db-cal-action-btn--delete:hover:not(:disabled)  { background: var(--db-red);     color: #fff; border-color: var(--db-red); }
+
+@media (max-width: 900px) {
+  .db-cal-layout { grid-template-columns: 1fr; }
 }
