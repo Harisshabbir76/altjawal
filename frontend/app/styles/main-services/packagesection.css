@@ -29,11 +29,11 @@
 
 .ms-packages__subtext {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #EDE1CB;
   line-height: 1.6;
-  max-width: 550px;
+  max-width: 640px;
   margin: 0 auto;
 }
 
@@ -73,7 +73,7 @@
 
 .ms-packages__item-label {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -87,7 +87,7 @@
 
 .ms-packages__item-tagline {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #EDE1CB;
   margin: 0 0 16px;
@@ -104,7 +104,7 @@
 
 .ms-packages__item-list li {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #EDE1CB;
   line-height: 1.3;
@@ -117,7 +117,7 @@
   background: transparent;
   color: #EDE1CB;
   font-family: "DM Sans", sans-serif;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -183,6 +183,14 @@
   .ms-packages__heading {
     font-size: 24px;
   }
+  .ms-packages__subtext,
+  .ms-packages__item-tagline,
+  .ms-packages__item-list li,
+  .ms-packages__item-label,
+  .ms-packages__btn {
+    font-size: 12px;
+  }
+
 }
 
 @media (max-width:500px){

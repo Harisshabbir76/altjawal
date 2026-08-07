@@ -2,7 +2,7 @@
 .ms-hero {
   display: flex;
   flex-direction: column;
-  padding-top: 120px;
+  padding-top: 140px;
   background-color: #EFECE3;
   overflow: visible;
 }
@@ -29,11 +29,11 @@
 
 .ms-hero__paragraph {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #000000;
   line-height: 1.6;
-  max-width: 520px;
+  max-width: 590px;
   margin: 0 auto;
 }
 
@@ -75,7 +75,10 @@
   .ms-hero__heading {
     font-size: 22px;
   }
-
+  .ms-hero__paragraph{
+    font-size: 12px;
+    max-width: 350px;
+  }
   .ms-hero__text {
     padding: 70px 1.5rem 40px;
   }
@@ -123,7 +126,7 @@
   }
 
   .ms-hero__paragraph {
-    font-size: 13px;
+    font-size: 14px;
     max-width: 560px;
   }
 

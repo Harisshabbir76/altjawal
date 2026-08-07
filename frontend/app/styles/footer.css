@@ -276,7 +276,7 @@
 
   .footer-about {
     max-width: 100%;
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1.55;
   }
 
@@ -290,6 +290,14 @@
 
   .footer-col-heading {
     margin-bottom: 0.75rem;
+  }
+  .footer-about,
+  .footer-link,
+  .footer-copyright,
+  .footer-col-heading,
+  .footer-cta-paragraph
+  {
+    font-size: 12px;
   }
 
   .footer-col-list {

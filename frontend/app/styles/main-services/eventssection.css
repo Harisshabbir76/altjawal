@@ -7,7 +7,7 @@
 .ms-events__intro {
   padding: 160px 2rem 80px;
   text-align: center;
-  max-width: 560px;
+  max-width: 700px;
   margin: 0 auto;
 }
 
@@ -22,12 +22,12 @@
 
 .ms-events__paragraph {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #EDE1CB;
   line-height: 1.5;
   margin: 0 auto 24px;
-  max-width: 500px;
+  max-width: 690px;
   text-align: center;
 }
 
@@ -60,7 +60,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 10px 50px;
+  padding: 10px 30px;
 }
 
 .ms-events__card-heading {
@@ -73,17 +73,17 @@
 
 .ms-events__card-text {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #000000;
   line-height: 1.4;
   margin: 0 0 45px;
-  max-width: 365px;
+  max-width: 400px;
 }
 
 .ms-events__services-label {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   color: #000000;
   margin: 0 0 0px;
@@ -99,7 +99,7 @@
 
 .ms-events__services-list li {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #000000;
   line-height: 1.4;
@@ -166,11 +166,19 @@
     padding: 120px 1.5rem 60px;
     max-width: 100%;
   }
+  .ms-events__paragraph{
+    font-size: 12px;
+  }
 
   .ms-events__block {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 240px auto;
     min-height: unset;
+  }
+  .ms-events__card-text,
+  .ms-events__services-label,
+  .ms-events__services-list li {
+    font-size: 12px;
   }
 
   .ms-events__block .ms-events__img-wrap:first-child {
@@ -202,19 +210,18 @@
   .ms-events__heading {
     font-size: 34px;
   }
-
   .ms-events__card-heading {
-    font-size: 30px;
+    font-size: 35px;
   }
 
   .ms-events__card-text,
   .ms-events__services-list li,
   .ms-events__services-label {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .ms-events__block {
-    min-height: 720px;
+    min-height: 580px;
   }
 }
 
