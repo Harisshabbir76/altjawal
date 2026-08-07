@@ -38,6 +38,9 @@ app.use(cookieParser());
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+// ── Health check ──────────────────────────────────────────────────
+app.get('/health', (req, res) => res.status(200).json({ status: 'ok' }));
+
 // ── Public routes ──────────────────────────────────────────────────
 app.use('/api/admin', adminAuth);
 app.use('/api/cms',   publicCms);
