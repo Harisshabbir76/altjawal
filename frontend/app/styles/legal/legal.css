@@ -22,10 +22,10 @@
 
 .legal-page__subtitle {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #000000;
-  max-width: 480px;
+  max-width: 580px;
   margin: 0 auto 50px;
   line-height: 1.3;
 }
@@ -50,7 +50,7 @@
 
 .legal-page__tab {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
   text-transform: uppercase;
   color: #000000;
@@ -69,14 +69,14 @@
 .legal-page__tab-dot {
   font-size: 10px;
   color: #000000;
-  margin: 0 12px;
+  margin: 0 14px;
   user-select: none;
 }
 
 /* ── Content ── */
 .legal-page__content {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #000000;
   line-height: 1.3;
@@ -88,7 +88,7 @@
 
 .legal-page__section-title {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   color: #000000;
   margin: 0 0 16px;
@@ -162,4 +162,20 @@
   .legal-page__section-title {
     margin-bottom: 10px;
   }
+}
+@media (min-width: 1400px) {
+  .legal-page__subtitle{
+    font-size: 16px;
+    max-width: 650px;
+  }
+
+  .legal-page__tab,
+  .legal-page__content,
+  .legal-page__section-title{
+    font-size: 16px;
+  }
+
+
+  
+
 }

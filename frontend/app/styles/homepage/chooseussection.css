@@ -136,6 +136,8 @@
   .chooseus-item {
     text-align: left;
     padding-left: 1.4em;
+    font-size: 12px;
+    max-width: 100%;
   }
 
   .chooseus-right {
@@ -144,7 +146,7 @@
     aspect-ratio: 3 / 4;
     align-self: flex-end;
     order: 2;
-    margin-top: 30px;
+    margin-top: 70px;
   }
 }
 

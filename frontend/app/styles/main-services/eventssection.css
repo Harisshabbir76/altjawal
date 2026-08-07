@@ -206,18 +206,28 @@
 @media (min-width: 1400px) {
   .ms-events__intro{
     padding-top: 200px;
+    max-width: 100%;
   }
   .ms-events__heading {
     font-size: 34px;
+  }
+  .ms-events__paragraph{
+    font-size: 16px;
+    max-width: 720px;
   }
   .ms-events__card-heading {
     font-size: 35px;
   }
 
-  .ms-events__card-text,
+  .ms-events__card-text{
+    font-size: 16px;
+    max-width: 500px;
+  }
   .ms-events__services-list li,
-  .ms-events__services-label {
-    font-size: 14px;
+  .ms-events__services-label,
+  .ms-events__btn
+  {
+    font-size: 16px;
   }
 
   .ms-events__block {

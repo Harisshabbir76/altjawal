@@ -42,12 +42,12 @@
 
 .about-experience__paragraph {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #000000;
   line-height: 1.4;
   margin: 0;
-  max-width: 590px;
+  max-width: 680px;
 }
 
 .about-experience__paragraph strong {
@@ -113,11 +113,11 @@
 
 .about-build__paragraph {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #000000;
   margin: 0;
-  max-width: 320px;
+  max-width: 450px;
 }
 
 /* ── Tablet ── */
@@ -206,6 +206,12 @@
   .about-experience__content {
     max-width: 100%;
   }
+  .about-experience__paragraph {
+    font-size: 12px;
+  }
+  .about-build__paragraph{
+    font-size: 12px;
+  }
 }
 
 /* ── Large screens: > 1400px ── */
@@ -218,13 +224,25 @@
     width: 350px;
     height: 390px;
   }
-
+  .about-experience__content{
+    max-width: 100%;
+  }
   .about-experience__heading {
-    font-size: 38px;
+    font-size: 35px;
+    max-width: 100%;
   }
 
   .about-experience__paragraph {
-    font-size: 14px;
+    font-size: 16px;
+    max-width: 780px;
+  }
+  .about-build__images {
+  width: 650px;
+  margin-left: 50px;
+}
+  .about-build__paragraph{
+    font-size: 16px;
+    max-width: 550px;
   }
 }
 

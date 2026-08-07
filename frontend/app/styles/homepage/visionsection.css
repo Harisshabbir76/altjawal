@@ -147,7 +147,11 @@
   }
 
   .vision-paragraph {
-    max-width: 60%;
+    max-width: 70%;
+    font-size: 12px;
+  }
+  .vision-button {
+    font-size: 12px;
   }
 
   .vision-images {

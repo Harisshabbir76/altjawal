@@ -25,10 +25,10 @@
 
 .about-inspired__paragraph {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #000000;
-  max-width: 500px;
+  max-width: 580px;
   margin: 0;
 }
 
@@ -75,6 +75,10 @@
   .about-inspired__img-wrap {
     height: 180px;
   }
+  .about-inspired__paragraph {
+    font-size: 12px;
+    max-width: 90%;
+  }
 }
 
 /* ── Large screens ── */
@@ -84,7 +88,8 @@
   }
 
   .about-inspired__paragraph {
-    font-size: 14px;
+    font-size: 16px;
+    max-width: 660px;
   }
 
   .about-inspired__img-wrap {

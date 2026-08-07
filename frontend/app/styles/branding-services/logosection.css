@@ -21,7 +21,7 @@
 
 .bs-logo__subtext {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #EDE1CB;
   line-height: 1.4;
@@ -30,7 +30,7 @@
 
 .bs-logo__paragraph {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #EDE1CB;
   line-height: 1.4;
@@ -79,7 +79,7 @@
 
 .bs-logo__pkg-label {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #EDE1CB;
 }
@@ -102,7 +102,7 @@
 
 .bs-logo__pkg-list li {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #EDE1CB;
   line-height: 1;
@@ -112,7 +112,7 @@
 .bs-logo__pkg-btn {
   display: inline-block;
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   letter-spacing: 0.08em;
   color: #EDE1CB;
@@ -160,7 +160,14 @@
   .bs-logo__heading {
     font-size: 22px;
   }
-
+  .bs-logo__subtext,
+  .bs-logo__paragraph,
+  .bs-logo__pkg-label,
+  .bs-logo__pkg-list li,
+  .bs-logo__pkg-btn 
+  {
+    font-size: 12px;
+  }
   .bs-logo__content {
     max-width: 100%;
   }
@@ -190,14 +197,25 @@
 /* ── Large screens ── */
 @media (min-width: 1400px) {
   .bs-logo {
-  padding-top: 130px;
+  padding-top: 150px;
 }
   .bs-logo__heading {
     font-size: 36px;
   }
-
-  .bs-logo__subtext,
+  .bs-logo__content{
+    max-width: 100%;
+  }
+  .bs-logo__subtext{
+    font-size: 16px;
+  }
   .bs-logo__paragraph {
-    font-size: 13px;
+    font-size: 16px;
+    max-width: 750px;
+  }
+
+  .bs-logo__pkg-label,
+  .bs-logo__pkg-list li,
+  .bs-logo__pkg-btn {
+    font-size: 16px;
   }
 }

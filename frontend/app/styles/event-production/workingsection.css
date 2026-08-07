@@ -1,7 +1,7 @@
 /* ── How We Work Section ── */
 .ep-work {
   background-color: #EFECE3;
-  padding: 70px 2rem 10px;
+  padding: 70px 2rem 50px;
 }
 
 .ep-work__grid {
@@ -76,7 +76,7 @@
 
 .ep-work__step-label {
   font-family: var(--font-ivy-presto), serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 300;
   color: #38443E;
   margin-bottom: 6px;
@@ -84,7 +84,7 @@
 
 .ep-work__step-desc {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #38443E;
   margin: 0;
@@ -107,7 +107,7 @@
   color: #EDE1CB;
   border: 1px solid #EDE1CB;
   font-family: "DM Sans", sans-serif;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -152,7 +152,11 @@
   .ep-work__side {
     display: none;
   }
-
+  .ep-work__step-desc,
+  .ep-work__btn
+  {
+    font-size: 12px;
+  }
   .ep-work {
     padding: 60px 1.5rem 80px;
   }
@@ -163,7 +167,10 @@
   .ep-work__heading {
     font-size: 34px;
   }
-
+  .ep-work__step-desc,
+  .ep-work__btn{
+    font-size: 16px;
+  }
   .ep-work__img-wrap {
     width: 240px;
     height: 290px;

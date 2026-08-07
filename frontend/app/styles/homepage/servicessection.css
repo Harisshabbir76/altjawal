@@ -122,7 +122,8 @@
   }
 
   .services-paragraph {
-    max-width: 100%;
+    max-width: 90%;
+    font-size: 12px;
   }
 
   .services-cards {

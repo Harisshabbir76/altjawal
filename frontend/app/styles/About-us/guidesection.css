@@ -1,7 +1,7 @@
 /* ── Guide Section ── */
 .about-guide {
   background-color: #38443E;
-  padding: 60px 9rem 60px;
+  padding: 60px 7rem 60px;
 }
 
 .about-guide__heading {
@@ -17,7 +17,7 @@
 /* ── Two-column body ── */
 .about-guide__body {
   display: grid;
-  grid-template-columns: minmax(0, 420px) 1fr;
+  grid-template-columns: minmax(0, 500px) 1fr;
   align-items: center;
   gap: 2rem;
 }
@@ -48,12 +48,12 @@
 
 .about-guide__item-desc {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #EFECE3;
   line-height: 1.2;
   margin: 0;
-  max-width: 370px;
+  max-width: 450px;
 }
 
 /* ── Images ── */
@@ -111,10 +111,19 @@
   .about-guide__heading {
     font-size: 24px;
   }
+  .about-guide__item-desc {
+    font-size: 12px;
+  }
 }
 
 /* ── Large screens ── */
 @media (min-width: 1401px) {
+  .about-guide {
+  padding: 60px 7rem 60px;
+}
+.about-guide__body {
+  grid-template-columns: minmax(0, 520px) 1fr;;
+}
   .about-guide__heading {
     font-size: 40px;
   }
@@ -124,6 +133,7 @@
   }
 
   .about-guide__item-desc {
-    font-size: 13px;
+    font-size: 16px;
+    max-width: 520px;
   }
 }

@@ -234,4 +234,14 @@
   .ms-packages__img-wrap {
     height: 500px;
   }
+    .ms-packages__subtext{
+    font-size: 16px;
+    max-width: 730px;
+    }
+  .ms-packages__item-tagline,
+  .ms-packages__item-list li,
+  .ms-packages__item-label,
+  .ms-packages__btn {
+    font-size: 16px;
+  }
 }

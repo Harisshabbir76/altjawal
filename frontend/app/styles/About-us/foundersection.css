@@ -58,12 +58,12 @@
 
 .about-founder__paragraph {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #000000;
   line-height: 1.1;
   margin: 0;
-  max-width: 420px;
+  max-width: 480px;
 }
 
 /* ── Tablet ── */
@@ -119,6 +119,9 @@
   .about-founder__name {
     font-size: 22px;
   }
+   .about-founder__paragraph {
+    font-size: 12px;
+  }
 }
 
 /* ── Large screens ── */
@@ -131,8 +134,12 @@
   .about-founder__name {
     font-size: 36px;
   }
+  .about-founder__content{
+    max-width: 600px;
+  }
 
   .about-founder__paragraph {
-    font-size: 14px;
+    font-size: 16px;
+    max-width: 550px;
   }
 }

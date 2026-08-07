@@ -37,9 +37,15 @@
   .marquee-section{
     padding: 5px 0px 9px 0px;
   }
+  .marquee-item{
+    font-size: 16px;
+  }
 }
 @media (max-width: 768px){
   .marquee-section{
     padding: 5px 0px 9px 0px;
+  }
+  .marquee-item{
+    font-size: 12px;
   }
 }

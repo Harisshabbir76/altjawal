@@ -2,7 +2,7 @@
 .bs-hero {
   display: flex;
   flex-direction: column;
-  padding-top: 100px;
+  padding-top: 140px;
   background-color: #EFECE3;
   overflow: visible;
 }
@@ -29,11 +29,11 @@
 
 .bs-hero__paragraph {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #000000;
   line-height: 1.6;
-  max-width: 480px;
+  max-width: 550px;
   margin: 0 auto;
 }
 
@@ -71,9 +71,13 @@
   .bs-hero__heading {
     font-size: 22px;
   }
+  .bs-hero__paragraph{
+    font-size: 12px;
+    max-width: 90%;
+  }
 
   .bs-hero__text {
-    padding: 50px 1.5rem 30px;
+    padding: 20px 1.5rem 30px;
   }
 
   .bs-hero__image-wrap {
@@ -96,7 +100,10 @@
     font-size: 38px;
     max-width: 700px;
   }
-
+  .bs-hero__paragraph{
+    font-size: 16px;
+    max-width: 650px;
+  }
   .bs-hero__image-wrap {
     height: 440px;
     margin-bottom: -132px;

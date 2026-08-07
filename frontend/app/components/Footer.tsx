@@ -3,7 +3,13 @@ import footerBg from '../Images/footer/Footer.webp';
 import footerLogo from '../Images/footer/logo-footer.webp';
 import '../styles/footer.css';
 
-const services = ['Corporate Events', 'Private Events', 'Event Packages', 'Production & Design', 'Branding Services'];
+const services = [
+  { label: 'Corporate Events',   href: '/main-services' },
+  { label: 'Private Events',     href: '/main-services' },
+  { label: 'Event Packages',     href: '/main-services' },
+  { label: 'Production & Design', href: '/event-production' },
+  { label: 'Branding Services',  href: '/branding-services' },
+];
 const quickLinks = [
   { label: 'Home',       href: '/' },
   { label: 'About Us',   href: '/about' },
@@ -44,7 +50,7 @@ export default function Footer() {
           <div className="footer-col">
             <h4 className="footer-col-heading">Our Services</h4>
             <ul className="footer-col-list">
-              {services.map((s) => <li key={s}><a href="#" className="footer-link">{s}</a></li>)}
+              {services.map((s) => <li key={s.href + s.label}><a href={s.href} className="footer-link">{s.label}</a></li>)}
             </ul>
           </div>
 

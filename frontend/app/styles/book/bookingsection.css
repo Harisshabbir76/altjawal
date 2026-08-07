@@ -28,7 +28,7 @@
 
 .booking-section__subheading {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #EDE1CB;
   max-width: 490px;
@@ -58,7 +58,7 @@
 
 .booking-section__label {
   font-family: "DM Sans", sans-serif;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 400;
   color: #38443E;
   text-align: left;
@@ -79,7 +79,7 @@
   border: 2px solid rgba(175, 175, 175, 0.55);
   background: #ffffff;
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #000000;
   outline: none;
@@ -91,7 +91,7 @@
 .booking-section__input::placeholder,
 .booking-section__textarea::placeholder {
   color: #AFAFAF;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 /* Select placeholder colour */
@@ -153,7 +153,7 @@
   background-color: #EDE1CB;
   color: #38443E;
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   border: 2px solid rgba(56, 68, 62, 0.6);
   font-weight: 400;
   letter-spacing: 0.1em;
@@ -424,4 +424,24 @@
   .booking-modal__heading {
     font-size: 18px;
   }
+}
+
+
+
+@media (min-width:1400){
+  .booking-section__subheading{
+    font-size: 16px;
+    max-width: 700px;
+  }
+  .booking-section__label,
+  .booking-section__input,
+  .booking-section__select,
+  .booking-section__textarea,
+  .booking-section__input::placeholder,
+  .booking-section__textarea::placeholder,
+  .booking-section__btn {
+    font-size: 16px;
+  }
+
+
 }

@@ -31,18 +31,18 @@
 
 .bs-branding__paragraph {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #000000;
   line-height: 1.4;
   margin: 0 0 30px;
-  max-width: 370px;
+  max-width: 500px;
 }
 
 .bs-branding__btn {
   display: inline-block;
   font-family: "DM Sans", sans-serif;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 300;
   letter-spacing: 0.08em;
   color: #1F150F;
@@ -134,7 +134,11 @@
   }
 
   .bs-branding__paragraph {
-    max-width: 85%;
+    max-width: 95%;
+    font-size: 12px;
+  }
+  .bs-branding__btn{
+    font-size: 12px;
   }
   .bs-branding__girl-wrap {
     width: 130px;
@@ -155,7 +159,19 @@
 @media (min-width: 1400px) {
   .bs-branding__heading {
     font-size: 32px;
+    margin-left: -80px;
   }
+  .bs-branding__paragraph
+  {
+    font-size: 16px;
+    margin-left: -80px;
+    max-width: 490px;
+  }
+  .bs-branding__btn {
+    font-size: 16px;
+    margin-left: -80px;
+  }
+  
 
   .bs-branding__girl-wrap {
     width: 190px;
