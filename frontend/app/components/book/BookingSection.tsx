@@ -110,6 +110,12 @@ export default function BookingSection() {
       if (data.success) {
         setStatus('success');
         setForm({ firstName: '', lastName: '', email: '', phone: '', service: '', date: '', hour: '', minute: '', ampm: 'AM', message: '' });
+      } else if (data.code === 'SLOT_TAKEN') {
+        setStatus('idle');
+        setBlockModal({ title: 'Slot Already Booked', message: `${form.date} at ${form.hour}:${form.minute} ${form.ampm} is already taken. Please choose a different time.` });
+      } else if (data.code === 'PAST_DATE') {
+        setStatus('idle');
+        setBlockModal({ title: 'Invalid Date', message: 'You cannot book a date in the past. Please select a future date.' });
       } else if (data.code === 'OFF_DAY') {
         setStatus('idle');
         setBlockModal({ title: 'Date Unavailable', message: 'This date is not available for bookings. Please choose another date.' });

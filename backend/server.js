@@ -82,6 +82,18 @@ app.post('/api/book', async (req, res) => {
   }
 
   try {
+    // Past-date guard
+    const todayStr = new Date().toISOString().split('T')[0];
+    if (date < todayStr) {
+      return res.status(400).json({ success: false, code: 'PAST_DATE' });
+    }
+
+    // Slot conflict guard
+    const existingSlot = await Booking.findOne({ date, time });
+    if (existingSlot) {
+      return res.status(400).json({ success: false, code: 'SLOT_TAKEN' });
+    }
+
     // Off-day guard
     const offDay = await OffDay.findOne({ date });
     if (offDay) {
