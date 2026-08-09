@@ -196,6 +196,28 @@ const FAQ_CONFIG: PageConfig = {
   multiImages: [],
 };
 
+// ── About Us ──────────────────────────────────────────────────────────────────
+const ABOUT_CONFIG: PageConfig = {
+  singleText: {
+    '.aboutus-hero__heading':       { blockKey: 'page_hero_heading', label: 'Hero Heading',    blockType: 'text' },
+    '.aboutus-hero__paragraph':     { blockKey: 'page_hero_subtext', label: 'Hero Subtext',    blockType: 'textarea' },
+    '.about-experience__heading':   { blockKey: 'story_heading',     label: 'Story Heading',   blockType: 'text' },
+    '.about-experience__paragraph': { blockKey: 'story_body',        label: 'Story Body',      blockType: 'textarea' },
+    '.about-build__heading':        { blockKey: 'mission_heading',   label: 'Mission Heading', blockType: 'text' },
+    '.about-build__paragraph':      { blockKey: 'mission_body',      label: 'Mission Body',    blockType: 'textarea' },
+    '.about-inspired__heading':     { blockKey: 'vision_heading',    label: 'Vision Heading',  blockType: 'text' },
+    '.about-inspired__paragraph':   { blockKey: 'vision_body',       label: 'Vision Body',     blockType: 'textarea' },
+    '.about-guide__heading':        { blockKey: 'values_heading',    label: 'Values Heading',  blockType: 'text' },
+    '.about-founder__name':         { blockKey: 'team_heading',      label: 'Founder Name',    blockType: 'text' },
+  },
+  multiText: [],
+  singleImages: [
+    { container: '.aboutus-hero',              img: '.aboutus-hero__bg-img',  blockKey: 'page_hero_background', label: 'Hero Background Image' },
+    { container: '.about-experience__img-wrap', img: '.about-experience__img', blockKey: 'story_image',         label: 'Story Image' },
+  ],
+  multiImages: [],
+};
+
 // ── Legal ─────────────────────────────────────────────────────────────────────
 const LEGAL_CONFIG: PageConfig = {
   singleText: {
@@ -214,6 +236,7 @@ function getConfig(pathname: string): PageConfig {
   if (pathname.startsWith('/contact'))          return CONTACT_CONFIG;
   if (pathname.startsWith('/faq'))              return FAQ_CONFIG;
   if (pathname.startsWith('/legal'))            return LEGAL_CONFIG;
+  if (pathname.startsWith('/about'))            return ABOUT_CONFIG;
   return HOME_CONFIG;
 }
 
@@ -257,7 +280,7 @@ export default function CmsModeActivator() {
         active = el;
         el.classList.add('cms-ed--on');
         window.parent.postMessage(
-          { type: 'CMS_SELECT', blockKey, label, blockType, defaultContent: el.textContent?.trim() ?? '', defaultSrc: '' },
+          { type: 'CMS_SELECT', blockKey, label, blockType, defaultContent: ((el as HTMLElement).innerText ?? el.textContent ?? '').trim(), defaultSrc: '' },
           '*'
         );
       };
@@ -334,7 +357,13 @@ export default function CmsModeActivator() {
 
         const textEl = document.querySelector(`[data-cms-key="${e.data.blockKey}"]`) as HTMLElement | null;
         if (!textEl) return;
-        if (typeof e.data.content === 'string') textEl.textContent = e.data.content;
+        if (e.data.content) {
+          textEl.innerHTML = e.data.content
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/\n/g, '<br>');
+        }
         if (e.data.styles) {
           for (const [prop, val] of Object.entries(e.data.styles as Record<string, string>)) {
             (textEl.style as unknown as Record<string, string>)[prop] = val;

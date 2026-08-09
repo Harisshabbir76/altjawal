@@ -375,10 +375,6 @@ export default function FaqCmsDashboard() {
                   <>
                     <div className="cms-sec">
                       <p className="cms-sec-label">Content</p>
-                      <div className="cms-lang-row">
-                        <button className="cms-lang cms-lang--on">EN</button>
-                        <button className="cms-lang">AR</button>
-                      </div>
                       <textarea
                         className="cms-textarea"
                         value={selected.content}

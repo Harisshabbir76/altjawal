@@ -9,7 +9,7 @@ function addPx(v: string): string {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function applyBlock(el: HTMLElement, b: Record<string, any>) {
-  if (b.content) el.textContent = b.content;
+  if (b.content) el.innerHTML = b.content.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
   const s = el.style;
   if (b.fontFamily)     s.fontFamily     = b.fontFamily;
   if (b.fontSize)       s.fontSize       = b.fontSize;

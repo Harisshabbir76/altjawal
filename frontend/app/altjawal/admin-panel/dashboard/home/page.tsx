@@ -128,7 +128,11 @@ export default function HomeCmsPage() {
         blockKey: string; label: string; blockType: BlockType; defaultContent: string;
       };
       const saved = blocks.get(blockKey);
-      setSelected(saved ? { ...saved } : emptyBlock(blockKey, label, blockType, defaultContent));
+      setSelected(
+        saved
+          ? { ...saved, content: saved.content || defaultContent }
+          : emptyBlock(blockKey, label, blockType, defaultContent)
+      );
     }
     window.addEventListener('message', onMsg);
     return () => window.removeEventListener('message', onMsg);
@@ -322,10 +326,6 @@ export default function HomeCmsPage() {
               {/* CONTENT */}
               <div className="cms-sec">
                 <p className="cms-sec-label">Content</p>
-                <div className="cms-lang-row">
-                  <button className="cms-lang cms-lang--on">EN</button>
-                  <button className="cms-lang">AR</button>
-                </div>
                 <textarea
                   className="cms-textarea"
                   value={selected.content}

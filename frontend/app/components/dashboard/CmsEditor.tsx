@@ -174,19 +174,19 @@ export default function CmsEditor({ pageSlug }: { pageSlug: string }) {
               <div className="db-cms-grid-2">
                 <div className="db-field">
                   <label>Font Size</label>
-                  <input type="text" value={selected.fontSize} onChange={(e) => updateField('fontSize', e.target.value)} className="db-input" placeholder="e.g. 2rem" />
+                  <input type="text" value={selected.fontSize ?? ''} onChange={(e) => updateField('fontSize', e.target.value)} className="db-input" placeholder="e.g. 2rem" />
                 </div>
                 <div className="db-field">
                   <label>Font Weight</label>
-                  <input type="text" value={selected.fontWeight} onChange={(e) => updateField('fontWeight', e.target.value)} className="db-input" placeholder="e.g. 700" />
+                  <input type="text" value={selected.fontWeight ?? ''} onChange={(e) => updateField('fontWeight', e.target.value)} className="db-input" placeholder="e.g. 700" />
                 </div>
                 <div className="db-field">
                   <label>Color</label>
-                  <input type="text" value={selected.color} onChange={(e) => updateField('color', e.target.value)} className="db-input" placeholder="e.g. #1e1e1e" />
+                  <input type="text" value={selected.color ?? ''} onChange={(e) => updateField('color', e.target.value)} className="db-input" placeholder="e.g. #1e1e1e" />
                 </div>
                 <div className="db-field">
                   <label>Text Align</label>
-                  <select value={selected.textAlign} onChange={(e) => updateField('textAlign', e.target.value)} className="db-select">
+                  <select value={selected.textAlign ?? ''} onChange={(e) => updateField('textAlign', e.target.value)} className="db-select">
                     <option value="">—</option>
                     <option>left</option>
                     <option>center</option>
@@ -202,7 +202,7 @@ export default function CmsEditor({ pageSlug }: { pageSlug: string }) {
                 {(['paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight', 'marginTop', 'marginBottom'] as const).map((k) => (
                   <div className="db-field" key={k}>
                     <label>{k.replace(/([A-Z])/g, ' $1').trim()}</label>
-                    <input type="text" value={selected[k]} onChange={(e) => updateField(k, e.target.value)} className="db-input" placeholder="e.g. 1rem" />
+                    <input type="text" value={selected[k] ?? ''} onChange={(e) => updateField(k, e.target.value)} className="db-input" placeholder="e.g. 1rem" />
                   </div>
                 ))}
               </div>
@@ -214,7 +214,7 @@ export default function CmsEditor({ pageSlug }: { pageSlug: string }) {
                 {(['width', 'height', 'borderRadius'] as const).map((k) => (
                   <div className="db-field" key={k}>
                     <label>{k.replace(/([A-Z])/g, ' $1').trim()}</label>
-                    <input type="text" value={selected[k]} onChange={(e) => updateField(k, e.target.value)} className="db-input" placeholder="e.g. 100%" />
+                    <input type="text" value={selected[k] ?? ''} onChange={(e) => updateField(k, e.target.value)} className="db-input" placeholder="e.g. 100%" />
                   </div>
                 ))}
               </div>
