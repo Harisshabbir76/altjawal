@@ -4,8 +4,10 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import paperImg from '../../Images/Faq/paper.webp';
 import '../../styles/Faq/qasection.css';
+import { useLang } from '../../lib/LanguageContext';
+import { DEFAULT_FAQS_AR } from '../../lib/faqDefaults';
 
-type QAItem = { q: string; a: string };
+type QAItem = { q: string; a: string; qAr?: string; aAr?: string };
 
 const DEFAULT_FAQS: QAItem[] = [
   { q: '1. What types of events do you organize?', a: 'We organize a wide range of events including corporate gatherings, private celebrations, weddings, brand activations, and large-scale productions across the UAE.' },
@@ -26,6 +28,7 @@ const DEFAULT_FAQS: QAItem[] = [
 ];
 
 export default function FaqQASection() {
+  const { lang } = useLang();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [faqs, setFaqs] = useState<QAItem[]>(DEFAULT_FAQS);
 
@@ -47,32 +50,59 @@ export default function FaqQASection() {
       .catch(() => {});
   }, []);
 
+  const displayFaqs = lang === 'ar'
+    ? faqs.map((item, i) => ({
+        q: item.qAr ? `${i + 1}. ${item.qAr}` : (DEFAULT_FAQS_AR[i]?.q ?? item.q),
+        a: item.aAr ?? DEFAULT_FAQS_AR[i]?.a ?? item.a,
+      }))
+    : faqs;
+
   function toggle(i: number) {
     setOpenIndex(openIndex === i ? null : i);
   }
+
+  const t = {
+    heading:    { en: 'Frequently Asked Questions', ar: 'الأسئلة الشائعة' },
+    subheading: { en: 'Planning an event should feel exciting—not overwhelming. Here are answers to some of the questions we\'re most often asked. If you can\'t find what you\'re looking for, our team is always happy to assist.', ar: 'يجب أن يكون التخطيط لفعالية أمراً مثيراً للاهتمام وليس ساحقاً. إليك إجابات بعض الأسئلة التي يُطرح علينا كثيراً. إذا لم تجد ما تبحث عنه، يسعد فريقنا دائماً بمساعدتك.' },
+    ctaHeading: { en: 'Still have a question?', ar: 'لا تزال لديك سؤال؟' },
+    ctaPara:    { en: 'Our team is here to help. Get in touch with us, and we\'ll be happy to guide you through every step of your event journey.', ar: 'فريقنا هنا للمساعدة. تواصل معنا وسيسعدنا إرشادك في كل خطوة من رحلة فعاليتك.' },
+    ctaBtn:     { en: 'CONTACT US', ar: 'اتصل بنا' },
+  };
 
   return (
     <>
       {/* ── Accordion ── */}
       <section className="faq-qa">
-        <h2 className="faq-qa__heading">Frequently Asked Questions</h2>
-        <p className="faq-qa__subheading">
-          Planning an event should feel exciting—not overwhelming. Here are answers to some of the questions
-          we&apos;re most often asked. If you can&apos;t find what you&apos;re looking for, our team is always happy to assist.
-        </p>
+        <h2 className="faq-qa__heading">{t.heading[lang]}</h2>
+        <p className="faq-qa__subheading">{t.subheading[lang]}</p>
 
         <div className="faq-qa__list">
-          {faqs.map((item, i) => (
-            <div key={i} className={`faq-qa__item${openIndex === i ? ' faq-qa__item--open' : ''}`}>
-              <button className="faq-qa__question" onClick={() => toggle(i)}>
-                <span>{item.q}</span>
-                <span className="faq-qa__arrow">{openIndex === i ? '▲' : '▼'}</span>
-              </button>
-              {openIndex === i && (
-                <p className="faq-qa__answer">{item.a}</p>
-              )}
-            </div>
-          ))}
+          {displayFaqs.map((item, i) => {
+            const arMatch = lang === 'ar' ? item.q.match(/^(\d+\.)\s*(.*)$/s) : null;
+            const arNum  = arMatch?.[1] ?? '';
+            const arText = arMatch?.[2] ?? item.q;
+            return (
+              <div key={i} className={`faq-qa__item${openIndex === i ? ' faq-qa__item--open' : ''}`}>
+                <button className="faq-qa__question" onClick={() => toggle(i)}>
+                  {lang === 'ar' ? (
+                    <>
+                      <span className="faq-qa__arrow">{openIndex === i ? '▲' : '▼'}</span>
+                      <span className="faq-qa__qtext">{arText}</span>
+                      <span className="faq-qa__qnum">{arNum}</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>{item.q}</span>
+                      <span className="faq-qa__arrow">{openIndex === i ? '▲' : '▼'}</span>
+                    </>
+                  )}
+                </button>
+                {openIndex === i && (
+                  <p className="faq-qa__answer">{item.a}</p>
+                )}
+              </div>
+            );
+          })}
         </div>
       </section>
 
@@ -80,12 +110,9 @@ export default function FaqQASection() {
       <section className="faq-contact">
         <div className="faq-contact__card">
           <Image src={paperImg} alt="" fill className="faq-contact__paper-bg" />
-          <h3 className="faq-contact__heading">Still have a question?</h3>
-          <p className="faq-contact__paragraph">
-            Our team is here to help. Get in touch with us, and we&apos;ll be happy to
-            guide you through every step of your event journey.
-          </p>
-          <a href="/contact" className="faq-contact__btn">CONTACT US</a>
+          <h3 className="faq-contact__heading">{t.ctaHeading[lang]}</h3>
+          <p className="faq-contact__paragraph">{t.ctaPara[lang]}</p>
+          <a href="/contact" className="faq-contact__btn">{t.ctaBtn[lang]}</a>
         </div>
       </section>
     </>

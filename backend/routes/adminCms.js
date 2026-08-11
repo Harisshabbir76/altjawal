@@ -50,6 +50,13 @@ router.post('/save-block', async (req, res) => {
       marginTop, marginRight, marginBottom, marginLeft,
       paddingTop, paddingRight, paddingBottom, paddingLeft,
       width, height, minHeight, maxWidth, maxHeight,
+      // Arabic fields
+      contentAr,
+      fontFamilyAr, fontSizeAr, fontWeightAr, fontStyleAr, textDecorationAr,
+      textColorAr, lineHeightAr, letterSpacingAr, textAlignAr,
+      marginTopAr, marginRightAr, marginBottomAr, marginLeftAr,
+      paddingTopAr, paddingRightAr, paddingBottomAr, paddingLeftAr,
+      widthAr, heightAr, minHeightAr, maxWidthAr, maxHeightAr,
     } = req.body;
 
     if (!pageSlug || !blockKey) {
@@ -84,6 +91,30 @@ router.post('/save-block', async (req, res) => {
       ...(minHeight      != null && { minHeight }),
       ...(maxWidth       != null && { maxWidth }),
       ...(maxHeight      != null && { maxHeight }),
+      // Arabic fields
+      ...(contentAr        != null && { contentAr }),
+      ...(fontFamilyAr     != null && { fontFamilyAr }),
+      ...(fontSizeAr       != null && { fontSizeAr }),
+      ...(fontWeightAr     != null && { fontWeightAr }),
+      ...(fontStyleAr      != null && { fontStyleAr }),
+      ...(textDecorationAr != null && { textDecorationAr }),
+      ...(textColorAr      != null && { textColorAr }),
+      ...(lineHeightAr     != null && { lineHeightAr }),
+      ...(letterSpacingAr  != null && { letterSpacingAr }),
+      ...(textAlignAr      != null && { textAlignAr }),
+      ...(marginTopAr      != null && { marginTopAr }),
+      ...(marginRightAr    != null && { marginRightAr }),
+      ...(marginBottomAr   != null && { marginBottomAr }),
+      ...(marginLeftAr     != null && { marginLeftAr }),
+      ...(paddingTopAr     != null && { paddingTopAr }),
+      ...(paddingRightAr   != null && { paddingRightAr }),
+      ...(paddingBottomAr  != null && { paddingBottomAr }),
+      ...(paddingLeftAr    != null && { paddingLeftAr }),
+      ...(widthAr          != null && { widthAr }),
+      ...(heightAr         != null && { heightAr }),
+      ...(minHeightAr      != null && { minHeightAr }),
+      ...(maxWidthAr       != null && { maxWidthAr }),
+      ...(maxHeightAr      != null && { maxHeightAr }),
     };
 
     const block = await PageContentBlock.findOneAndUpdate(

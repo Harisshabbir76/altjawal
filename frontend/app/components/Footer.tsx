@@ -2,6 +2,7 @@ import Image from 'next/image';
 import footerBg from '../Images/footer/Footer.webp';
 import footerLogo from '../Images/footer/logo-footer.webp';
 import '../styles/footer.css';
+import LanguageDropdown from './LanguageDropdown';
 
 const services = [
   { label: 'Corporate Events',   href: '/main-services' },
@@ -73,6 +74,7 @@ export default function Footer() {
 
         {/* Socials + copyright */}
         <div className="footer-bottom">
+          <LanguageDropdown />
           <div className="footer-socials">
             <a
               href={process.env.NEXT_PUBLIC_INSTAGRAM_URL}

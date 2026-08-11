@@ -4,14 +4,18 @@ import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import { apiFetch } from '../../lib/dashApi';
 import '../../styles/dashboard/dashboard.css';
-import { LegalSection, DEFAULT_PRIVACY, DEFAULT_TERMS, DEFAULT_COOKIE } from '../../lib/legalDefaults';
+import {
+  LegalSection,
+  DEFAULT_PRIVACY, DEFAULT_TERMS, DEFAULT_COOKIE,
+  DEFAULT_PRIVACY_AR, DEFAULT_TERMS_AR, DEFAULT_COOKIE_AR,
+} from '../../lib/legalDefaults';
 
 type PolicyKey = 'privacy' | 'terms' | 'cookie';
 type BlockType = 'text' | 'textarea' | 'image';
 
 type CmsBlock = {
   pageSlug: string; blockKey: string; label: string; blockType: BlockType;
-  content: string; image: string; height: string; fontFamily: string;
+  content: string; contentAr: string; image: string; height: string; fontFamily: string;
   fontSize: string; fontWeight: string; fontStyle: string; textDecoration: string;
   textColor: string; lineHeight: string; letterSpacing: string; textAlign: string;
   marginTop: string; marginRight: string; marginBottom: string; marginLeft: string;
@@ -21,7 +25,7 @@ type CmsBlock = {
 
 function emptyBlock(pageSlug: string, blockKey: string, label: string, blockType: BlockType, content: string): CmsBlock {
   return {
-    pageSlug, blockKey, label, blockType, content,
+    pageSlug, blockKey, label, blockType, content, contentAr: '',
     image: '', height: '', fontFamily: '', fontSize: '', fontWeight: '',
     fontStyle: '', textDecoration: '', textColor: '', lineHeight: '',
     letterSpacing: '', textAlign: '', marginTop: '', marginRight: '',
@@ -30,6 +34,11 @@ function emptyBlock(pageSlug: string, blockKey: string, label: string, blockType
     maxWidth: '', maxHeight: '',
   };
 }
+
+const LEGAL_AR_DEFAULTS: Record<string, string> = {
+  'legal-title':    'قانوني',
+  'legal-subtitle': 'نصنع هويات بصرية مدروسة تحكي قصتك وتعزز حضورك وتترك انطباعاً دائماً.',
+};
 
 function toStr(v: unknown): string { return v == null ? '' : String(v); }
 function addPx(v: string): string {
@@ -70,6 +79,12 @@ const DEFAULTS: Record<PolicyKey, LegalSection[]> = {
   cookie:  DEFAULT_COOKIE,
 };
 
+const DEFAULTS_AR: Record<PolicyKey, LegalSection[]> = {
+  privacy: DEFAULT_PRIVACY_AR,
+  terms:   DEFAULT_TERMS_AR,
+  cookie:  DEFAULT_COOKIE_AR,
+};
+
 export default function LegalCmsDashboard() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
@@ -79,17 +94,21 @@ export default function LegalCmsDashboard() {
   const [saving, setSaving]       = useState(false);
   const [saveMsg, setSaveMsg]     = useState('');
   const [uploading, setUploading] = useState(false);
+  const [previewLang, setPreviewLang] = useState<'en' | 'ar'>('en');
 
   // ── Section manager ───────────────────────────────────────────────────────
   const [activePolicy, setActivePolicy] = useState<PolicyKey>('privacy');
   const [sections, setSections]         = useState<Record<PolicyKey, LegalSection[] | null>>({
     privacy: null, terms: null, cookie: null,
   });
-  const [editIdx,   setEditIdx]   = useState<number | 'new' | null>(null);
-  const [editTitle, setEditTitle] = useState('');
-  const [editBody,  setEditBody]  = useState('');
-  const [secSaving, setSecSaving] = useState(false);
-  const [secMsg,    setSecMsg]    = useState('');
+  const [editIdx,     setEditIdx]     = useState<number | 'new' | null>(null);
+  const [editorLang,  setEditorLang]  = useState<'en' | 'ar'>('en');
+  const [editTitle,   setEditTitle]   = useState('');
+  const [editBody,    setEditBody]    = useState('');
+  const [editTitleAr, setEditTitleAr] = useState('');
+  const [editBodyAr,  setEditBodyAr]  = useState('');
+  const [secSaving,   setSecSaving]   = useState(false);
+  const [secMsg,      setSecMsg]      = useState('');
 
   // ── Load CMS data ─────────────────────────────────────────────────────────
   useEffect(() => {
@@ -115,6 +134,7 @@ export default function LegalCmsDashboard() {
         map.set(key, {
           pageSlug: 'legal', blockKey: key, label: toStr(b.label),
           blockType: (b.blockType as BlockType) ?? 'text', content: toStr(b.content),
+          contentAr: toStr(b.contentAr),
           image: toStr(b.image), height: toStr(b.height),
           fontFamily: toStr(b.fontFamily), fontSize: toStr(b.fontSize),
           fontWeight: toStr(b.fontWeight), fontStyle: toStr(b.fontStyle),
@@ -149,7 +169,10 @@ export default function LegalCmsDashboard() {
         blockKey: string; label: string; blockType: BlockType; defaultContent: string;
       };
       const saved = blocks.get(blockKey);
-      setSelected(saved ? { ...saved } : emptyBlock('legal', blockKey, label, blockType, defaultContent));
+      const block = saved ? { ...saved } : emptyBlock('legal', blockKey, label, blockType, defaultContent);
+      if (!block.contentAr && LEGAL_AR_DEFAULTS[blockKey]) block.contentAr = LEGAL_AR_DEFAULTS[blockKey];
+      setSelected(block);
+      setEditorLang('en');
     }
     window.addEventListener('message', onMsg);
     return () => window.removeEventListener('message', onMsg);
@@ -158,17 +181,18 @@ export default function LegalCmsDashboard() {
   // ── Live preview ─────────────────────────────────────────────────────────
   useEffect(() => {
     if (!selected || !iframeRef.current?.contentWindow) return;
+    const isAr = editorLang === 'ar';
     iframeRef.current.contentWindow.postMessage(
       {
         type: 'CMS_LIVE_UPDATE',
         blockKey: selected.blockKey,
-        content: selected.content,
+        content: isAr ? (selected.contentAr || selected.content) : selected.content,
         imageSrc: selected.blockType === 'image' ? selected.image : undefined,
         styles: buildStyles(selected),
       },
       '*'
     );
-  }, [selected]);
+  }, [selected, editorLang]);
 
   // ── Text block helpers ────────────────────────────────────────────────────
   function set(key: keyof CmsBlock, val: string) {
@@ -218,16 +242,26 @@ export default function LegalCmsDashboard() {
     setSelected(emptyBlock('legal', selected.blockKey, selected.label, selected.blockType, selected.content));
   }
 
+  function switchPreviewLang(l: 'en' | 'ar') {
+    setPreviewLang(l);
+    setEditorLang(l);
+    iframeRef.current?.contentWindow?.postMessage({ type: 'CMS_SET_LANG', lang: l }, '*');
+  }
+
   // ── Section manager helpers ───────────────────────────────────────────────
   const currentSections = sections[activePolicy] ?? [];
 
   function startEdit(idx: number | 'new') {
     if (idx === 'new') {
-      setEditTitle(''); setEditBody('');
+      setEditTitle(''); setEditBody(''); setEditTitleAr(''); setEditBodyAr('');
     } else {
+      const arDef = DEFAULTS_AR[activePolicy][idx];
       setEditTitle(currentSections[idx].title);
       setEditBody(currentSections[idx].body);
+      setEditTitleAr(currentSections[idx].titleAr ?? arDef?.title ?? '');
+      setEditBodyAr(currentSections[idx].bodyAr ?? arDef?.body ?? '');
     }
+    setEditorLang('en');
     setEditIdx(idx);
   }
 
@@ -235,6 +269,8 @@ export default function LegalCmsDashboard() {
     if (!editTitle.trim()) return;
     const updated = [...currentSections];
     const item: LegalSection = { title: editTitle.trim(), body: editBody.trim() };
+    if (editTitleAr.trim()) item.titleAr = editTitleAr.trim();
+    if (editBodyAr.trim())  item.bodyAr  = editBodyAr.trim();
     if (editIdx === 'new') updated.push(item);
     else if (typeof editIdx === 'number') updated[editIdx] = item;
     setEditIdx(null);
@@ -275,7 +311,7 @@ export default function LegalCmsDashboard() {
   return (
     <div className="db-scope cms-page">
 
-      <header className="cms-topbar">
+      <header className="cms-topbar" style={{ position: 'relative' }}>
         <div className="cms-topbar-left">
           <Link href="/altjawal/admin-panel/dashboard/bookings" className="cms-back">
             <i className="fa-solid fa-chevron-left" /> Dashboard
@@ -283,6 +319,18 @@ export default function LegalCmsDashboard() {
           <span className="cms-topbar-divider" />
           <span className="cms-topbar-title">Legal Page Editor</span>
         </div>
+
+        <div style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', display: 'flex' }}>
+          <button
+            className={`cms-lang${previewLang === 'en' ? ' cms-lang--on' : ''}`}
+            onClick={() => switchPreviewLang('en')}
+          >EN</button>
+          <button
+            className={`cms-lang${previewLang === 'ar' ? ' cms-lang--on' : ''}`}
+            onClick={() => switchPreviewLang('ar')}
+          >AR</button>
+        </div>
+
         <div className="cms-topbar-right">
           {saveMsg && (
             <span className={`cms-save-msg${saveMsg.startsWith('Failed') ? ' cms-save-msg--err' : ''}`}>
@@ -352,13 +400,30 @@ export default function LegalCmsDashboard() {
                 ) : (
                   <>
                     <div className="cms-sec">
-                      <p className="cms-sec-label">Content</p>
-                      <textarea
-                        className="cms-textarea"
-                        value={selected.content}
-                        rows={4}
-                        onChange={(e) => set('content', e.target.value)}
-                      />
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 6 }}>
+                        <p className="cms-sec-label" style={{ margin: 0 }}>Content</p>
+                        <div style={{ display: 'flex', gap: 4 }}>
+                          <button className={`cms-lang${editorLang === 'en' ? ' cms-lang--on' : ''}`} onClick={() => setEditorLang('en')}>EN</button>
+                          <button className={`cms-lang${editorLang === 'ar' ? ' cms-lang--on' : ''}`} onClick={() => setEditorLang('ar')}>AR</button>
+                        </div>
+                      </div>
+                      {editorLang === 'en' ? (
+                        <textarea
+                          className="cms-textarea"
+                          value={selected.content}
+                          rows={4}
+                          onChange={(e) => set('content', e.target.value)}
+                        />
+                      ) : (
+                        <textarea
+                          className="cms-textarea"
+                          dir="rtl"
+                          value={selected.contentAr}
+                          rows={4}
+                          placeholder="أدخل النص العربي…"
+                          onChange={(e) => set('contentAr', e.target.value)}
+                        />
+                      )}
                       <div className="cms-fmts">
                         <button className={`cms-fmt${selected.fontWeight === '700' ? ' on' : ''}`}
                           onClick={() => toggle('fontWeight', '700')}><b>B</b></button>
@@ -516,7 +581,7 @@ export default function LegalCmsDashboard() {
                     <div className="cms-qa-form">
                       <p className="cms-sec-label" style={{ marginBottom: 10 }}>New Section</p>
                       <div className="cms-field">
-                        <label className="cms-flabel">Section Title</label>
+                        <label className="cms-flabel">Section Title (English)</label>
                         <input
                           className="cms-input"
                           type="text"
@@ -527,13 +592,35 @@ export default function LegalCmsDashboard() {
                         />
                       </div>
                       <div className="cms-field">
-                        <label className="cms-flabel">Body</label>
+                        <label className="cms-flabel">Body (English)</label>
                         <textarea
                           className="cms-textarea"
                           placeholder="Enter content… Start a line with • for a bullet point."
-                          rows={6}
+                          rows={4}
                           value={editBody}
                           onChange={(e) => setEditBody(e.target.value)}
+                        />
+                      </div>
+                      <div className="cms-field">
+                        <label className="cms-flabel">Section Title (Arabic)</label>
+                        <input
+                          className="cms-input"
+                          dir="rtl"
+                          type="text"
+                          placeholder="عنوان القسم…"
+                          value={editTitleAr}
+                          onChange={(e) => setEditTitleAr(e.target.value)}
+                        />
+                      </div>
+                      <div className="cms-field">
+                        <label className="cms-flabel">Body (Arabic)</label>
+                        <textarea
+                          className="cms-textarea"
+                          dir="rtl"
+                          placeholder="أدخل المحتوى… ابدأ السطر بـ • لإنشاء قائمة نقطية."
+                          rows={4}
+                          value={editBodyAr}
+                          onChange={(e) => setEditBodyAr(e.target.value)}
                         />
                       </div>
                       <div className="cms-qa-form-btns">
@@ -563,7 +650,7 @@ export default function LegalCmsDashboard() {
                       {editIdx === idx ? (
                         <div className="cms-qa-form">
                           <div className="cms-field">
-                            <label className="cms-flabel">Section Title</label>
+                            <label className="cms-flabel">Section Title (English)</label>
                             <input
                               className="cms-input"
                               type="text"
@@ -573,12 +660,34 @@ export default function LegalCmsDashboard() {
                             />
                           </div>
                           <div className="cms-field">
-                            <label className="cms-flabel">Body</label>
+                            <label className="cms-flabel">Body (English)</label>
                             <textarea
                               className="cms-textarea"
-                              rows={6}
+                              rows={4}
                               value={editBody}
                               onChange={(e) => setEditBody(e.target.value)}
+                            />
+                          </div>
+                          <div className="cms-field">
+                            <label className="cms-flabel">Section Title (Arabic)</label>
+                            <input
+                              className="cms-input"
+                              dir="rtl"
+                              type="text"
+                              placeholder="عنوان القسم…"
+                              value={editTitleAr}
+                              onChange={(e) => setEditTitleAr(e.target.value)}
+                            />
+                          </div>
+                          <div className="cms-field">
+                            <label className="cms-flabel">Body (Arabic)</label>
+                            <textarea
+                              className="cms-textarea"
+                              dir="rtl"
+                              placeholder="أدخل المحتوى… ابدأ السطر بـ • لإنشاء قائمة نقطية."
+                              rows={4}
+                              value={editBodyAr}
+                              onChange={(e) => setEditBodyAr(e.target.value)}
                             />
                           </div>
                           <div className="cms-qa-form-btns">

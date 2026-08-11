@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useLang } from '../lib/LanguageContext';
 
 function addPx(v: string): string {
   if (!v) return '';
@@ -8,8 +9,9 @@ function addPx(v: string): string {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function applyBlock(el: HTMLElement, b: Record<string, any>) {
-  if (b.content) el.innerHTML = b.content.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+function applyBlock(el: HTMLElement, b: Record<string, any>, lang: 'en' | 'ar') {
+  const content = lang === 'ar' ? (b.contentAr || '') : (b.content || '');
+  if (content) el.innerHTML = content.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
   const s = el.style;
   if (b.fontFamily)     s.fontFamily     = b.fontFamily;
   if (b.fontSize)       s.fontSize       = b.fontSize;
@@ -35,28 +37,36 @@ function applyBlock(el: HTMLElement, b: Record<string, any>) {
 }
 
 export default function CmsApplierLegal() {
+  const { lang } = useLang();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [blocksMap, setBlocksMap] = useState<Record<string, any>>({});
+
   useEffect(() => {
     try { if (window !== window.top) return; } catch { return; }
-
     fetch('/api/cms/legal')
       .then((r) => r.json())
-      .then((data) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .then((data: any) => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const arr: Record<string, any>[] = Array.isArray(data) ? data : (data.blocks ?? []);
-        const map = Object.fromEntries(arr.map((b) => [b.blockKey, b]));
-
-        const single: Record<string, string> = {
-          'legal-title':    '.legal-page__title',
-          'legal-subtitle': '.legal-page__subtitle',
-        };
-        for (const [key, sel] of Object.entries(single)) {
-          const b = map[key]; if (!b) continue;
-          const el = document.querySelector(sel) as HTMLElement | null;
-          if (el) applyBlock(el, b);
-        }
+        setBlocksMap(Object.fromEntries(arr.map((b) => [b.blockKey, b])));
       })
       .catch(() => {});
   }, []);
+
+  useEffect(() => {
+    if (Object.keys(blocksMap).length === 0) return;
+
+    const single: Record<string, string> = {
+      'legal-title':    '.legal-page__title',
+      'legal-subtitle': '.legal-page__subtitle',
+    };
+    for (const [key, sel] of Object.entries(single)) {
+      const b = blocksMap[key]; if (!b) continue;
+      const el = document.querySelector(sel) as HTMLElement | null;
+      if (el) applyBlock(el, b, lang);
+    }
+  }, [blocksMap, lang]);
 
   return null;
 }

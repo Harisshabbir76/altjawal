@@ -3,10 +3,12 @@
 import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import { apiFetch } from '../../lib/dashApi';
+import { DEFAULT_FAQS_AR } from '../../lib/faqDefaults';
 import '../../styles/dashboard/dashboard.css';
 
-type QAItem   = { q: string; a: string };
-type BlockType = 'text' | 'textarea' | 'image';
+type QAItem    = { q: string; a: string; qAr?: string; aAr?: string };
+type BlockType  = 'text' | 'textarea' | 'image';
+type EditorLang = 'en' | 'ar';
 
 const DEFAULT_FAQS: QAItem[] = [
   { q: '1. What types of events do you organize?',          a: 'We organize a wide range of events including corporate gatherings, private celebrations, weddings, brand activations, and large-scale productions across the UAE.' },
@@ -28,12 +30,20 @@ const DEFAULT_FAQS: QAItem[] = [
 
 type CmsBlock = {
   pageSlug: string; blockKey: string; label: string; blockType: BlockType;
-  content: string; image: string; height: string; fontFamily: string;
-  fontSize: string; fontWeight: string; fontStyle: string; textDecoration: string;
-  textColor: string; lineHeight: string; letterSpacing: string; textAlign: string;
-  marginTop: string; marginRight: string; marginBottom: string; marginLeft: string;
-  paddingTop: string; paddingRight: string; paddingBottom: string; paddingLeft: string;
-  width: string; minHeight: string; maxWidth: string; maxHeight: string;
+  // English
+  content: string; image: string; height: string;
+  fontFamily: string; fontSize: string; fontWeight: string; fontStyle: string;
+  textDecoration: string; textColor: string; lineHeight: string; letterSpacing: string;
+  textAlign: string; marginTop: string; marginRight: string; marginBottom: string;
+  marginLeft: string; paddingTop: string; paddingRight: string; paddingBottom: string;
+  paddingLeft: string; width: string; minHeight: string; maxWidth: string; maxHeight: string;
+  // Arabic
+  contentAr: string; fontFamilyAr: string; fontSizeAr: string; fontWeightAr: string;
+  fontStyleAr: string; textDecorationAr: string; textColorAr: string; lineHeightAr: string;
+  letterSpacingAr: string; textAlignAr: string; marginTopAr: string; marginRightAr: string;
+  marginBottomAr: string; marginLeftAr: string; paddingTopAr: string; paddingRightAr: string;
+  paddingBottomAr: string; paddingLeftAr: string; widthAr: string; heightAr: string;
+  minHeightAr: string; maxWidthAr: string; maxHeightAr: string;
 };
 
 function emptyBlock(pageSlug: string, blockKey: string, label: string, blockType: BlockType, content: string): CmsBlock {
@@ -45,15 +55,23 @@ function emptyBlock(pageSlug: string, blockKey: string, label: string, blockType
     marginBottom: '', marginLeft: '', paddingTop: '', paddingRight: '',
     paddingBottom: '', paddingLeft: '', width: '', minHeight: '',
     maxWidth: '', maxHeight: '',
+    contentAr: '', fontFamilyAr: '', fontSizeAr: '', fontWeightAr: '',
+    fontStyleAr: '', textDecorationAr: '', textColorAr: '', lineHeightAr: '',
+    letterSpacingAr: '', textAlignAr: '', marginTopAr: '', marginRightAr: '',
+    marginBottomAr: '', marginLeftAr: '', paddingTopAr: '', paddingRightAr: '',
+    paddingBottomAr: '', paddingLeftAr: '', widthAr: '', heightAr: '',
+    minHeightAr: '', maxWidthAr: '', maxHeightAr: '',
   };
 }
 
 function toStr(v: unknown): string { return v == null ? '' : String(v); }
 function stripNum(s: string): string { return s.replace(/^\d+\.\s*/, '').trim(); }
+
 function addPx(v: string): string {
   if (!v) return '';
   return /^-?\d+(\.\d+)?$/.test(v.trim()) ? v + 'px' : v;
 }
+
 function buildStyles(b: CmsBlock): Record<string, string> {
   return {
     fontFamily: b.fontFamily, fontSize: b.fontSize, fontWeight: b.fontWeight,
@@ -68,7 +86,36 @@ function buildStyles(b: CmsBlock): Record<string, string> {
   };
 }
 
-const FONT_FAMILIES = ['Default', 'DM Sans', 'Geist Sans', 'IvyPresto'];
+function buildArStyles(b: CmsBlock): Record<string, string> {
+  const f = (ar: string, en: string) => ar || en;
+  return {
+    fontFamily: f(b.fontFamilyAr, b.fontFamily), fontSize: f(b.fontSizeAr, b.fontSize),
+    fontWeight: f(b.fontWeightAr, b.fontWeight), fontStyle: f(b.fontStyleAr, b.fontStyle),
+    textDecoration: f(b.textDecorationAr, b.textDecoration), color: f(b.textColorAr, b.textColor),
+    lineHeight: f(b.lineHeightAr, b.lineHeight), letterSpacing: f(b.letterSpacingAr, b.letterSpacing),
+    textAlign: f(b.textAlignAr, b.textAlign),
+    marginTop: addPx(f(b.marginTopAr, b.marginTop)), marginRight: addPx(f(b.marginRightAr, b.marginRight)),
+    marginBottom: addPx(f(b.marginBottomAr, b.marginBottom)), marginLeft: addPx(f(b.marginLeftAr, b.marginLeft)),
+    paddingTop: addPx(f(b.paddingTopAr, b.paddingTop)), paddingRight: addPx(f(b.paddingRightAr, b.paddingRight)),
+    paddingBottom: addPx(f(b.paddingBottomAr, b.paddingBottom)), paddingLeft: addPx(f(b.paddingLeftAr, b.paddingLeft)),
+    width: f(b.widthAr, b.width), height: f(b.heightAr, b.height),
+    minHeight: f(b.minHeightAr, b.minHeight), maxWidth: f(b.maxWidthAr, b.maxWidth),
+    maxHeight: f(b.maxHeightAr, b.maxHeight),
+  };
+}
+
+const AR_DEFAULTS: Record<string, string> = {
+  'faq-hero-label':      'كل ما تحتاج معرفته',
+  'faq-hero-heading':    'قبل أن نبدأ\nشيئاً\nلا يُنسى.',
+  'faq-hero-para':       'كل فعالية استثنائية تبدأ بمحادثة. جمعنا أكثر الأسئلة شيوعاً لمساعدتك على فهم أسلوبنا وما يمكن توقعه وكيف يحوّل الجوال الأفكار إلى تجارب منسقة بجمال في أنحاء الإمارات.',
+  'faq-qa-heading':      'الأسئلة الشائعة',
+  'faq-qa-subheading':   'يجب أن يكون التخطيط لفعالية أمراً مثيراً للاهتمام وليس ساحقاً. إليك إجابات بعض الأسئلة التي يُطرح علينا كثيراً. إذا لم تجد ما تبحث عنه، يسعد فريقنا دائماً بمساعدتك.',
+  'faq-contact-heading': 'لا تزال لديك سؤال؟',
+  'faq-contact-para':    'فريقنا هنا للمساعدة. تواصل معنا وسيسعدنا إرشادك في كل خطوة من رحلة فعاليتك.',
+  'faq-contact-btn':     'اتصل بنا',
+};
+
+const FONT_FAMILIES = ['Default', 'DM Sans', 'Geist Sans', 'IvyPresto', 'Tajawal'];
 const FONT_WEIGHTS  = ['Default', '300', '400', '500', '600', '700', '800', '900'];
 const TEXT_ALIGNS   = ['Default', 'left', 'center', 'right'];
 
@@ -76,20 +123,23 @@ export default function FaqCmsDashboard() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   // ── Text block editing ────────────────────────────────────────────────────
-  const [blocks, setBlocks]       = useState<Map<string, CmsBlock>>(new Map());
-  const [selected, setSelected]   = useState<CmsBlock | null>(null);
-  const [saving, setSaving]       = useState(false);
-  const [saveMsg, setSaveMsg]     = useState('');
-  const [uploading, setUploading] = useState(false);
+  const [blocks, setBlocks]           = useState<Map<string, CmsBlock>>(new Map());
+  const [selected, setSelected]       = useState<CmsBlock | null>(null);
+  const [saving, setSaving]           = useState(false);
+  const [saveMsg, setSaveMsg]         = useState('');
+  const [uploading, setUploading]     = useState(false);
+  const [editorLang, setEditorLang]   = useState<EditorLang>('en');
+  const [previewLang, setPreviewLang] = useState<EditorLang>('en');
 
   // ── Q&A manager ───────────────────────────────────────────────────────────
-  // null = still loading from DB (no flash of wrong data)
-  const [qaItems,    setQaItems]    = useState<QAItem[] | null>(null);
-  const [qaEditIdx,  setQaEditIdx]  = useState<number | 'new' | null>(null);
-  const [editQ,      setEditQ]      = useState('');
-  const [editA,      setEditA]      = useState('');
-  const [qaSaving,   setQaSaving]   = useState(false);
-  const [qaMsg,      setQaMsg]      = useState('');
+  const [qaItems,   setQaItems]   = useState<QAItem[] | null>(null);
+  const [qaEditIdx, setQaEditIdx] = useState<number | 'new' | null>(null);
+  const [editQ,     setEditQ]     = useState('');
+  const [editA,     setEditA]     = useState('');
+  const [editQAr,   setEditQAr]   = useState('');
+  const [editAAr,   setEditAAr]   = useState('');
+  const [qaSaving,  setQaSaving]  = useState(false);
+  const [qaMsg,     setQaMsg]     = useState('');
 
   // ── Load existing CMS blocks ──────────────────────────────────────────────
   useEffect(() => {
@@ -126,6 +176,18 @@ export default function FaqCmsDashboard() {
           paddingBottom: toStr(b.paddingBottom), paddingLeft: toStr(b.paddingLeft),
           width: toStr(b.width), minHeight: toStr(b.minHeight),
           maxWidth: toStr(b.maxWidth), maxHeight: toStr(b.maxHeight),
+          contentAr: toStr(b.contentAr), fontFamilyAr: toStr(b.fontFamilyAr),
+          fontSizeAr: toStr(b.fontSizeAr), fontWeightAr: toStr(b.fontWeightAr),
+          fontStyleAr: toStr(b.fontStyleAr), textDecorationAr: toStr(b.textDecorationAr),
+          textColorAr: toStr(b.textColorAr), lineHeightAr: toStr(b.lineHeightAr),
+          letterSpacingAr: toStr(b.letterSpacingAr), textAlignAr: toStr(b.textAlignAr),
+          marginTopAr: toStr(b.marginTopAr), marginRightAr: toStr(b.marginRightAr),
+          marginBottomAr: toStr(b.marginBottomAr), marginLeftAr: toStr(b.marginLeftAr),
+          paddingTopAr: toStr(b.paddingTopAr), paddingRightAr: toStr(b.paddingRightAr),
+          paddingBottomAr: toStr(b.paddingBottomAr), paddingLeftAr: toStr(b.paddingLeftAr),
+          widthAr: toStr(b.widthAr), heightAr: toStr(b.heightAr),
+          minHeightAr: toStr(b.minHeightAr), maxWidthAr: toStr(b.maxWidthAr),
+          maxHeightAr: toStr(b.maxHeightAr),
         });
       });
 
@@ -142,33 +204,60 @@ export default function FaqCmsDashboard() {
         blockKey: string; label: string; blockType: BlockType; defaultContent: string;
       };
       const saved = blocks.get(blockKey);
-      setSelected(saved ? { ...saved } : emptyBlock('faq', blockKey, label, blockType, defaultContent));
+      const arDef = AR_DEFAULTS[blockKey] ?? '';
+      setSelected(
+        saved
+          ? { ...saved, content: saved.content || defaultContent, contentAr: saved.contentAr || arDef }
+          : { ...emptyBlock('faq', blockKey, label, blockType, defaultContent), contentAr: arDef }
+      );
+      setEditorLang(previewLang);
     }
     window.addEventListener('message', onMsg);
     return () => window.removeEventListener('message', onMsg);
-  }, [blocks]);
+  }, [blocks, previewLang]);
 
   // ── Live preview update ───────────────────────────────────────────────────
   useEffect(() => {
     if (!selected || !iframeRef.current?.contentWindow) return;
+    const isAr   = previewLang === 'ar';
+    const content = isAr
+      ? (selected.contentAr || AR_DEFAULTS[selected.blockKey] || selected.content)
+      : selected.content;
     iframeRef.current.contentWindow.postMessage(
       {
         type: 'CMS_LIVE_UPDATE',
         blockKey: selected.blockKey,
-        content: selected.content,
+        content,
         imageSrc: selected.blockType === 'image' ? selected.image : undefined,
-        styles: buildStyles(selected),
+        styles: isAr ? buildArStyles(selected) : buildStyles(selected),
       },
       '*'
     );
-  }, [selected]);
+  }, [selected, previewLang]);
 
   // ── Text block helpers ────────────────────────────────────────────────────
-  function set(key: keyof CmsBlock, val: string) {
-    setSelected((p) => p ? { ...p, [key]: val } : p);
+  function cur(key: string): string {
+    if (!selected) return '';
+    const k = editorLang === 'ar' ? key + 'Ar' : key;
+    return (selected as Record<string, string>)[k] ?? '';
   }
-  function toggle(key: keyof CmsBlock, onVal: string) {
-    setSelected((p) => p ? { ...p, [key]: p[key] === onVal ? '' : onVal } : p);
+  function set(key: string, val: string) {
+    const k = editorLang === 'ar' ? key + 'Ar' : key;
+    setSelected((p) => p ? { ...p, [k]: val } : p);
+  }
+  function toggle(key: string, onVal: string) {
+    const k = editorLang === 'ar' ? key + 'Ar' : key;
+    setSelected((p) => {
+      if (!p) return p;
+      const v = (p as Record<string, string>)[k] ?? '';
+      return { ...p, [k]: v === onVal ? '' : onVal };
+    });
+  }
+
+  function switchPreviewLang(l: EditorLang) {
+    setPreviewLang(l);
+    setEditorLang(l);
+    iframeRef.current?.contentWindow?.postMessage({ type: 'CMS_SET_LANG', lang: l }, '*');
   }
 
   async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
@@ -211,23 +300,43 @@ export default function FaqCmsDashboard() {
 
   function resetStyles() {
     if (!selected) return;
-    setSelected(emptyBlock('faq', selected.blockKey, selected.label, selected.blockType, selected.content));
+    if (editorLang === 'ar') {
+      setSelected((p) => p ? {
+        ...p,
+        fontFamilyAr: '', fontSizeAr: '', fontWeightAr: '', fontStyleAr: '',
+        textDecorationAr: '', textColorAr: '', lineHeightAr: '', letterSpacingAr: '',
+        textAlignAr: '', marginTopAr: '', marginRightAr: '', marginBottomAr: '',
+        marginLeftAr: '', paddingTopAr: '', paddingRightAr: '', paddingBottomAr: '',
+        paddingLeftAr: '', widthAr: '', heightAr: '', minHeightAr: '',
+        maxWidthAr: '', maxHeightAr: '',
+      } : p);
+    } else {
+      setSelected(emptyBlock('faq', selected.blockKey, selected.label, selected.blockType, selected.content));
+    }
   }
 
   // ── Q&A helpers ───────────────────────────────────────────────────────────
   function startEdit(idx: number | 'new') {
     const items = qaItems ?? [];
-    if (idx === 'new') { setEditQ(''); setEditA(''); }
-    else { setEditQ(stripNum(items[idx].q)); setEditA(items[idx].a); }
+    if (idx === 'new') { setEditQ(''); setEditA(''); setEditQAr(''); setEditAAr(''); }
+    else {
+      const arDef = DEFAULT_FAQS_AR[idx];
+      setEditQ(stripNum(items[idx].q));
+      setEditA(items[idx].a);
+      setEditQAr(items[idx].qAr ?? stripNum(arDef?.q ?? ''));
+      setEditAAr(items[idx].aAr ?? arDef?.a ?? '');
+    }
     setQaEditIdx(idx);
   }
 
   async function commitQaEdit() {
     if (!editQ.trim()) return;
-    // Store plain text (no number) — persistQaItems renumbers everything
     const updated = [...(qaItems ?? [])];
-    if (qaEditIdx === 'new') updated.push({ q: editQ.trim(), a: editA.trim() });
-    else if (typeof qaEditIdx === 'number') updated[qaEditIdx] = { q: editQ.trim(), a: editA.trim() };
+    const item: QAItem = { q: editQ.trim(), a: editA.trim() };
+    if (editQAr.trim()) item.qAr = editQAr.trim();
+    if (editAAr.trim()) item.aAr = editAAr.trim();
+    if (qaEditIdx === 'new') updated.push(item);
+    else if (typeof qaEditIdx === 'number') updated[qaEditIdx] = item;
     setQaEditIdx(null);
     await persistQaItems(updated);
   }
@@ -238,11 +347,12 @@ export default function FaqCmsDashboard() {
   }
 
   async function persistQaItems(items: QAItem[]) {
-    // Renumber every question sequentially before saving
-    const renumbered = items.map((item, i) => ({
-      q: `${i + 1}. ${stripNum(item.q)}`,
-      a: item.a,
-    }));
+    const renumbered: QAItem[] = items.map((item, i) => {
+      const out: QAItem = { q: `${i + 1}. ${stripNum(item.q)}`, a: item.a };
+      if (item.qAr) out.qAr = item.qAr;
+      if (item.aAr) out.aAr = item.aAr;
+      return out;
+    });
     setQaSaving(true);
     const res = await apiFetch('/api/admin/cms/save-block', {
       method: 'POST',
@@ -262,11 +372,13 @@ export default function FaqCmsDashboard() {
     }
   }
 
+  const isAr = editorLang === 'ar';
+
   // ── Render ────────────────────────────────────────────────────────────────
   return (
     <div className="db-scope cms-page">
 
-      <header className="cms-topbar">
+      <header className="cms-topbar" style={{ position: 'relative' }}>
         <div className="cms-topbar-left">
           <Link href="/altjawal/admin-panel/dashboard/bookings" className="cms-back">
             <i className="fa-solid fa-chevron-left" /> Dashboard
@@ -274,6 +386,19 @@ export default function FaqCmsDashboard() {
           <span className="cms-topbar-divider" />
           <span className="cms-topbar-title">FAQ Page Editor</span>
         </div>
+
+        {/* Preview language toggle */}
+        <div style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', display: 'flex' }}>
+          <button
+            className={`cms-lang${previewLang === 'en' ? ' cms-lang--on' : ''}`}
+            onClick={() => switchPreviewLang('en')}
+          >EN</button>
+          <button
+            className={`cms-lang${previewLang === 'ar' ? ' cms-lang--on' : ''}`}
+            onClick={() => switchPreviewLang('ar')}
+          >AR</button>
+        </div>
+
         <div className="cms-topbar-right">
           {saveMsg && (
             <span className={`cms-save-msg${saveMsg.startsWith('Failed') ? ' cms-save-msg--err' : ''}`}>
@@ -304,7 +429,7 @@ export default function FaqCmsDashboard() {
           />
         </div>
 
-        {/* ── Right panel (always visible) ── */}
+        {/* ── Right panel ── */}
         <div className="cms-panel">
 
           {selected ? (
@@ -318,6 +443,20 @@ export default function FaqCmsDashboard() {
                 <button className="cms-close" onClick={closePanel}>
                   <i className="fa-solid fa-xmark" />
                 </button>
+              </div>
+
+              {/* EN / AR editor tabs */}
+              <div className="cms-sec" style={{ paddingBottom: 12 }}>
+                <div className="cms-lang-row">
+                  <button
+                    className={`cms-lang${editorLang === 'en' ? ' cms-lang--on' : ''}`}
+                    onClick={() => switchPreviewLang('en')}
+                  >English</button>
+                  <button
+                    className={`cms-lang${editorLang === 'ar' ? ' cms-lang--on' : ''}`}
+                    onClick={() => switchPreviewLang('ar')}
+                  >العربية</button>
+                </div>
               </div>
 
               <div className="cms-panel-body">
@@ -374,27 +513,28 @@ export default function FaqCmsDashboard() {
                 ) : (
                   <>
                     <div className="cms-sec">
-                      <p className="cms-sec-label">Content</p>
+                      <p className="cms-sec-label">Content {isAr ? '(Arabic)' : '(English)'}</p>
                       <textarea
                         className="cms-textarea"
-                        value={selected.content}
+                        dir={isAr ? 'rtl' : 'ltr'}
+                        value={cur('content')}
                         rows={4}
                         onChange={(e) => set('content', e.target.value)}
                       />
                       <div className="cms-fmts">
-                        <button className={`cms-fmt${selected.fontWeight === '700' ? ' on' : ''}`}
+                        <button className={`cms-fmt${cur('fontWeight') === '700' ? ' on' : ''}`}
                           onClick={() => toggle('fontWeight', '700')}><b>B</b></button>
-                        <button className={`cms-fmt${selected.fontStyle === 'italic' ? ' on' : ''}`}
+                        <button className={`cms-fmt${cur('fontStyle') === 'italic' ? ' on' : ''}`}
                           onClick={() => toggle('fontStyle', 'italic')}><i>I</i></button>
-                        <button className={`cms-fmt${selected.textDecoration === 'underline' ? ' on' : ''}`}
+                        <button className={`cms-fmt${cur('textDecoration') === 'underline' ? ' on' : ''}`}
                           onClick={() => toggle('textDecoration', 'underline')}><u>U</u></button>
                       </div>
                     </div>
                     <div className="cms-sec">
-                      <p className="cms-sec-label">Typography</p>
+                      <p className="cms-sec-label">Typography {isAr ? '(Arabic)' : '(English)'}</p>
                       <div className="cms-field">
                         <label className="cms-flabel">Font Family</label>
-                        <select className="cms-select" value={selected.fontFamily}
+                        <select className="cms-select" value={cur('fontFamily')}
                           onChange={(e) => set('fontFamily', e.target.value)}>
                           {FONT_FAMILIES.map((f) => (
                             <option key={f} value={f === 'Default' ? '' : f}>{f}</option>
@@ -405,11 +545,11 @@ export default function FaqCmsDashboard() {
                         <div className="cms-field">
                           <label className="cms-flabel">Font Size</label>
                           <input className="cms-input" type="text" placeholder="30px"
-                            value={selected.fontSize} onChange={(e) => set('fontSize', e.target.value)} />
+                            value={cur('fontSize')} onChange={(e) => set('fontSize', e.target.value)} />
                         </div>
                         <div className="cms-field">
                           <label className="cms-flabel">Weight</label>
-                          <select className="cms-select" value={selected.fontWeight}
+                          <select className="cms-select" value={cur('fontWeight')}
                             onChange={(e) => set('fontWeight', e.target.value)}>
                             {FONT_WEIGHTS.map((w) => (
                               <option key={w} value={w === 'Default' ? '' : w}>{w}</option>
@@ -421,21 +561,21 @@ export default function FaqCmsDashboard() {
                         <label className="cms-flabel">Color</label>
                         <div className="cms-color-row">
                           <input type="color" className="cms-swatch"
-                            value={selected.textColor || '#000000'}
+                            value={cur('textColor') || '#000000'}
                             onChange={(e) => set('textColor', e.target.value)} />
                           <input className="cms-input" type="text" placeholder="#000000"
-                            value={selected.textColor} onChange={(e) => set('textColor', e.target.value)} />
+                            value={cur('textColor')} onChange={(e) => set('textColor', e.target.value)} />
                         </div>
                       </div>
                       <div className="cms-grid2">
                         <div className="cms-field">
                           <label className="cms-flabel">Letter Spacing</label>
                           <input className="cms-input" type="text" placeholder="2px"
-                            value={selected.letterSpacing} onChange={(e) => set('letterSpacing', e.target.value)} />
+                            value={cur('letterSpacing')} onChange={(e) => set('letterSpacing', e.target.value)} />
                         </div>
                         <div className="cms-field">
                           <label className="cms-flabel">Text Align</label>
-                          <select className="cms-select" value={selected.textAlign}
+                          <select className="cms-select" value={cur('textAlign')}
                             onChange={(e) => set('textAlign', e.target.value)}>
                             {TEXT_ALIGNS.map((a) => (
                               <option key={a} value={a === 'Default' ? '' : a}>{a}</option>
@@ -445,14 +585,14 @@ export default function FaqCmsDashboard() {
                       </div>
                     </div>
                     <div className="cms-sec">
-                      <p className="cms-sec-label">Margin</p>
+                      <p className="cms-sec-label">Margin {isAr ? '(Arabic)' : '(English)'}</p>
                       <div className="cms-grid2">
                         {(['marginTop', 'marginRight', 'marginBottom', 'marginLeft'] as const).map((k) => (
                           <div className="cms-field" key={k}>
                             <label className="cms-flabel">{k.replace('margin', '')}</label>
                             <div className="cms-px-wrap">
                               <input className="cms-input cms-input--px" type="text" placeholder="0"
-                                value={selected[k]} onChange={(e) => set(k, e.target.value)} />
+                                value={cur(k)} onChange={(e) => set(k, e.target.value)} />
                               <span className="cms-px">px</span>
                             </div>
                           </div>
@@ -460,14 +600,14 @@ export default function FaqCmsDashboard() {
                       </div>
                     </div>
                     <div className="cms-sec">
-                      <p className="cms-sec-label">Padding</p>
+                      <p className="cms-sec-label">Padding {isAr ? '(Arabic)' : '(English)'}</p>
                       <div className="cms-grid2">
                         {(['paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft'] as const).map((k) => (
                           <div className="cms-field" key={k}>
                             <label className="cms-flabel">{k.replace('padding', '')}</label>
                             <div className="cms-px-wrap">
                               <input className="cms-input cms-input--px" type="text" placeholder="0"
-                                value={selected[k]} onChange={(e) => set(k, e.target.value)} />
+                                value={cur(k)} onChange={(e) => set(k, e.target.value)} />
                               <span className="cms-px">px</span>
                             </div>
                           </div>
@@ -475,31 +615,31 @@ export default function FaqCmsDashboard() {
                       </div>
                     </div>
                     <div className="cms-sec">
-                      <p className="cms-sec-label">Layout</p>
+                      <p className="cms-sec-label">Layout {isAr ? '(Arabic)' : '(English)'}</p>
                       <div className="cms-grid2">
                         <div className="cms-field">
                           <label className="cms-flabel">Line Height</label>
                           <input className="cms-input" type="text" placeholder="1.5"
-                            value={selected.lineHeight} onChange={(e) => set('lineHeight', e.target.value)} />
+                            value={cur('lineHeight')} onChange={(e) => set('lineHeight', e.target.value)} />
                         </div>
                         <div className="cms-field">
                           <label className="cms-flabel">Width</label>
                           <input className="cms-input" type="text" placeholder="100%"
-                            value={selected.width} onChange={(e) => set('width', e.target.value)} />
+                            value={cur('width')} onChange={(e) => set('width', e.target.value)} />
                         </div>
                         <div className="cms-field">
                           <label className="cms-flabel">Min Height</label>
                           <input className="cms-input" type="text" placeholder="120px"
-                            value={selected.minHeight} onChange={(e) => set('minHeight', e.target.value)} />
+                            value={cur('minHeight')} onChange={(e) => set('minHeight', e.target.value)} />
                         </div>
                         <div className="cms-field">
                           <label className="cms-flabel">Max Width</label>
                           <input className="cms-input" type="text" placeholder="800px"
-                            value={selected.maxWidth} onChange={(e) => set('maxWidth', e.target.value)} />
+                            value={cur('maxWidth')} onChange={(e) => set('maxWidth', e.target.value)} />
                         </div>
                       </div>
                       <button className="cms-reset-btn" onClick={resetStyles}>
-                        Reset English styles
+                        Reset {isAr ? 'Arabic' : 'English'} styles
                       </button>
                     </div>
                   </>
@@ -530,12 +670,11 @@ export default function FaqCmsDashboard() {
                     </button>
                   )}
 
-                  {/* New item form */}
                   {qaEditIdx === 'new' && (
                     <div className="cms-qa-form">
                       <p className="cms-sec-label" style={{ marginBottom: 10 }}>New Question</p>
                       <div className="cms-field">
-                        <label className="cms-flabel">Question</label>
+                        <label className="cms-flabel">Question (English)</label>
                         <input
                           className="cms-input"
                           type="text"
@@ -546,13 +685,35 @@ export default function FaqCmsDashboard() {
                         />
                       </div>
                       <div className="cms-field">
-                        <label className="cms-flabel">Answer</label>
+                        <label className="cms-flabel">Answer (English)</label>
                         <textarea
                           className="cms-textarea"
                           placeholder="Enter answer…"
-                          rows={4}
+                          rows={3}
                           value={editA}
                           onChange={(e) => setEditA(e.target.value)}
+                        />
+                      </div>
+                      <div className="cms-field">
+                        <label className="cms-flabel">Question (Arabic)</label>
+                        <input
+                          className="cms-input"
+                          dir="rtl"
+                          type="text"
+                          placeholder="أدخل السؤال…"
+                          value={editQAr}
+                          onChange={(e) => setEditQAr(e.target.value)}
+                        />
+                      </div>
+                      <div className="cms-field">
+                        <label className="cms-flabel">Answer (Arabic)</label>
+                        <textarea
+                          className="cms-textarea"
+                          dir="rtl"
+                          placeholder="أدخل الجواب…"
+                          rows={3}
+                          value={editAAr}
+                          onChange={(e) => setEditAAr(e.target.value)}
                         />
                       </div>
                       <div className="cms-qa-form-btns">
@@ -571,14 +732,10 @@ export default function FaqCmsDashboard() {
                   )}
                 </div>
 
-                {/* Q&A list */}
                 <div className="cms-qa-list">
                   {qaItems === null && (
-                    <div className="cms-qa-empty">
-                      <p>Loading…</p>
-                    </div>
+                    <div className="cms-qa-empty"><p>Loading…</p></div>
                   )}
-
                   {qaItems !== null && qaItems.length === 0 && qaEditIdx === null && (
                     <div className="cms-qa-empty">
                       <i className="fa-regular fa-circle-question" />
@@ -586,14 +743,12 @@ export default function FaqCmsDashboard() {
                       <p>Click &quot;Add Question&quot; to get started.</p>
                     </div>
                   )}
-
                   {(qaItems ?? []).map((item, idx) => (
                     <div key={idx} className="cms-qa-item">
                       {qaEditIdx === idx ? (
-                        /* Edit form */
                         <div className="cms-qa-form">
                           <div className="cms-field">
-                            <label className="cms-flabel">Question</label>
+                            <label className="cms-flabel">Question (English)</label>
                             <input
                               className="cms-input"
                               type="text"
@@ -603,12 +758,34 @@ export default function FaqCmsDashboard() {
                             />
                           </div>
                           <div className="cms-field">
-                            <label className="cms-flabel">Answer</label>
+                            <label className="cms-flabel">Answer (English)</label>
                             <textarea
                               className="cms-textarea"
-                              rows={4}
+                              rows={3}
                               value={editA}
                               onChange={(e) => setEditA(e.target.value)}
+                            />
+                          </div>
+                          <div className="cms-field">
+                            <label className="cms-flabel">Question (Arabic)</label>
+                            <input
+                              className="cms-input"
+                              dir="rtl"
+                              type="text"
+                              placeholder="أدخل السؤال…"
+                              value={editQAr}
+                              onChange={(e) => setEditQAr(e.target.value)}
+                            />
+                          </div>
+                          <div className="cms-field">
+                            <label className="cms-flabel">Answer (Arabic)</label>
+                            <textarea
+                              className="cms-textarea"
+                              dir="rtl"
+                              placeholder="أدخل الجواب…"
+                              rows={3}
+                              value={editAAr}
+                              onChange={(e) => setEditAAr(e.target.value)}
                             />
                           </div>
                           <div className="cms-qa-form-btns">
@@ -625,7 +802,6 @@ export default function FaqCmsDashboard() {
                           </div>
                         </div>
                       ) : (
-                        /* Display row */
                         <div className="cms-qa-row">
                           <p className="cms-qa-q">{item.q}</p>
                           <div className="cms-qa-actions">

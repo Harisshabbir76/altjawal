@@ -199,23 +199,35 @@ const FAQ_CONFIG: PageConfig = {
 // ── About Us ──────────────────────────────────────────────────────────────────
 const ABOUT_CONFIG: PageConfig = {
   singleText: {
-    '.aboutus-hero__heading':       { blockKey: 'page_hero_heading', label: 'Hero Heading',    blockType: 'text' },
-    '.aboutus-hero__paragraph':     { blockKey: 'page_hero_subtext', label: 'Hero Subtext',    blockType: 'textarea' },
-    '.about-experience__heading':   { blockKey: 'story_heading',     label: 'Story Heading',   blockType: 'text' },
-    '.about-experience__paragraph': { blockKey: 'story_body',        label: 'Story Body',      blockType: 'textarea' },
-    '.about-build__heading':        { blockKey: 'mission_heading',   label: 'Mission Heading', blockType: 'text' },
-    '.about-build__paragraph':      { blockKey: 'mission_body',      label: 'Mission Body',    blockType: 'textarea' },
-    '.about-inspired__heading':     { blockKey: 'vision_heading',    label: 'Vision Heading',  blockType: 'text' },
-    '.about-inspired__paragraph':   { blockKey: 'vision_body',       label: 'Vision Body',     blockType: 'textarea' },
-    '.about-guide__heading':        { blockKey: 'values_heading',    label: 'Values Heading',  blockType: 'text' },
-    '.about-founder__name':         { blockKey: 'team_heading',      label: 'Founder Name',    blockType: 'text' },
+    '.aboutus-hero__heading':            { blockKey: 'page_hero_heading',  label: 'Hero Heading',    blockType: 'text' },
+    '.aboutus-hero__paragraph':          { blockKey: 'page_hero_subtext',  label: 'Hero Subtext',    blockType: 'textarea' },
+    '.about-experience__heading':        { blockKey: 'story_heading',      label: 'Story Heading',   blockType: 'text' },
+    '.about-build__heading':             { blockKey: 'mission_heading',    label: 'Mission Heading', blockType: 'text' },
+    '.about-inspired__heading':          { blockKey: 'vision_heading',     label: 'Vision Heading',  blockType: 'text' },
+    '.about-guide__heading':             { blockKey: 'values_heading',     label: 'Values Heading',  blockType: 'text' },
+    '.about-founder__name':              { blockKey: 'team_heading',       label: 'Founder Name',    blockType: 'text' },
+    '.about-founder-stats .experience-heading': { blockKey: 'about-stats-heading', label: 'Stats Heading', blockType: 'text' },
   },
-  multiText: [],
-  singleImages: [
-    { container: '.aboutus-hero',              img: '.aboutus-hero__bg-img',  blockKey: 'page_hero_background', label: 'Hero Background Image' },
-    { container: '.about-experience__img-wrap', img: '.about-experience__img', blockKey: 'story_image',         label: 'Story Image' },
+  multiText: [
+    { selector: '.about-experience__paragraph',          keyPrefix: 'about-exp-para',      labelPrefix: 'Story Paragraph',    blockType: 'textarea' },
+    { selector: '.about-build__paragraph',               keyPrefix: 'about-build-para',    labelPrefix: 'Build Paragraph',    blockType: 'textarea' },
+    { selector: '.about-inspired__paragraph',            keyPrefix: 'about-inspired-para', labelPrefix: 'Inspired Paragraph', blockType: 'textarea' },
+    { selector: '.about-guide__item-title',              keyPrefix: 'about-guide-title',   labelPrefix: 'Values Title',       blockType: 'text' },
+    { selector: '.about-guide__item-desc',               keyPrefix: 'about-guide-desc',    labelPrefix: 'Values Description', blockType: 'textarea' },
+    { selector: '.about-founder__paragraph',             keyPrefix: 'about-founder-para',  labelPrefix: 'Founder Paragraph',  blockType: 'textarea' },
+    { selector: '.about-founder-stats .experience-value',keyPrefix: 'about-exp-value',     labelPrefix: 'Stat Value',         blockType: 'text' },
+    { selector: '.about-founder-stats .experience-label',keyPrefix: 'about-exp-label',     labelPrefix: 'Stat Label',         blockType: 'text' },
   ],
-  multiImages: [],
+  singleImages: [
+    { container: '.aboutus-hero',               img: '.aboutus-hero__bg-img',  blockKey: 'page_hero_background', label: 'Hero Background Image' },
+    { container: '.about-experience__img-wrap', img: '.about-experience__img', blockKey: 'story_image',          label: 'Story Image' },
+    { container: '.about-inspired__img-wrap',   img: '.about-inspired__img',   blockKey: 'about-inspired-img',   label: 'Al Dhafra Image' },
+    { container: '.about-founder__img-wrap',    img: '.about-founder__img',    blockKey: 'about-founder-img',    label: 'Founder Image' },
+  ],
+  multiImages: [
+    { containerSel: '.about-build__img-wrap', imgSel: '.about-build__img', keyPrefix: 'about-build-img', labelPrefix: 'Build Image' },
+    { containerSel: '.about-guide__img-wrap', imgSel: '.about-guide__img', keyPrefix: 'about-guide-img', labelPrefix: 'Values Image' },
+  ],
 };
 
 // ── Legal ─────────────────────────────────────────────────────────────────────

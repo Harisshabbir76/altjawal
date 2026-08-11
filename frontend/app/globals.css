@@ -29,3 +29,113 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* ── Arabic font ── */
+html[lang="ar"] * {
+  font-family: var(--font-tajawal), sans-serif !important;
+  letter-spacing: 0 !important;
+}
+
+/* ── Arabic navbar: swap left/right groups around the logo ── */
+html[lang="ar"] .nav-right {
+  order: 0;
+  margin-left: 0;
+  margin-right: 3rem;
+  flex-direction: row-reverse;
+}
+html[lang="ar"] .nav-logo  { order: 1; }
+html[lang="ar"] .nav-left  {
+  order: 2;
+  margin-right: 0;
+  margin-left: 3rem;
+  flex-direction: row-reverse;
+}
+html[lang="ar"] .dropdown-menu {
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+}
+
+/* ── Arabic: dot fixed in right column, text left-aligned ── */
+html[lang="ar"] .chooseus-item {
+  padding-left: 0;
+  padding-right: 0;
+}
+html[lang="ar"] .chooseus-item::before {
+  left: auto;
+  right: 40%;
+}
+
+/* ── Arabic: main services package list — dot inline to the right of text ── */
+html[lang="ar"] .ms-packages__item-list li {
+  padding-left: 0;
+}
+html[lang="ar"] .ms-packages__item-list li::after {
+  content: ' •';
+  display: inline;
+}
+
+/* ── Arabic: branding services package list ── */
+html[lang="ar"] .bs-logo__pkg-list li {
+  padding-left: 0;
+}
+html[lang="ar"] .bs-logo__pkg-list li::after {
+  content: ' •';
+  display: inline;
+}
+
+/* ── Arabic: Booking page ── */
+html[lang="ar"] .booking-section__label,
+html[lang="ar"] .booking-section__field-error,
+html[lang="ar"] .booking-unavail-title,
+html[lang="ar"] .booking-unavail-sub {
+  text-align: right;
+}
+html[lang="ar"] .booking-section__input,
+html[lang="ar"] .booking-section__textarea,
+html[lang="ar"] .booking-section__select {
+  text-align: right;
+  direction: rtl;
+}
+html[lang="ar"] .booking-unavail-item {
+  flex-direction: row-reverse;
+}
+
+/* ── Arabic: Contact page ── */
+html[lang="ar"] .contact-section__card-intro {
+  text-align: right;
+}
+html[lang="ar"] .contact-section__input,
+html[lang="ar"] .contact-section__textarea {
+  text-align: right;
+  direction: rtl;
+}
+
+/* ── Arabic: Legal page ── */
+html[lang="ar"] .legal-page__section-title,
+html[lang="ar"] .legal-page__content p,
+html[lang="ar"] .legal-page__content li {
+  text-align: right;
+}
+html[lang="ar"] .legal-page__tabs {
+  flex-direction: row-reverse;
+}
+
+/* ── Arabic: FAQ accordion — arrow left, number right, text in between ── */
+html[lang="ar"] .faq-qa__list {
+  text-align: right;
+}
+html[lang="ar"] .faq-qa__question {
+  text-align: right;
+}
+html[lang="ar"] .faq-qa__qtext {
+  flex: 1;
+  text-align: right;
+}
+html[lang="ar"] .faq-qa__qnum {
+  flex-shrink: 0;
+}
+html[lang="ar"] .faq-qa__answer {
+  text-align: right;
+}
+

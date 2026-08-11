@@ -7,9 +7,13 @@ import Image from 'next/image';
 import logo from '../Images/logo.svg';
 import blueLogo from '../Images/blue-logo.webp';
 import '../styles/navbar.css';
+import { useLang } from '../lib/LanguageContext';
+import { NAV } from '../lib/translations';
 
 export default function Navbar() {
   const pathname = usePathname();
+  const { lang } = useLang();
+  const t = (key: keyof typeof NAV) => NAV[key][lang];
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [sidebarServicesOpen, setSidebarServicesOpen] = useState(false);
@@ -54,7 +58,7 @@ export default function Navbar() {
 
           {/* Desktop left links */}
           <div className="nav-left">
-            <Link href="/about" className="nav-link">About</Link>
+            <Link href="/about" className="nav-link">{t('about')}</Link>
 
             <div className="nav-dropdown" ref={dropdownRef}
               onMouseEnter={() => setServicesOpen(true)}
@@ -65,15 +69,15 @@ export default function Navbar() {
                 onClick={() => setServicesOpen((prev) => !prev)}
                 aria-expanded={servicesOpen}
               >
-                Services{' '}
+                {t('services')}{' '}
                 <span className={`dropdown-arrow${servicesOpen ? ' open' : ''}`}>▾</span>
               </button>
 
               {servicesOpen && (
                 <div className="dropdown-menu" role="menu">
-                  <Link href="main-services" className="dropdown-item" onClick={() => setServicesOpen(false)}>Main Services</Link>
-                  <Link href="event-production" className="dropdown-item" onClick={() => setServicesOpen(false)}>Event Production</Link>
-                  <Link href="branding-services" className="dropdown-item" onClick={() => setServicesOpen(false)}>Branding Services</Link>
+                  <Link href="main-services" className="dropdown-item" onClick={() => setServicesOpen(false)}>{t('mainServices')}</Link>
+                  <Link href="event-production" className="dropdown-item" onClick={() => setServicesOpen(false)}>{t('eventProduction')}</Link>
+                  <Link href="branding-services" className="dropdown-item" onClick={() => setServicesOpen(false)}>{t('branding')}</Link>
                 </div>
               )}
             </div>
@@ -94,12 +98,12 @@ export default function Navbar() {
 
           {/* Desktop right links */}
           <div className="nav-right">
-            <Link href="/contact" className="nav-link">Contact Us</Link>
-            <Link href="/book" className="nav-link book-now">Book Now</Link>
+            <Link href="/contact" className="nav-link">{t('contact')}</Link>
+            <Link href="/book" className="nav-link book-now">{t('bookNow')}</Link>
           </div>
 
           {/* Mobile: Book Now (right) */}
-          <Link href="/book" className="mobile-book-now">Book Now</Link>
+          <Link href="/book" className="mobile-book-now">{t('bookNow')}</Link>
         </div>
       </nav>
 
@@ -113,7 +117,7 @@ export default function Navbar() {
 
             <nav className="sidebar-nav">
               <Link href="/about" className="sidebar-link" onClick={closeSidebar}>
-                About
+                {t('about')}
               </Link>
 
               <div>
@@ -122,21 +126,21 @@ export default function Navbar() {
                   onClick={() => setSidebarServicesOpen((prev) => !prev)}
                   aria-expanded={sidebarServicesOpen}
                 >
-                  Services{' '}
+                  {t('services')}{' '}
                   <span className={`dropdown-arrow${sidebarServicesOpen ? ' open' : ''}`}>▾</span>
                 </button>
 
                 {sidebarServicesOpen && (
                   <div className="sidebar-dropdown-menu">
-                    <Link href="main-services" className="sidebar-dropdown-item" onClick={closeSidebar}>Main Services</Link>
-                    <Link href="event-production" className="sidebar-dropdown-item" onClick={closeSidebar}>Event Production</Link>
-                    <Link href="branding-services" className="sidebar-dropdown-item" onClick={closeSidebar}>Branding Services</Link>
+                    <Link href="main-services" className="sidebar-dropdown-item" onClick={closeSidebar}>{t('mainServices')}</Link>
+                    <Link href="event-production" className="sidebar-dropdown-item" onClick={closeSidebar}>{t('eventProduction')}</Link>
+                    <Link href="branding-services" className="sidebar-dropdown-item" onClick={closeSidebar}>{t('branding')}</Link>
                   </div>
                 )}
               </div>
 
               <Link href="/contact" className="sidebar-link" onClick={closeSidebar}>
-                Contact Us
+                {t('contact')}
               </Link>
             </nav>
           </div>
