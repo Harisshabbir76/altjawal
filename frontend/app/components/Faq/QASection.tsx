@@ -78,7 +78,7 @@ export default function FaqQASection() {
 
         <div className="faq-qa__list">
           {displayFaqs.map((item, i) => {
-            const arMatch = lang === 'ar' ? item.q.match(/^(\d+\.)\s*(.*)$/s) : null;
+            const arMatch = lang === 'ar' ? item.q.match(/^(\d+\.)\s*(.*)$/) : null;
             const arNum  = arMatch?.[1] ?? '';
             const arText = arMatch?.[2] ?? item.q;
             return (
