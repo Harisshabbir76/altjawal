@@ -69,6 +69,22 @@
   color: #1a1a1a;
 }
 
+/* ── Arabic: block on left, dot after text on the right ── */
+[lang="ar"] .chooseus-item {
+  padding-left: 0;
+}
+
+[lang="ar"] .chooseus-item::before {
+  display: none;
+}
+
+[lang="ar"] .chooseus-item::after {
+  content: ' ◆';
+  font-size: 7px;
+  color: #1a1a1a;
+  vertical-align: middle;
+}
+
 /* ── Right image ── */
 .chooseus-right {
   position: relative;

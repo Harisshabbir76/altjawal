@@ -56,15 +56,6 @@ html[lang="ar"] .dropdown-menu {
   transform: translateX(-50%);
 }
 
-/* ── Arabic: dot fixed in right column, text left-aligned ── */
-html[lang="ar"] .chooseus-item {
-  padding-left: 0;
-  padding-right: 0;
-}
-html[lang="ar"] .chooseus-item::before {
-  left: auto;
-  right: 40%;
-}
 
 /* ── Arabic: main services package list — dot inline to the right of text ── */
 html[lang="ar"] .ms-packages__item-list li {

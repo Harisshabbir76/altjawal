@@ -34,7 +34,7 @@
 /* Frame — 80% inside hero, 20% hangs below */
 .faq-hero__frame-wrap {
   position: absolute;
-  bottom: 0;
+  bottom: -50px;
   left: 50%;
   transform: translateX(-50%) translateY(30%);
   width: 600px;
@@ -93,10 +93,18 @@
   .faq-hero__frame-wrap {
     width: 360px;
     height: 480px;
+    bottom: 0;
   }
 
   .faq-hero__heading {
     font-size: 26px;
+  }
+  .faq-hero__label{
+    font-size: 12px;
+  }
+  .faq-hero__paragraph{
+    font-size: 12px;
+    max-width: 230px;
   }
 }
 
@@ -112,6 +120,7 @@
   .faq-hero__frame-wrap {
     width: 320px;
     height: 470px;
+    bottom: 0;
   }
 
   .faq-hero__heading {
