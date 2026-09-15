@@ -1,7 +1,7 @@
 /* ── FAQ Q&A Section ── */
 .faq-qa {
   background-color: #EFECE3;
-  padding: 200px 5rem 50px;
+  padding: 230px 5rem 50px;
   text-align: center;
 }
 
@@ -201,6 +201,9 @@
 }
 
 @media (min-width: 1400px) {
+  .faq-qa{
+    padding-top: 200px;
+  }
   .faq-qa__subheading{
     font-size: 16px;
     max-width: 750px;
