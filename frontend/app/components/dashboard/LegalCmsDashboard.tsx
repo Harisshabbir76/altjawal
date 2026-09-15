@@ -8,9 +8,10 @@ import {
   LegalSection,
   DEFAULT_PRIVACY, DEFAULT_TERMS, DEFAULT_COOKIE,
   DEFAULT_PRIVACY_AR, DEFAULT_TERMS_AR, DEFAULT_COOKIE_AR,
+  DEFAULT_LEGAL_SECTIONS,
 } from '../../lib/legalDefaults';
 
-type PolicyKey = 'privacy' | 'terms' | 'cookie';
+type PolicyKey = 'privacy' | 'terms' | 'cookie' | 'general';
 type BlockType = 'text' | 'textarea' | 'image';
 
 type CmsBlock = {
@@ -64,22 +65,26 @@ const FONT_WEIGHTS  = ['Default', '300', '400', '500', '600', '700', '800', '900
 const TEXT_ALIGNS   = ['Default', 'left', 'center', 'right'];
 
 const POLICY_LABELS: Record<PolicyKey, string> = {
+  general: 'Legal Terms',
   privacy: 'Privacy Policy',
   terms:   'Terms & Conditions',
   cookie:  'Cookie Policy',
 };
 const BLOCK_KEYS: Record<PolicyKey, string> = {
+  general: 'legal-general-sections',
   privacy: 'legal-privacy-sections',
   terms:   'legal-terms-sections',
   cookie:  'legal-cookie-sections',
 };
 const DEFAULTS: Record<PolicyKey, LegalSection[]> = {
+  general: DEFAULT_LEGAL_SECTIONS,
   privacy: DEFAULT_PRIVACY,
   terms:   DEFAULT_TERMS,
   cookie:  DEFAULT_COOKIE,
 };
 
 const DEFAULTS_AR: Record<PolicyKey, LegalSection[]> = {
+  general: DEFAULT_LEGAL_SECTIONS,
   privacy: DEFAULT_PRIVACY_AR,
   terms:   DEFAULT_TERMS_AR,
   cookie:  DEFAULT_COOKIE_AR,
@@ -97,9 +102,9 @@ export default function LegalCmsDashboard() {
   const [previewLang, setPreviewLang] = useState<'en' | 'ar'>('en');
 
   // ── Section manager ───────────────────────────────────────────────────────
-  const [activePolicy, setActivePolicy] = useState<PolicyKey>('privacy');
+  const [activePolicy, setActivePolicy] = useState<PolicyKey>('general');
   const [sections, setSections]         = useState<Record<PolicyKey, LegalSection[] | null>>({
-    privacy: null, terms: null, cookie: null,
+    general: null, privacy: null, terms: null, cookie: null,
   });
   const [editIdx,     setEditIdx]     = useState<number | 'new' | null>(null);
   const [editorLang,  setEditorLang]  = useState<'en' | 'ar'>('en');
@@ -117,17 +122,23 @@ export default function LegalCmsDashboard() {
       const arr: Record<string, unknown>[] = Array.isArray(data) ? data : (data.blocks ?? []);
       const map = new Map<string, CmsBlock>();
 
-      const loaded: Record<PolicyKey, LegalSection[] | null> = { privacy: null, terms: null, cookie: null };
+      const loaded: Record<PolicyKey, LegalSection[] | null> = { general: null, privacy: null, terms: null, cookie: null };
 
       arr.forEach((b) => {
         const key = toStr(b.blockKey);
-        if (key === 'legal-privacy-sections' || key === 'legal-terms-sections' || key === 'legal-cookie-sections') {
+        if (
+          key === 'legal-general-sections' ||
+          key === 'legal-privacy-sections' ||
+          key === 'legal-terms-sections' ||
+          key === 'legal-cookie-sections'
+        ) {
           try {
             const parsed: LegalSection[] = JSON.parse(toStr(b.content));
             if (Array.isArray(parsed) && parsed.length > 0) {
-              if (key === 'legal-privacy-sections') loaded.privacy = parsed;
-              if (key === 'legal-terms-sections')   loaded.terms   = parsed;
-              if (key === 'legal-cookie-sections')  loaded.cookie  = parsed;
+              if (key === 'legal-general-sections')  loaded.general  = parsed;
+              if (key === 'legal-privacy-sections')  loaded.privacy  = parsed;
+              if (key === 'legal-terms-sections')    loaded.terms    = parsed;
+              if (key === 'legal-cookie-sections')   loaded.cookie   = parsed;
             }
           } catch { /* malformed JSON — fall through to defaults */ }
         }
@@ -151,15 +162,17 @@ export default function LegalCmsDashboard() {
       });
 
       setSections({
+        general: loaded.general ?? DEFAULT_LEGAL_SECTIONS,
         privacy: loaded.privacy ?? DEFAULT_PRIVACY,
         terms:   loaded.terms   ?? DEFAULT_TERMS,
         cookie:  loaded.cookie  ?? DEFAULT_COOKIE,
       });
       setBlocks(map);
     }).catch(() => {
-      setSections({ privacy: DEFAULT_PRIVACY, terms: DEFAULT_TERMS, cookie: DEFAULT_COOKIE });
+      setSections({ general: DEFAULT_LEGAL_SECTIONS, privacy: DEFAULT_PRIVACY, terms: DEFAULT_TERMS, cookie: DEFAULT_COOKIE });
     });
   }, []);
+
 
   // ── Listen for CMS_SELECT from iframe ────────────────────────────────────
   useEffect(() => {
@@ -557,6 +570,14 @@ export default function LegalCmsDashboard() {
 
               {/* Policy tab switcher */}
               <div className="cms-policy-tabs">
+                {/* Only Legal tab is active — Privacy, Terms, Cookies commented out */}
+                <button
+                  className={`cms-policy-tab${activePolicy === 'general' ? ' cms-policy-tab--on' : ''}`}
+                  onClick={() => { setActivePolicy('general'); setEditIdx(null); }}
+                >
+                  Legal
+                </button>
+                {/*
                 {(['privacy', 'terms', 'cookie'] as PolicyKey[]).map((p) => (
                   <button
                     key={p}
@@ -566,6 +587,7 @@ export default function LegalCmsDashboard() {
                     {p === 'privacy' ? 'Privacy' : p === 'terms' ? 'Terms' : 'Cookies'}
                   </button>
                 ))}
+                */}
               </div>
 
               <div className="cms-panel-body">

@@ -217,3 +217,67 @@ export const DEFAULT_COOKIE: LegalSection[] = [
     body: 'If you have questions about our use of cookies, please contact us through our contact page.',
   },
 ];
+
+export const DEFAULT_LEGAL_SECTIONS: LegalSection[] = [
+  {
+    title: 'Website Use',
+    body: 'The content on this website is provided for general information about Atjwal Events, our services, projects, and capabilities. While we aim to keep all information accurate and up to date, details may change without prior notice.',
+    titleAr: 'استخدام الموقع',
+    bodyAr: 'يتم توفير المحتوى على هذا الموقع لمعلومات عامة عن فعاليات الجوال، وخدماتنا، ومشاريعنا، وإمكانياتنا. بينما نهدف إلى الحفاظ على دقة وتحديث كافة المعلومات، قد تتغير التفاصيل دون إشعار مسبق.',
+  },
+  {
+    title: 'Our Services',
+    body: 'Atjwal Events provides services including local events, entertainment, exhibitions, event management, production, and branding. Specific services, deliverables, timelines, and pricing are subject to the quotation or agreement approved by the client.',
+    titleAr: 'خدماتنا',
+    bodyAr: 'تقدم فعاليات الجوال خدمات تشمل الفعاليات المحلية، والترفيه، والمعارض، وإدارة الفعاليات، والإنتاج، والهوية المؤسسية. تخضع الخدمات المحددة والمخرجات والجداول الزمنية والأسعار لعرض السعر أو الاتفاقية المعتمدة من قبل العميل.',
+  },
+  {
+    title: 'Intellectual Property',
+    body: 'All content on this website, including logos, names, graphics, images, designs, text, and other creative materials, belongs to Atjwal Events or is used with permission. No content may be copied, reproduced, modified, or used commercially without prior written approval.',
+    titleAr: 'الملكية الفكرية',
+    bodyAr: 'جميع المحتويات الموجودة على هذا الموقع، بما في ذلك الشعارات والأسماء والرسومات والصور والتصاميم والنصوص والمواد الإبداعية الأخرى، تعود لفعاليات الجوال أو تُستخدم بإذن. لا يجوز نسخ أي محتوى أو إعادة إنتاجه أو تعديله أو استخدامه تجارياً دون موافقة خطية مسبقة.',
+  },
+  {
+    title: 'Client Projects',
+    body: 'Images, videos, and other materials from events or projects may be displayed on our website and social media for portfolio and promotional purposes, where permitted. Any specific client confidentiality or usage restrictions will be respected according to the agreed terms.',
+    titleAr: 'مشاريع العملاء',
+    bodyAr: 'قد يتم عرض الصور ومقاطع الفيديو والمواد الأخرى من الفعاليات أو المشاريع على موقعنا الإلكتروني ووسائل التواصل الاجتماعي لأغراض ملف الأعمال والترويج، حيثما يُسمح بذلك. سيتم احترام أي سرية محددة للعميل أو قيود الاستخدام وفقاً للشروط المتفق عليها.',
+  },
+  {
+    title: 'Third-Party Links & Services',
+    body: 'Our website or projects may include references to third-party websites, suppliers, venues, platforms, or service providers. Atjwal Events is not responsible for the content, availability, or policies of third-party websites or services.',
+    titleAr: 'روابط وخدمات الأطراف الثالثة',
+    bodyAr: 'قد يتضمن موقعنا أو مشاريعنا إشارات إلى مواقع إلكترونية أو موردين أو أماكن أو منصات أو مزودي خدمات من أطراف ثالثة. لا تتحمل فعاليات الجوال المسؤولية عن محتوى أو توافر أو سياسات المواقع أو الخدمات الخاصة بأطراف ثالثة.',
+  },
+  {
+    title: 'Payments & Bookings',
+    body: 'All project payments, deposits, cancellation terms, and other commercial conditions are governed by the approved quotation, proposal, or agreement between Atjwal Events and the client.',
+    titleAr: 'المدفوعات والحجوزات',
+    bodyAr: 'تخضع جميع مدفوعات المشاريع، والودائع، وشروط الإلغاء، والظروف التجارية الأخرى لعرض السعر أو المقترح أو الاتفاقية المعتمدة بين فعاليات الجوال والعميل.',
+  },
+  {
+    title: 'Privacy',
+    body: 'Any information submitted through our website or contact forms will be handled for the purpose of responding to enquiries, providing services, and communicating with clients. We do not intentionally collect personal information beyond what is reasonably required for these purposes.',
+    titleAr: 'الخصوصية',
+    bodyAr: 'سيتم التعامل مع أي معلومات يتم إرسالها عبر موقعنا الإلكتروني أو نماذج الاتصال لغرض الرد على الاستفسارات، وتقديم الخدمات، والتواصل مع العملاء. نحن لا نجمع عن عمد معلومات شخصية تتجاوز ما هو مطلوب بشكل معقول لهذه الأغراض.',
+  },
+  {
+    title: 'Disclaimer',
+    body: 'Atjwal Events makes reasonable efforts to ensure the information provided on this website is accurate. However, we do not guarantee that the website or its content will always be complete, current, or free from errors.',
+    titleAr: 'إخلاء المسؤولية',
+    bodyAr: 'تبذل فعاليات الجوال جهوداً معقولة لضمان دقة المعلومات المقدمة على هذا الموقع. ومع ذلك، فإننا لا نضمن أن الموقع أو محتواه سيكون دائماً كاملاً أو محدثاً أو خالياً من الأخطاء.',
+  },
+  {
+    title: 'Changes',
+    body: 'Atjwal Events reserves the right to update, modify, or remove website content and these legal terms at any time without prior notice.',
+    titleAr: 'التغييرات',
+    bodyAr: 'تحتفظ فعاليات الجوال بالحق في تحديث أو تعديل أو إزالة محتوى الموقع وهذه الشروط القانونية في أي وقت دون إشعار مسبق.',
+  },
+  {
+    title: 'Contact',
+    body: 'For any questions regarding our legal terms, services, or website, please contact the Atjwal Events team through the contact details provided on this website.',
+    titleAr: 'التواصل',
+    bodyAr: 'لأي أسئلة تتعلق بشروطنا القانونية أو خدماتنا أو موقعنا، يرجى التواصل مع فريق فعاليات الجوال من خلال تفاصيل الاتصال الموضحة على هذا الموقع.',
+  },
+];
+
